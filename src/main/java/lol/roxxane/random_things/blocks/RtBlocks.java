@@ -101,6 +101,11 @@ public class RtBlocks {
 	public static final RegistryEntry<Block> DIRT_EMERALD_ORE = emerald_ore(Blocks.DIRT);
 	public static final RegistryEntry<Block> GRAVEL_EMERALD_ORE = emerald_ore(Blocks.GRAVEL);
 
+	public static final RegistryEntry<UnstableStone> UNSTABLE_STONE =
+		REGISTRATE.block("unstable_stone", p -> new UnstableStone(p))
+			.simpleItem()
+			.register();
+
 	public static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
 		loot.add(block, LootTable.lootTable().withPool(
 			LootPool.lootPool().add(
@@ -156,11 +161,15 @@ public class RtBlocks {
 		NonNullFunction<Properties, Block> block_function;
 
 		if (xp == null)
-			if (base_block instanceof FallingBlock) block_function = $ -> new FallingBlock(properties);
-			else block_function = $ -> new Block(properties);
+			if (base_block instanceof FallingBlock) block_function =
+				$ -> new FallingBlock(properties.requiresCorrectToolForDrops());
+			else block_function =
+				$ -> new Block(properties.requiresCorrectToolForDrops());
 		else
-			if (base_block instanceof FallingBlock) block_function = $ -> new FallingOreBlock(properties, xp);
-			else block_function = $ -> new DropExperienceBlock(properties, xp);
+			if (base_block instanceof FallingBlock) block_function =
+				$ -> new FallingOreBlock(properties.requiresCorrectToolForDrops(), xp);
+			else block_function =
+				$ -> new DropExperienceBlock(properties.requiresCorrectToolForDrops(), xp);
 
 		var block_entry =
 			REGISTRATE.block(ForgeRegistries.BLOCKS.getKey(base_block).getPath() + "_" + ore + "_ore",
@@ -230,7 +239,6 @@ public class RtBlocks {
 			BlockTags.NEEDS_IRON_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
-
 
 	public static void register() {}
 }

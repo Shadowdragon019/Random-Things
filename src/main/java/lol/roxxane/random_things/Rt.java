@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 //fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 // I wanna gen stuff dynamicly with - https://www.curseforge.com/minecraft/mc-mods/dynamic-asset-generator
 // Or just render the block below it with the ore texture on top
+// TODO: Dungeon that uses Unstable Stone
 @Mod(Rt.ID)
 public class Rt {
 	public static final String ID = "random_things";
