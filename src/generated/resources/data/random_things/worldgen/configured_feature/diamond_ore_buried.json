@@ -1,0 +1,81 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 1.0,
+    "size": 8,
+    "targets": [
+      {
+        "state": {
+          "Name": "random_things:sand_diamond_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:sand_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:sandstone_diamond_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:sandstone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:red_sand_diamond_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:red_sand_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:red_sandstone_diamond_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:red_sandstone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:gravel_diamond_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:gravel_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:dirt_diamond_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:dirt_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "minecraft:diamond_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:stone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "minecraft:deepslate_diamond_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:deepslate_ore_replaceables"
+        }
+      }
+    ]
+  }
+}

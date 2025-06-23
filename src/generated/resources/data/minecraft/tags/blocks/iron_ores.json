@@ -1,0 +1,16 @@
+{
+  "values": [
+    "random_things:sand_iron_ore",
+    "random_things:sandstone_iron_ore",
+    "random_things:red_sand_iron_ore",
+    "random_things:red_sandstone_iron_ore",
+    "random_things:dirt_iron_ore",
+    "random_things:gravel_iron_ore",
+    "random_things:sand_redstone_ore",
+    "random_things:sandstone_redstone_ore",
+    "random_things:red_sand_redstone_ore",
+    "random_things:red_sandstone_redstone_ore",
+    "random_things:dirt_redstone_ore",
+    "random_things:gravel_redstone_ore"
+  ]
+}

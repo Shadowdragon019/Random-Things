@@ -1,0 +1,9 @@
+{
+	"required": true,
+	"package": "lol.roxxane.random_things.mixins",
+	"compatibilityLevel": "JAVA_17",
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"refmap": "mixins.random_things.refmap.json"
+}

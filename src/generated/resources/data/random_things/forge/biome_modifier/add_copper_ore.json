@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "random_things:copper_ore",
+    "random_things:copper_ore_large"
+  ],
+  "step": "underground_ores"
+}

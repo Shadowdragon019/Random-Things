@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "random_things:gold_ore",
+    "random_things:gold_ore_extra",
+    "random_things:gold_ore_lower"
+  ],
+  "step": "underground_ores"
+}
