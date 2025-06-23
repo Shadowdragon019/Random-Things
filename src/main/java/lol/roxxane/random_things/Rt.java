@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 // Screw fancy textures, I'll just layer stuff, good enough
 //fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 // TODO: Item tags
-// TODO: Fix gold & emerald spawning everywhere. Oops!
+// TODO: Fix copper, gold & emerald spawning extra. Oops!
 // TODO: Only replace configured features
 @Mod(Rt.ID)
 public class Rt {
