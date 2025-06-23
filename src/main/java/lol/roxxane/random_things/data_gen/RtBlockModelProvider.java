@@ -5,7 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import static lol.roxxane.random_things.Rt.resource;
+import static lol.roxxane.random_things.Rt.location;
 
 public class RtBlockModelProvider extends BlockModelProvider {
 	public RtBlockModelProvider(PackOutput output, ExistingFileHelper existing_file_helper) {
@@ -33,7 +33,7 @@ public class RtBlockModelProvider extends BlockModelProvider {
 	}
 
 	private void register_ore(String ore) {
-		cubeBottomTop(ore + "_ore", resource("block/" + ore + "_ore"),
-			resource("block/" + ore + "_ore_bottom"), resource("block/" + ore + "_ore_top"));
+		cubeBottomTop(ore + "_ore", location("block/" + ore + "_ore"),
+			location("block/" + ore + "_ore_bottom"), location("block/" + ore + "_ore_top"));
 	}
 }

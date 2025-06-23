@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": [
-    "random_things:redstone_ore",
-    "random_things:redstone_ore_lower"
-  ],
-  "step": "underground_ores"
-}

@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": [
-    "random_things:coal_ore_lower",
-    "random_things:coal_ore_upper"
-  ],
-  "step": "underground_ores"
-}

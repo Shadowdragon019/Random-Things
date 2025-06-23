@@ -14,6 +14,6 @@ public class RtBlockTags {
 	public static final TagKey<Block> ALL_REPLACEABLES = tag("all_replaceables");
 
 	private static TagKey<Block> tag(String path) {
-		return BlockTags.create(Rt.resource(path));
+		return BlockTags.create(Rt.location(path));
 	}
 }

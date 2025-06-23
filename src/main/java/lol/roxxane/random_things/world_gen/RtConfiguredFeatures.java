@@ -1,11 +1,10 @@
 package lol.roxxane.random_things.world_gen;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.RtBlockTags;
 import lol.roxxane.random_things.blocks.RtBlocks;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -14,35 +13,24 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration.TargetBlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import java.util.List;
 
 public class RtConfiguredFeatures {
-	public static final ResourceKey<ConfiguredFeature<?, ?>> COAL_ORE = register("coal_ore");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> COAL_ORE_BURIED = register("coal_ore_buried");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> IRON_ORE = register("iron_ore");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> IRON_ORE_SMALL = register("iron_ore_small");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> COPPER_ORE_LARGE = register("copper_ore_large");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> COPPER_ORE_SMALL = register("copper_ore_small");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> GOLD_ORE = register("gold_ore");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> GOLD_ORE_BURIED = register("gold_ore_buried");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> LAPIS_ORE = register("lapis_ore");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> LAPIS_ORE_BURIED = register("lapis_ore_buried");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> DIAMOND_ORE_BURIED = register("diamond_ore_buried");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> DIAMOND_ORE_LARGE = register("diamond_ore_large");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> DIAMOND_ORE_SMALL = register("diamond_ore_small");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> REDSTONE_ORE = register("redstone_ore");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> EMERALD_ORE = register("emerald_ore");
+	private static BootstapContext<ConfiguredFeature<?, ?>> context;
 
-	private static OreConfiguration.TargetBlockState replaceable(TagMatchTest match_test, Block block) {
+	private static TargetBlockState replaceable(TagMatchTest match_test, Block block) {
 		return OreConfiguration.target(match_test, block.defaultBlockState());
 	}
-	private static OreConfiguration.TargetBlockState replaceable(TagMatchTest match_test, RegistryEntry<Block> entry) {
+	private static TargetBlockState replaceable(TagMatchTest match_test, RegistryEntry<Block> entry) {
 		return OreConfiguration.target(match_test, entry.get().defaultBlockState());
 	}
 
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+		RtConfiguredFeatures.context = context;
+
 		var sand_replaceable = new TagMatchTest(RtBlockTags.SAND_ORE_REPLACEABLES);
 		var sandstone_replaceable = new TagMatchTest(RtBlockTags.SANDSTONE_ORE_REPLACEABLES);
 		var red_sand_replaceable = new TagMatchTest(RtBlockTags.RED_SAND_ORE_REPLACEABLES);
@@ -125,45 +113,34 @@ public class RtConfiguredFeatures {
 			replaceable(stone_replaceable, Blocks.EMERALD_ORE),
 			replaceable(deepslate_replaceable, Blocks.DEEPSLATE_EMERALD_ORE));
 
-		register(context, COAL_ORE, Feature.ORE,
-			new OreConfiguration(coal_replaceables, 17));
-		register(context, COAL_ORE_BURIED, Feature.ORE,
-			new OreConfiguration(coal_replaceables, 17, 0.5f));
-		register(context, IRON_ORE, Feature.ORE,
-			new OreConfiguration(iron_replaceables, 9));
-		register(context, IRON_ORE_SMALL, Feature.ORE,
-			new OreConfiguration(iron_replaceables, 4));
-		register(context, COPPER_ORE_LARGE, Feature.ORE,
-			new OreConfiguration(copper_replaceables, 20));
-		register(context, COPPER_ORE_SMALL, Feature.ORE,
-			new OreConfiguration(copper_replaceables, 10));
-		register(context, GOLD_ORE, Feature.ORE,
-			new OreConfiguration(gold_replaceables, 9));
-		register(context, GOLD_ORE_BURIED, Feature.ORE,
-			new OreConfiguration(gold_replaceables, 9));
-		register(context, LAPIS_ORE, Feature.ORE,
-			new OreConfiguration(lapis_replaceables, 7));
-		register(context, LAPIS_ORE_BURIED, Feature.ORE,
-			new OreConfiguration(lapis_replaceables, 7, 1));
-		register(context, DIAMOND_ORE_BURIED, Feature.ORE,
-			new OreConfiguration(diamond_replaceables, 8, 1));
-		register(context, DIAMOND_ORE_LARGE, Feature.ORE,
-			new OreConfiguration(diamond_replaceables, 12, 0.7f));
-		register(context, DIAMOND_ORE_SMALL, Feature.ORE,
-			new OreConfiguration(diamond_replaceables, 4, 0.5f));
-		register(context, REDSTONE_ORE, Feature.ORE,
-			new OreConfiguration(redstone_replaceables, 8));
-		register(context, EMERALD_ORE, Feature.ORE,
-			new OreConfiguration(emerald_replaceables, 3));
-	}
-
-	public static ResourceKey<ConfiguredFeature<?, ?>> register(String path) {
-		return ResourceKey.create(Registries.CONFIGURED_FEATURE, Rt.resource(path));
+		register_ore(OreFeatures.ORE_COAL, coal_replaceables, 17);
+		register_ore(OreFeatures.ORE_COAL_BURIED, coal_replaceables, 17, 0.5f);
+		register_ore(OreFeatures.ORE_IRON, iron_replaceables, 9);
+		register_ore(OreFeatures.ORE_IRON_SMALL, iron_replaceables, 4);
+		register_ore(OreFeatures.ORE_COPPER_LARGE, copper_replaceables, 20);
+		register_ore(OreFeatures.ORE_COPPPER_SMALL, copper_replaceables, 10);
+		register_ore(OreFeatures.ORE_GOLD, gold_replaceables, 9);
+		register_ore(OreFeatures.ORE_GOLD_BURIED, gold_replaceables, 9);
+		register_ore(OreFeatures.ORE_LAPIS, lapis_replaceables, 7);
+		register_ore(OreFeatures.ORE_LAPIS_BURIED, lapis_replaceables, 7, 1);
+		register_ore(OreFeatures.ORE_DIAMOND_BURIED, diamond_replaceables, 8, 1);
+		register_ore(OreFeatures.ORE_DIAMOND_LARGE, diamond_replaceables, 12, 0.7f);
+		register_ore(OreFeatures.ORE_DIAMOND_SMALL, diamond_replaceables, 4, 0.5f);
+		register_ore(OreFeatures.ORE_REDSTONE, redstone_replaceables, 8);
+		register_ore(OreFeatures.ORE_EMERALD, emerald_replaceables, 3);
 	}
 
 	private static <C extends FeatureConfiguration, F extends Feature<C>> void register
-		(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature,
-		 C configuration) {
+		(ResourceKey<ConfiguredFeature<?, ?>> key, F feature, C configuration) {
 		context.register(key, new ConfiguredFeature<>(feature, configuration));
+	}
+	private static void register_ore(ResourceKey<ConfiguredFeature<?, ?>> key, List<TargetBlockState> target_states,
+		int size, float discard_change) {
+		register(key, Feature.ORE,
+			new OreConfiguration(target_states, size, discard_change));
+	}
+	private static void register_ore(ResourceKey<ConfiguredFeature<?, ?>> key, List<TargetBlockState> target_states,
+		int size) {
+		register(key, Feature.ORE, new OreConfiguration(target_states, size));
 	}
 }

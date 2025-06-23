@@ -9,13 +9,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-// on lapis for feature cycle issue
-// ores to do: gold, lapis, diamond, redstone, emerald
-// Screw fancy textures, I'll just layer stuff, good enough
 //fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
-// TODO: Item tags
-// TODO: Fix copper, gold & emerald spawning extra. Oops!
-// TODO: Only replace configured features
+// I wanna gen stuff dynamicly with - https://www.curseforge.com/minecraft/mc-mods/dynamic-asset-generator
+// Or just render the block below it with the ore texture on top
 @Mod(Rt.ID)
 public class Rt {
 	public static final String ID = "random_things";
@@ -35,7 +31,7 @@ public class Rt {
 		LOGGER.info(object.toString());
 	}
 
-	public static ResourceLocation resource(String path) {
+	public static ResourceLocation location(String path) {
 		return ResourceLocation.fromNamespaceAndPath(ID, path);
 	}
 }
