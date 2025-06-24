@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-24T00:52:00.431422222	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-06-24T13:06:25.044320798	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 15320b335714bceb72c97267296e67bf1eefedb0 assets/random_things/blockstates/dirt_coal_ore.json
 864491e1fdf6d1dac2c668c54645c716fc301945 assets/random_things/blockstates/dirt_copper_ore.json
 d9f0a65982b2e11ab325499e0be1df90e4ada5d9 assets/random_things/blockstates/dirt_diamond_ore.json
@@ -47,9 +47,10 @@ b62f861bd3bc3e14ed306a2d4ebe900772b9c6f6 assets/random_things/blockstates/sandst
 b4e1d414395b90409d353984ba8ef4a904602aa3 assets/random_things/blockstates/sandstone_iron_ore.json
 7c74efd473422967ee7597fd4388073b387a5c7c assets/random_things/blockstates/sandstone_lapis_ore.json
 a048c3d8936c03b52367a19a6f6ea7afaaefbb39 assets/random_things/blockstates/sandstone_redstone_ore.json
+339f90ddb2251edbe6e098b388c8f6cd4ced8f25 assets/random_things/blockstates/unstable_deepslate.json
 04c038c4aefad505f2d1aec67bb5e9f0386c9d68 assets/random_things/blockstates/unstable_stone.json
-24420ab39746f3ac1322252195f930b5e00681f0 assets/random_things/lang/en_ud.json
-cbf664b06091e6a476acba7c026f7868a0a9e5a2 assets/random_things/lang/en_us.json
+fa8dd8509f00b434793c272110deb9d72b990bd3 assets/random_things/lang/en_ud.json
+267e66657e6d9c04dc853085fb97789e225486fe assets/random_things/lang/en_us.json
 3310e559fdaeb66faf8de0f9a6a1e0d361797ac4 assets/random_things/models/block/dirt_coal_ore.json
 a25bcdbe3ce281eb98009245b7f7b365439347ec assets/random_things/models/block/dirt_copper_ore.json
 ecbf2479c2d323b47b9b66eb63963a35f63996c1 assets/random_things/models/block/dirt_diamond_ore.json
@@ -98,6 +99,8 @@ a85e6178cdef342fb9da9146bb90dea6895e3c1c assets/random_things/models/block/sands
 75d7876be44c86d7b594c7eeb65dc856be5765a3 assets/random_things/models/block/sandstone_iron_ore.json
 66121d81b45e6c189ae0cef96f77633994385152 assets/random_things/models/block/sandstone_lapis_ore.json
 21872a0a6f48bcc20a17c9c9e0813d76747b9b26 assets/random_things/models/block/sandstone_redstone_ore.json
+477bb41573b6fd868a0ddecc92431356930ce753 assets/random_things/models/block/unstable_deepslate.json
+fbee142a9e3ae575a7e6c7c93ea11962f92e6455 assets/random_things/models/block/unstable_deepslate_horizontal.json
 a85f2590e51a5f9915535e9be1a3aff09adbed88 assets/random_things/models/block/unstable_stone.json
 7c6a60f5312e50b37dbbb3760612fc0ff6f4fa0a assets/random_things/models/item/dirt_coal_ore.json
 c6df7cb2ce3a99610703d93be4631a2834a714f1 assets/random_things/models/item/dirt_copper_ore.json
@@ -147,6 +150,7 @@ a3e88b6b90034345872e8fd808144cf652730fb7 assets/random_things/models/item/sandst
 1bb78b0e2e831c189346b12d29d931eebbfa71c0 assets/random_things/models/item/sandstone_iron_ore.json
 f52c2fb52e8c998aeba559656737498ec1336d30 assets/random_things/models/item/sandstone_lapis_ore.json
 f9a88dd9a1261f28b697317fb823513ce319cfd7 assets/random_things/models/item/sandstone_redstone_ore.json
+73dc0a96532b9a7b21aec676468986d17b43c78e assets/random_things/models/item/unstable_deepslate.json
 5bc69542bd46918458017d1216aa08dafd9fda64 assets/random_things/models/item/unstable_stone.json
 e914913260a7a5361f3601c25e291c424e7b77c6 data/forge/tags/blocks/ore_rates/dense.json
 2ec9c0f8c79e2546adea131bcfb4114d3130bd21 data/forge/tags/blocks/ore_rates/singular.json
@@ -158,7 +162,7 @@ dbb68522771870b1ae736d0633ff9b33bb8d901a data/minecraft/tags/blocks/diamond_ores
 7e9bf5dd17d27f5c0007d127d3e7cb331b44e198 data/minecraft/tags/blocks/gold_ores.json
 be662793024d845c6024bf65806b31aa0ede6646 data/minecraft/tags/blocks/iron_ores.json
 9ad5fac2d2ead1d5ee4eec4a2ef233cd9b146c91 data/minecraft/tags/blocks/lapis_ores.json
-14688e052f8f3434d9acb402cd4c346987b7ab1b data/minecraft/tags/blocks/mineable/pickaxe.json
+b45a2bcd98e8669781db1531b68bf2b6480a00f0 data/minecraft/tags/blocks/mineable/pickaxe.json
 a66d12d67b2e7d69f4a74726e32d6241203dc984 data/minecraft/tags/blocks/mineable/shovel.json
 556ea7bb130bc8ee37128ee09d83a5f293ef4d1a data/minecraft/tags/blocks/needs_iron_tool.json
 61f48c1607605fc7b3d892fc8117a087fbb575a3 data/minecraft/tags/blocks/needs_stone_tool.json
@@ -211,4 +215,5 @@ c48170f652f2bff309772057c0619cfbb4f7aedd data/random_things/loot_tables/blocks/s
 89f7188aaae1a5b6821227c4beee170ce21cfc9e data/random_things/loot_tables/blocks/sandstone_iron_ore.json
 4c8418abdb11b5784392d34f8c4e4c602f21d099 data/random_things/loot_tables/blocks/sandstone_lapis_ore.json
 65617461160a39f68ffd2bb19f2e80d96e2a29be data/random_things/loot_tables/blocks/sandstone_redstone_ore.json
+ec3d9a839f4a4959653fcf68aab1da5c1d3d8033 data/random_things/loot_tables/blocks/unstable_deepslate.json
 310262e06bf66a4ec31b4f86ff8e35bf520572a2 data/random_things/loot_tables/blocks/unstable_stone.json

@@ -5,5 +5,9 @@
 	"injectors": {
 		"defaultRequire": 1
 	},
-	"refmap": "mixins.random_things.refmap.json"
+	"refmap": "mixins.random_things.refmap.json",
+	"mixins": [
+		"minecraft.unstable_stone.EntityMixin",
+		"minecraft.unstable_stone.ExplosionMixin"
+	]
 }

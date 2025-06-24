@@ -1,6 +1,7 @@
 package lol.roxxane.random_things.data_gen;
 
 import lol.roxxane.random_things.Rt;
+import lol.roxxane.random_things.blocks.RtBlocks;
 import lol.roxxane.random_things.tags.RtBlockTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -33,6 +34,8 @@ public class RtBlockTagProvider extends BlockTagsProvider {
 			RtBlockTags.SANDSTONE_ORE_REPLACEABLES, RtBlockTags.RED_SAND_ORE_REPLACEABLES,
 			RtBlockTags.RED_SANDSTONE_ORE_REPLACEABLES, RtBlockTags.GRAVEL_ORE_REPLACEABLES,
 			RtBlockTags.DIRT_ORE_REPLACEABLES, BlockTags.STONE_ORE_REPLACEABLES, BlockTags.DEEPSLATE_ORE_REPLACEABLES);
-		tag(RtBlockTags.UNSTABLE_STONE_OTHER_COLLAPSE).addTags(Tags.Blocks.STONE, Tags.Blocks.COBBLESTONE);
+		tag(RtBlockTags.UNSTABLE_STONES).add(RtBlocks.UNSTABLE_STONE.get(), RtBlocks.UNSTABLE_DEEPSLATE.get());
+		tag(RtBlockTags.CRUMBLE_DESTROYS).addTags(Tags.Blocks.COBBLESTONE, Tags.Blocks.STONE, BlockTags.DIRT,
+			Tags.Blocks.ORES);
 	}
 }

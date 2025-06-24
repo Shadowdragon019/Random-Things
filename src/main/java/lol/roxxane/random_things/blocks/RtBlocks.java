@@ -14,10 +14,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -38,7 +35,7 @@ import static lol.roxxane.random_things.Rt.REGISTRATE;
 
 @SuppressWarnings("unused")
 public class RtBlocks {
-	public static final ArrayList<RegistryEntry<Block>> ALL_BLOCK_ENTRIES = new ArrayList<>();
+	public static final ArrayList<RegistryEntry<Block>> ORES_ENTRIES = new ArrayList<>();
 
 	private static final LootItemCondition.Builder HAS_SILK_TOUCH =
 		MatchTool.toolMatches(ItemPredicate.Builder.item()
@@ -101,18 +98,29 @@ public class RtBlocks {
 	public static final RegistryEntry<Block> DIRT_EMERALD_ORE = emerald_ore(Blocks.DIRT);
 	public static final RegistryEntry<Block> GRAVEL_EMERALD_ORE = emerald_ore(Blocks.GRAVEL);
 
-	public static final RegistryEntry<UnstableStone> UNSTABLE_STONE =
+	public static final RegistryEntry<Block> UNSTABLE_STONE =
 		REGISTRATE.block("unstable_stone",
-				p -> new UnstableStone(Properties.copy(Blocks.STONE)
-					.destroyTime(0.75f)))
+				p -> new Block(Properties.copy(Blocks.STONE)
+					.strength(0.75f, 0)))
 			.simpleItem()
 			.loot((loot, block) ->
 				loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
 					.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH)))))
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.register();
+	public static final RegistryEntry<RotatedPillarBlock> UNSTABLE_DEEPSLATE =
+		REGISTRATE.block("unstable_deepslate",
+				p -> new RotatedPillarBlock(Properties.copy(Blocks.DEEPSLATE)
+					.strength(  1.5f, 0)))
+			.simpleItem()
+			.loot((loot, block) ->
+				loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH)))))
+			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+			.blockstate((context, provider) -> provider.axisBlock(context.get()))
+			.register();
 
-	public static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
+	private static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
 		loot.add(block, LootTable.lootTable().withPool(
 			LootPool.lootPool().add(
 				AlternativesEntry.alternatives(
@@ -122,7 +130,7 @@ public class RtBlocks {
 							.apply(ApplyBonusCount.addOreBonusCount(
 								Enchantments.BLOCK_FORTUNE)))))));
 	}
-	public static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item, int min, int max) {
+	private static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item, int min, int max) {
 		loot.add(block, LootTable.lootTable().withPool(
 			LootPool.lootPool().add(
 				AlternativesEntry.alternatives(
@@ -136,7 +144,7 @@ public class RtBlocks {
 
 	@SuppressWarnings("DataFlowIssue")
 	@SafeVarargs
-	public static RegistryEntry<Block> ore(String ore, Block base_block,
+	private static RegistryEntry<Block> ore(String ore, Block base_block,
 		@Nullable IntProvider xp, NonNullBiConsumer<RegistrateBlockLootTables, Block> loot, TagKey<Block>... tags) {
 		var properties = Properties.copy(base_block);
 		NonNullFunction<Properties, Block> block_function;
@@ -160,60 +168,60 @@ public class RtBlocks {
 				.loot(loot)
 				.register();
 
-		ALL_BLOCK_ENTRIES.add(block_entry);
+		ORES_ENTRIES.add(block_entry);
 
 		return block_entry;
 	}
-	public static RegistryEntry<Block> coal_ore(Block base_block) {
+	private static RegistryEntry<Block> coal_ore(Block base_block) {
 		return ore("coal", base_block, UniformInt.of(0, 2),
 			(loot, block) -> ore_loot(loot, block, Items.COAL),
 			Tags.Blocks.ORE_RATES_SINGULAR, BlockTags.COAL_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
-	public static RegistryEntry<Block> iron_ore(Block base_block) {
+	private static RegistryEntry<Block> iron_ore(Block base_block) {
 		return ore("iron", base_block, null,
 			(loot, block) -> ore_loot(loot, block, Items.RAW_IRON),
 			Tags.Blocks.ORE_RATES_SINGULAR, BlockTags.IRON_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_STONE_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
-	public static RegistryEntry<Block> copper_ore(Block base_block) {
+	private static RegistryEntry<Block> copper_ore(Block base_block) {
 		return ore("copper", base_block, null,
 			(loot, block) -> ore_loot(loot, block, Items.RAW_COPPER, 2, 5),
 			Tags.Blocks.ORE_RATES_DENSE, BlockTags.COPPER_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_STONE_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
-	public static RegistryEntry<Block> gold_ore(Block base_block) {
+	private static RegistryEntry<Block> gold_ore(Block base_block) {
 		return ore("gold", base_block, null,
 			(loot, block) -> ore_loot(loot, block, Items.RAW_GOLD),
 			Tags.Blocks.ORE_RATES_SINGULAR, BlockTags.GOLD_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_IRON_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
-	public static RegistryEntry<Block> lapis_ore(Block base_block) {
+	private static RegistryEntry<Block> lapis_ore(Block base_block) {
 		return ore("lapis", base_block, null,
 			(loot, block) -> ore_loot(loot, block, Items.LAPIS_LAZULI, 4, 9),
 			Tags.Blocks.ORE_RATES_DENSE, BlockTags.LAPIS_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_STONE_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
-	public static RegistryEntry<Block> diamond_ore(Block base_block) {
+	private static RegistryEntry<Block> diamond_ore(Block base_block) {
 		return ore("diamond", base_block, null,
 			(loot, block) -> ore_loot(loot, block, Items.DIAMOND),
 			Tags.Blocks.ORE_RATES_SINGULAR, BlockTags.DIAMOND_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_IRON_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
-	public static RegistryEntry<Block> redstone_ore(Block base_block) {
+	private static RegistryEntry<Block> redstone_ore(Block base_block) {
 		return ore("redstone", base_block, null,
 			(loot, block) -> ore_loot(loot, block, Items.REDSTONE, 4, 5),
 			Tags.Blocks.ORE_RATES_DENSE, BlockTags.REDSTONE_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.IRON_ORES, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
-	public static RegistryEntry<Block> emerald_ore(Block base_block) {
+	private static RegistryEntry<Block> emerald_ore(Block base_block) {
 		return ore("emerald", base_block, null,
 			(loot, block) -> ore_loot(loot, block, Items.EMERALD),
 			Tags.Blocks.ORE_RATES_SINGULAR, BlockTags.EMERALD_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,

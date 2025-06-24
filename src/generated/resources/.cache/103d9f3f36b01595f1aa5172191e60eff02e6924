@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-24T00:52:00.433587315	Registries
+// 1.20.1	2025-06-24T13:06:25.04624017	Registries
 f1cc48e7af4a79332c0877acb32e939219635120 data/minecraft/worldgen/configured_feature/ore_coal.json
 8337abc7bfae16dbc4adf83a966c221174c5777c data/minecraft/worldgen/configured_feature/ore_coal_buried.json
 ae01c1bc30daa16b7fe345429cb8def6f00f4a23 data/minecraft/worldgen/configured_feature/ore_copper_large.json
@@ -14,3 +14,6 @@ d536aafaea862d4ef60c0eee366c0cc0dcbf3ff8 data/minecraft/worldgen/configured_feat
 12946d865774daed6528d298a6224f8a6a269894 data/minecraft/worldgen/configured_feature/ore_lapis.json
 e011d524e934389052a70a0a115b66b96b15acd3 data/minecraft/worldgen/configured_feature/ore_lapis_buried.json
 bb02b521e91416dd5f4fe8e5dd5999fa9690a62b data/minecraft/worldgen/configured_feature/ore_redstone.json
+62b0cc981ed2b52bba21c28216d0c56501a3eb83 data/random_things/forge/biome_modifier/unstable_stone.json
+dc04ad02ad8830cd9f96e327180d24e48d16b281 data/random_things/worldgen/configured_feature/unstable_stone.json
+ff1d29d2709b9145beb48fa57d6a9040af22b3e9 data/random_things/worldgen/placed_feature/unstable_stone.json

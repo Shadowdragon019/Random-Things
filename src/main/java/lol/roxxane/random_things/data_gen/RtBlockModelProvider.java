@@ -30,6 +30,10 @@ public class RtBlockModelProvider extends BlockModelProvider {
 		register_ore("red_sandstone_redstone");
 		register_ore("sandstone_emerald");
 		register_ore("red_sandstone_emerald");
+
+		/*cubeColumn("unstable_deepslate",
+			Rt.location("block/unstable_deepslate"),
+			Rt.location("block/unstable_deepslate_top"));*/
 	}
 
 	private void register_ore(String ore) {
