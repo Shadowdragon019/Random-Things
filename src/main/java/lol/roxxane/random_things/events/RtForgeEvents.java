@@ -2,6 +2,7 @@ package lol.roxxane.random_things.events;
 
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.UnstableStone;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.level.BlockEvent;
@@ -17,7 +18,9 @@ public class RtForgeEvents {
 
 	@SubscribeEvent
 	public static void player_destroy_block(BlockEvent.BreakEvent event) {
-		UnstableStone.try_crumble(event.getPlayer().level(), event.getPos(), event.getPlayer());
+
+		if (!EnchantmentHelper.hasSilkTouch(event.getPlayer().getMainHandItem()))
+			UnstableStone.try_crumble(event.getPlayer().level(), event.getPos(), event.getPlayer());
 	}
 
 	@SubscribeEvent

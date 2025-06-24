@@ -25,7 +25,7 @@ public class RtPlacedFeatures {
 
 		register(UNSTABLE_STONE,
 			configured_features.getOrThrow(RtConfiguredFeatures.UNSTABLE_STONE),
-			List.of(CountPlacement.of(10), InSquarePlacement.spread(),
+			List.of( InSquarePlacement.spread(),
 				HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(0),
 					VerticalAnchor.belowTop(0)),
 				BiomeFilter.biome()));
