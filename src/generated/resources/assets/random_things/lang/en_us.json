@@ -46,5 +46,6 @@
   "block.random_things.sandstone_gold_ore": "Sandstone Gold Ore",
   "block.random_things.sandstone_iron_ore": "Sandstone Iron Ore",
   "block.random_things.sandstone_lapis_ore": "Sandstone Lapis Ore",
-  "block.random_things.sandstone_redstone_ore": "Sandstone Redstone Ore"
+  "block.random_things.sandstone_redstone_ore": "Sandstone Redstone Ore",
+  "block.random_things.unstable_stone": "Unstable Stone"
 }
