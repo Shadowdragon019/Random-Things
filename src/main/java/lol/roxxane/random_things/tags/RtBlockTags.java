@@ -1,5 +1,6 @@
-package lol.roxxane.random_things;
+package lol.roxxane.random_things.tags;
 
+import lol.roxxane.random_things.Rt;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -12,6 +13,7 @@ public class RtBlockTags {
 	public static final TagKey<Block> GRAVEL_ORE_REPLACEABLES = tag("gravel_ore_replaceables");
 	public static final TagKey<Block> DIRT_ORE_REPLACEABLES = tag("dirt_ore_replaceables");
 	public static final TagKey<Block> ALL_REPLACEABLES = tag("all_replaceables");
+	public static final TagKey<Block> UNSTABLE_STONE_OTHER_COLLAPSE = tag("unstable_stone_other_collapse");
 
 	private static TagKey<Block> tag(String path) {
 		return BlockTags.create(Rt.location(path));

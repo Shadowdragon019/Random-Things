@@ -102,8 +102,14 @@ public class RtBlocks {
 	public static final RegistryEntry<Block> GRAVEL_EMERALD_ORE = emerald_ore(Blocks.GRAVEL);
 
 	public static final RegistryEntry<UnstableStone> UNSTABLE_STONE =
-		REGISTRATE.block("unstable_stone", p -> new UnstableStone(p))
+		REGISTRATE.block("unstable_stone",
+				p -> new UnstableStone(Properties.copy(Blocks.STONE)
+					.destroyTime(0.75f)))
 			.simpleItem()
+			.loot((loot, block) ->
+				loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH)))))
+			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.register();
 
 	public static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
@@ -116,39 +122,14 @@ public class RtBlocks {
 							.apply(ApplyBonusCount.addOreBonusCount(
 								Enchantments.BLOCK_FORTUNE)))))));
 	}
-	public static void copper_ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
+	public static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item, int min, int max) {
 		loot.add(block, LootTable.lootTable().withPool(
 			LootPool.lootPool().add(
 				AlternativesEntry.alternatives(
 					LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
 					loot.applyExplosionDecay(block,
 						LootItem.lootTableItem(item)
-							.apply(SetItemCountFunction.setCount(
-								UniformGenerator.between(2, 5)))
-							.apply(ApplyBonusCount.addOreBonusCount(
-								Enchantments.BLOCK_FORTUNE)))))));
-	}
-	public static void lapis_ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
-		loot.add(block, LootTable.lootTable().withPool(
-			LootPool.lootPool().add(
-				AlternativesEntry.alternatives(
-					LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
-					loot.applyExplosionDecay(block,
-						LootItem.lootTableItem(item)
-							.apply(SetItemCountFunction.setCount(
-								UniformGenerator.between(4, 9)))
-							.apply(ApplyBonusCount.addOreBonusCount(
-								Enchantments.BLOCK_FORTUNE)))))));
-	}
-	public static void redstone_ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
-		loot.add(block, LootTable.lootTable().withPool(
-			LootPool.lootPool().add(
-				AlternativesEntry.alternatives(
-					LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
-					loot.applyExplosionDecay(block,
-						LootItem.lootTableItem(item)
-							.apply(SetItemCountFunction.setCount(
-								UniformGenerator.between(4, 5)))
+							.apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)))
 							.apply(ApplyBonusCount.addOreBonusCount(
 								Enchantments.BLOCK_FORTUNE)))))));
 	}
@@ -199,7 +180,7 @@ public class RtBlocks {
 	}
 	public static RegistryEntry<Block> copper_ore(Block base_block) {
 		return ore("copper", base_block, null,
-			(loot, block) -> copper_ore_loot(loot, block, Items.RAW_COPPER),
+			(loot, block) -> ore_loot(loot, block, Items.RAW_COPPER, 2, 5),
 			Tags.Blocks.ORE_RATES_DENSE, BlockTags.COPPER_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_STONE_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
@@ -213,7 +194,7 @@ public class RtBlocks {
 	}
 	public static RegistryEntry<Block> lapis_ore(Block base_block) {
 		return ore("lapis", base_block, null,
-			(loot, block) -> lapis_ore_loot(loot, block, Items.LAPIS_LAZULI),
+			(loot, block) -> ore_loot(loot, block, Items.LAPIS_LAZULI, 4, 9),
 			Tags.Blocks.ORE_RATES_DENSE, BlockTags.LAPIS_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_STONE_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
@@ -227,7 +208,7 @@ public class RtBlocks {
 	}
 	public static RegistryEntry<Block> redstone_ore(Block base_block) {
 		return ore("redstone", base_block, null,
-			(loot, block) -> redstone_ore_loot(loot, block, Items.REDSTONE),
+			(loot, block) -> ore_loot(loot, block, Items.REDSTONE, 4, 5),
 			Tags.Blocks.ORE_RATES_DENSE, BlockTags.REDSTONE_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.IRON_ORES, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);

@@ -1,11 +1,12 @@
 package lol.roxxane.random_things.data_gen;
 
 import lol.roxxane.random_things.Rt;
-import lol.roxxane.random_things.RtBlockTags;
+import lol.roxxane.random_things.tags.RtBlockTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +19,6 @@ public class RtBlockTagProvider extends BlockTagsProvider {
 		@Nullable ExistingFileHelper existing_file_helper) {
 		super(output, lookup_provider, Rt.ID, existing_file_helper);
 	}
-	//fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -29,10 +29,10 @@ public class RtBlockTagProvider extends BlockTagsProvider {
 		tag(RtBlockTags.RED_SANDSTONE_ORE_REPLACEABLES).add(Blocks.RED_SANDSTONE);
 		tag(RtBlockTags.GRAVEL_ORE_REPLACEABLES).add(Blocks.GRAVEL);
 		tag(RtBlockTags.DIRT_ORE_REPLACEABLES).add(Blocks.DIRT);
-
 		tag(RtBlockTags.ALL_REPLACEABLES).addTags(RtBlockTags.SAND_ORE_REPLACEABLES,
 			RtBlockTags.SANDSTONE_ORE_REPLACEABLES, RtBlockTags.RED_SAND_ORE_REPLACEABLES,
 			RtBlockTags.RED_SANDSTONE_ORE_REPLACEABLES, RtBlockTags.GRAVEL_ORE_REPLACEABLES,
 			RtBlockTags.DIRT_ORE_REPLACEABLES, BlockTags.STONE_ORE_REPLACEABLES, BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+		tag(RtBlockTags.UNSTABLE_STONE_OTHER_COLLAPSE).addTags(Tags.Blocks.STONE, Tags.Blocks.COBBLESTONE);
 	}
 }

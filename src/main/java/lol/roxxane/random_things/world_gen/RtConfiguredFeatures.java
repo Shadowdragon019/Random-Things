@@ -1,7 +1,7 @@
 package lol.roxxane.random_things.world_gen;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import lol.roxxane.random_things.RtBlockTags;
+import lol.roxxane.random_things.tags.RtBlockTags;
 import lol.roxxane.random_things.blocks.RtBlocks;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.OreFeatures;
