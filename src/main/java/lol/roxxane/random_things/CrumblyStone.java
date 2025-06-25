@@ -46,7 +46,7 @@ public class CrumblyStone {
 			var collapse_pos = pos.offset(offset);
 			var state = level.getBlockState(collapse_pos);
 
-			if (!state.isAir() && CRUMBLY_STONE_CRUMBLE_SPREAD_CHANCE.get() >= level.random.nextFloat() &&
+			if (CRUMBLY_STONE_CRUMBLE_SPREAD_CHANCE.get() >= level.random.nextFloat() &&
 				(state.is(CRUMBLY_STONES) || state.is(CRUMBLE_DESTROYS))
 			) {
 				poses.add(collapse_pos);
