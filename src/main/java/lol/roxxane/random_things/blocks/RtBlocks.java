@@ -120,6 +120,12 @@ public class RtBlocks {
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
 			.register();
 
+	public static final RegistryEntry<Block> EXPLOSIVE_STONE =
+		REGISTRATE.block("explosive_stone",p ->
+				new Block(p.explosionResistance(3600000)))
+			.simpleItem()
+			.register();
+
 	private static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
 		loot.add(block, LootTable.lootTable().withPool(
 			LootPool.lootPool().add(

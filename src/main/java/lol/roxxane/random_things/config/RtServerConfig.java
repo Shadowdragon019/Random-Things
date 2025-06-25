@@ -16,6 +16,10 @@ public class RtServerConfig {
 	public static final ForgeConfigSpec.IntValue EXPLOSION_MAX_CRUMBLE_SIZE =
 		BUILDER.comment("WARNING: If this value is too big it may cause immense lag or crash the game")
 			.defineInRange("explosion_max_crumble_size", 3, 1, Integer.MAX_VALUE);
+	public static final ForgeConfigSpec.IntValue EXPLOSIVE_STONE_EXPLOSION_SIZES =
+		BUILDER.defineInRange("explosive_stone_explosion_sizes", 3, 0, Integer.MAX_VALUE);
+	public static final ForgeConfigSpec.IntValue TEST =
+		BUILDER.defineInRange("test", 3, 1, Integer.MAX_VALUE);
 
 	public static final ForgeConfigSpec SPEC = BUILDER.build();
 }

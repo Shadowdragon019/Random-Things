@@ -17,6 +17,7 @@ import java.util.HashSet;
 
 import static lol.roxxane.random_things.config.RtServerConfig.*;
 
+// TODO: Use ExplosionEvent.Detonate instead
 @Mixin(Explosion.class)
 abstract class ExplosionMixin {
 	@Shadow @Final private Level level;
