@@ -11,8 +11,11 @@ import net.minecraftforge.fml.common.Mod;
 public class RtModEvents {
 	@SubscribeEvent
 	public static void fill_creative_tabs(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS || event.getTabKey() == CreativeModeTabs.SEARCH)
+		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS || event.getTabKey() == CreativeModeTabs.SEARCH) {
 			for (var entry : RtBlocks.ORES_ENTRIES)
-				event.accept(entry.get());
+				event.accept(entry);
+			event.accept(RtBlocks.CRUMBLY_STONE);
+			event.accept(RtBlocks.CRUMBLY_DEEPSLATE);
+		}
 	}
 }
