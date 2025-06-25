@@ -98,8 +98,8 @@ public class RtBlocks {
 	public static final RegistryEntry<Block> DIRT_EMERALD_ORE = emerald_ore(Blocks.DIRT);
 	public static final RegistryEntry<Block> GRAVEL_EMERALD_ORE = emerald_ore(Blocks.GRAVEL);
 
-	public static final RegistryEntry<Block> UNSTABLE_STONE =
-		REGISTRATE.block("unstable_stone",
+	public static final RegistryEntry<Block> CRUMBLY_STONE =
+		REGISTRATE.block("crumbly_stone",
 				p -> new Block(Properties.copy(Blocks.STONE)
 					.strength(0.75f, 0)))
 			.simpleItem()
@@ -108,8 +108,8 @@ public class RtBlocks {
 					.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH)))))
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.register();
-	public static final RegistryEntry<RotatedPillarBlock> UNSTABLE_DEEPSLATE =
-		REGISTRATE.block("unstable_deepslate",
+	public static final RegistryEntry<RotatedPillarBlock> CRUMBLY_DEEPSLATE =
+		REGISTRATE.block("crumbly_deepslate",
 				p -> new RotatedPillarBlock(Properties.copy(Blocks.DEEPSLATE)
 					.strength(  1.5f, 0)))
 			.simpleItem()

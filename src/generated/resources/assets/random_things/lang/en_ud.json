@@ -1,4 +1,6 @@
 {
+  "block.random_things.crumbly_deepslate": "ǝʇɐןsdǝǝᗡ ʎןqɯnɹƆ",
+  "block.random_things.crumbly_stone": "ǝuoʇS ʎןqɯnɹƆ",
   "block.random_things.dirt_coal_ore": "ǝɹO ןɐoƆ ʇɹıᗡ",
   "block.random_things.dirt_copper_ore": "ǝɹO ɹǝddoƆ ʇɹıᗡ",
   "block.random_things.dirt_diamond_ore": "ǝɹO puoɯɐıᗡ ʇɹıᗡ",
@@ -46,7 +48,5 @@
   "block.random_things.sandstone_gold_ore": "ǝɹO pןo⅁ ǝuoʇspuɐS",
   "block.random_things.sandstone_iron_ore": "ǝɹO uoɹI ǝuoʇspuɐS",
   "block.random_things.sandstone_lapis_ore": "ǝɹO sıdɐꞀ ǝuoʇspuɐS",
-  "block.random_things.sandstone_redstone_ore": "ǝɹO ǝuoʇspǝᴚ ǝuoʇspuɐS",
-  "block.random_things.unstable_deepslate": "ǝʇɐןsdǝǝᗡ ǝןqɐʇsu∩",
-  "block.random_things.unstable_stone": "ǝuoʇS ǝןqɐʇsu∩"
+  "block.random_things.sandstone_redstone_ore": "ǝɹO ǝuoʇspǝᴚ ǝuoʇspuɐS"
 }

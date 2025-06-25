@@ -1,7 +1,7 @@
-package lol.roxxane.random_things.mixins.minecraft.unstable_stone;
+package lol.roxxane.random_things.mixins.minecraft.crumbly_stone;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import lol.roxxane.random_things.UnstableStone;
+import lol.roxxane.random_things.CrumblyStone;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -26,16 +26,16 @@ abstract class ExplosionMixin {
 	@Inject(method = "finalizeExplosion",
 		at = @At(value = "FIELD", opcode = Opcodes.GETFIELD, ordinal = 1,
 			target = "Lnet/minecraft/world/level/Explosion;toBlow:Lit/unimi/dsi/fastutil/objects/ObjectArrayList;"))
-	private void rt$crumble_unstable_stones(boolean $, CallbackInfo ci) {
-		if (!EXPLOSIONS_CRUMBLE_UNSTABLE_STONE.get() || level.isClientSide)
+	private void rt$crumble_crumbly_stones(boolean $, CallbackInfo ci) {
+		if (!EXPLOSIONS_CRUMBLE_CRUMBLY_STONE.get() || level.isClientSide)
 			return;
 
 		var poses = new HashSet<BlockPos>();
 
 		for (var pos : toBlow)
-			UnstableStone.gather_crumble(level, pos,
-				(UNSTABLE_STONE_MAX_CRUMBLE_SIZE.get() - EXPLOSION_MAX_CRUMBLE_SIZE.get()) + 1, poses);
+			CrumblyStone.gather_crumble(level, pos,
+				(CRUMBLY_STONE_MAX_CRUMBLE_SIZE.get() - EXPLOSION_MAX_CRUMBLE_SIZE.get()) + 1, poses);
 
-		UnstableStone.crumble(level, poses);
+		CrumblyStone.crumble(level, poses);
 	}
 }

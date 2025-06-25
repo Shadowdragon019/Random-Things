@@ -21,11 +21,11 @@
               }
             }
           ],
-          "name": "random_things:unstable_deepslate"
+          "name": "random_things:crumbly_deepslate"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "random_things:blocks/unstable_deepslate"
+  "random_sequence": "random_things:blocks/crumbly_deepslate"
 }

@@ -11,12 +11,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lol.roxxane.random_things.config.RtServerConfig.UNSTABLE_STONE_CRUMBLE_SPREAD_CHANCE;
-import static lol.roxxane.random_things.config.RtServerConfig.UNSTABLE_STONE_MAX_CRUMBLE_SIZE;
-import static lol.roxxane.random_things.tags.RtBlockTags.UNSTABLE_STONES;
+import static lol.roxxane.random_things.config.RtServerConfig.CRUMBLY_STONE_CRUMBLE_SPREAD_CHANCE;
+import static lol.roxxane.random_things.config.RtServerConfig.CRUMBLY_STONE_MAX_CRUMBLE_SIZE;
+import static lol.roxxane.random_things.tags.RtBlockTags.CRUMBLY_STONES;
 import static lol.roxxane.random_things.tags.RtBlockTags.CRUMBLE_DESTROYS;
 
-public class UnstableStone {
+public class CrumblyStone {
 	public static final List<BlockPos> SHATTER_POSITIONS = List.of(
 		new BlockPos(-1, 1, 0),
 		new BlockPos(1, 1, 0),
@@ -39,19 +39,19 @@ public class UnstableStone {
 	);
 
 	public static void gather_crumble(Level level, BlockPos pos, int iteration, Set<BlockPos> poses) {
-		if (iteration >= UNSTABLE_STONE_MAX_CRUMBLE_SIZE.get())
+		if (iteration >= CRUMBLY_STONE_MAX_CRUMBLE_SIZE.get())
 			return;
 
 		for (var offset : SHATTER_POSITIONS) {
 			var collapse_pos = pos.offset(offset);
 			var state = level.getBlockState(collapse_pos);
 
-			if (!state.isAir() && UNSTABLE_STONE_CRUMBLE_SPREAD_CHANCE.get() >= level.random.nextFloat() &&
-				(state.is(UNSTABLE_STONES) || state.is(CRUMBLE_DESTROYS))
+			if (!state.isAir() && CRUMBLY_STONE_CRUMBLE_SPREAD_CHANCE.get() >= level.random.nextFloat() &&
+				(state.is(CRUMBLY_STONES) || state.is(CRUMBLE_DESTROYS))
 			) {
 				poses.add(collapse_pos);
 
-				if (state.is(UNSTABLE_STONES))
+				if (state.is(CRUMBLY_STONES))
 					gather_crumble(level, collapse_pos, iteration + 1, poses);
 			}
 		}
@@ -62,7 +62,7 @@ public class UnstableStone {
 			return;
 		if (entity instanceof Player player && player.isSpectator())
 			return;
-		if (!level.getBlockState(pos).is(UNSTABLE_STONES))
+		if (!level.getBlockState(pos).is(CRUMBLY_STONES))
 			return;
 
 		var poses = new HashSet<BlockPos>();

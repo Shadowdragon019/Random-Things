@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.placement.*;
 import java.util.List;
 
 public class RtPlacedFeatures {
-	public static final ResourceKey<PlacedFeature> UNSTABLE_STONE = register("unstable_stone");
+	public static final ResourceKey<PlacedFeature> CRUMBLY_STONE = register("crumbly_stone");
 
 	private static BootstapContext<PlacedFeature> context;
 	@SuppressWarnings("FieldCanBeLocal")
@@ -23,8 +23,8 @@ public class RtPlacedFeatures {
 		RtPlacedFeatures.context = context;
 		configured_features = context.lookup(Registries.CONFIGURED_FEATURE);
 
-		register(UNSTABLE_STONE,
-			configured_features.getOrThrow(RtConfiguredFeatures.UNSTABLE_STONE),
+		register(CRUMBLY_STONE,
+			configured_features.getOrThrow(RtConfiguredFeatures.CRUMBLY_STONE),
 			List.of( InSquarePlacement.spread(),
 				HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(0),
 					VerticalAnchor.belowTop(0)),

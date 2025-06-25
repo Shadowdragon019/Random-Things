@@ -7,7 +7,7 @@
 	},
 	"refmap": "mixins.random_things.refmap.json",
 	"mixins": [
-		"minecraft.unstable_stone.EntityMixin",
-		"minecraft.unstable_stone.ExplosionMixin"
+		"minecraft.crumbly_stone.EntityMixin",
+		"minecraft.crumbly_stone.ExplosionMixin"
 	]
 }

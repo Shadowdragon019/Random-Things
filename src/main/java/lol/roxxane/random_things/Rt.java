@@ -13,8 +13,8 @@ import org.slf4j.Logger;
 //fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 // I wanna gen stuff dynamicly with - https://www.curseforge.com/minecraft/mc-mods/dynamic-asset-generator
 // Or just render the block below it with the ore texture on top
-// What if unstable stone blob had a lava blob in them?
-// TODO: Dungeon that uses Unstable Stone (maybe combo it with deadly walls? like a stone that explodes when broken or a block is placed next to it)
+// What if crumbly stone blob had a lava blob in them?
+// TODO: Dungeon that uses Crumbly Stone (maybe combo it with deadly walls? like a stone that explodes when broken or a block is placed next to it)
 @Mod(Rt.ID)
 public class Rt {
 	public static final String ID = "random_things";

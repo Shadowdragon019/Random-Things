@@ -22,7 +22,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import java.util.stream.Stream;
 
 public class RtConfiguredFeatures {
-	public static final ResourceKey<ConfiguredFeature<?, ?>> UNSTABLE_STONE = register("unstable_stone");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CRUMBLY_STONE = register("crumbly_stone");
 
 	private static BootstapContext<ConfiguredFeature<?, ?>> context;
 
@@ -127,9 +127,9 @@ public class RtConfiguredFeatures {
 		register_ore(OreFeatures.ORE_REDSTONE, 8, redstone_replaceables);
 		register_ore(OreFeatures.ORE_EMERALD, 3, emerald_replaceables);
 
-		register_ore(UNSTABLE_STONE, 64,
-			replaceable(BlockTags.STONE_ORE_REPLACEABLES, RtBlocks.UNSTABLE_STONE),
-			replaceable(BlockTags.DEEPSLATE_ORE_REPLACEABLES, RtBlocks.UNSTABLE_DEEPSLATE));
+		register_ore(CRUMBLY_STONE, 64,
+			replaceable(BlockTags.STONE_ORE_REPLACEABLES, RtBlocks.CRUMBLY_STONE),
+			replaceable(BlockTags.DEEPSLATE_ORE_REPLACEABLES, RtBlocks.CRUMBLY_DEEPSLATE));
 	}
 
 	@SuppressWarnings("SameParameterValue")

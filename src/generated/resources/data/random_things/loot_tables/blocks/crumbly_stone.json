@@ -21,11 +21,11 @@
               }
             }
           ],
-          "name": "random_things:unstable_stone"
+          "name": "random_things:crumbly_stone"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "random_things:blocks/unstable_stone"
+  "random_sequence": "random_things:blocks/crumbly_stone"
 }

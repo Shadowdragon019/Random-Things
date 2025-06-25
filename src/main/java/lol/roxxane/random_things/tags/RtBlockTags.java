@@ -13,7 +13,7 @@ public class RtBlockTags {
 	public static final TagKey<Block> GRAVEL_ORE_REPLACEABLES = tag("gravel_ore_replaceables");
 	public static final TagKey<Block> DIRT_ORE_REPLACEABLES = tag("dirt_ore_replaceables");
 	public static final TagKey<Block> ALL_REPLACEABLES = tag("all_replaceables");
-	public static final TagKey<Block> UNSTABLE_STONES = tag("unstable_stones");
+	public static final TagKey<Block> CRUMBLY_STONES = tag("crumbly_stones");
 	public static final TagKey<Block> CRUMBLE_DESTROYS = tag("crumble_destroys");
 
 	private static TagKey<Block> tag(String path) {

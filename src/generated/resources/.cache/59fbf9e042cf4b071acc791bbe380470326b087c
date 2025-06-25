@@ -1,10 +1,10 @@
-// 1.20.1	2025-06-24T13:44:02.241905513	Tags for minecraft:block mod id random_things
+// 1.20.1	2025-06-25T11:11:02.348908183	Tags for minecraft:block mod id random_things
 10c5175656acf87b48c556e67b2f1d01eeab98c5 data/random_things/tags/blocks/all_replaceables.json
 3a1552a3ff95b04bca0c01f0e3d303ff940f6f2b data/random_things/tags/blocks/crumble_destroys.json
+ec700178543370ccf251ed9f1572e9675fbbd3e2 data/random_things/tags/blocks/crumbly_stones.json
 d28d6e4f7a681ca019e0f4ec5a7bd7f77b0910ef data/random_things/tags/blocks/dirt_ore_replaceables.json
 d772e288e7520c6974ec3238c6aa3ecd2b8e686b data/random_things/tags/blocks/gravel_ore_replaceables.json
 92b3b4915faf1a313f2bf58a562d99fa0f91b813 data/random_things/tags/blocks/red_sand_ore_replaceables.json
 f1d842746156cfa7a5d46fad3732f64054d37607 data/random_things/tags/blocks/red_sandstone_ore_replaceables.json
 82aeade700265a023adf13ac5e3866b479208176 data/random_things/tags/blocks/sand_ore_replaceables.json
 cc4eec1bc62b821028f5ff4ed567f0962d99d8bf data/random_things/tags/blocks/sandstone_ore_replaceables.json
-51286bd65ddd36d7e5e134bdab6b58aee6a1053d data/random_things/tags/blocks/unstable_stones.json

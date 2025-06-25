@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "#minecraft:is_overworld",
-  "features": "random_things:unstable_stone",
+  "features": "random_things:crumbly_stone",
   "step": "underground_ores"
 }

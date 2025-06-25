@@ -15,8 +15,8 @@ import net.minecraftforge.common.world.ForgeBiomeModifiers.AddFeaturesBiomeModif
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class RtBiomeModifiers {
-	public static final ResourceKey<BiomeModifier> UNSTABLE_STONE =
-		register("unstable_stone");
+	public static final ResourceKey<BiomeModifier> CRUMBLY_STONE =
+		register("crumbly_stone");
 
 	@SuppressWarnings("FieldCanBeLocal")
 	private static HolderGetter<PlacedFeature> placed_features;
@@ -27,9 +27,9 @@ public class RtBiomeModifiers {
 		placed_features = context.lookup(Registries.PLACED_FEATURE);
 		biomes = context.lookup(Registries.BIOME);
 
-		context.register(UNSTABLE_STONE, new AddFeaturesBiomeModifier(
+		context.register(CRUMBLY_STONE, new AddFeaturesBiomeModifier(
 			biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-			HolderSet.direct(placed_features.getOrThrow(RtPlacedFeatures.UNSTABLE_STONE)),
+			HolderSet.direct(placed_features.getOrThrow(RtPlacedFeatures.CRUMBLY_STONE)),
 		GenerationStep.Decoration.UNDERGROUND_ORES));
 	}
 

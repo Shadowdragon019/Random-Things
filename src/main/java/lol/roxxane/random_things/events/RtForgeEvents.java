@@ -1,7 +1,7 @@
 package lol.roxxane.random_things.events;
 
 import lol.roxxane.random_things.Rt;
-import lol.roxxane.random_things.UnstableStone;
+import lol.roxxane.random_things.CrumblyStone;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -13,14 +13,14 @@ import net.minecraftforge.fml.common.Mod;
 public class RtForgeEvents {
 	@SubscribeEvent
 	public static void living_destroy_block(LivingDestroyBlockEvent event) {
-		UnstableStone.try_crumble(event.getEntity().level(), event.getPos(), event.getEntity());
+		CrumblyStone.try_crumble(event.getEntity().level(), event.getPos(), event.getEntity());
 	}
 
 	@SubscribeEvent
 	public static void player_destroy_block(BlockEvent.BreakEvent event) {
 
 		if (!EnchantmentHelper.hasSilkTouch(event.getPlayer().getMainHandItem()))
-			UnstableStone.try_crumble(event.getPlayer().level(), event.getPos(), event.getPlayer());
+			CrumblyStone.try_crumble(event.getPlayer().level(), event.getPos(), event.getPlayer());
 	}
 
 	@SubscribeEvent
@@ -30,6 +30,6 @@ public class RtForgeEvents {
 		var on_pos = entity.getOnPos();
 
 		if ((entity.isSprinting() ? 0.05 : 0.01) >= level.random.nextFloat())
-			UnstableStone.try_crumble(level, on_pos, entity);
+			CrumblyStone.try_crumble(level, on_pos, entity);
 	}
 }

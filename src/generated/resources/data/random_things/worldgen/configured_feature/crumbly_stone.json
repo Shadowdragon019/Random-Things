@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "random_things:unstable_stone"
+          "Name": "random_things:crumbly_stone"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "random_things:unstable_deepslate",
+          "Name": "random_things:crumbly_deepslate",
           "Properties": {
             "axis": "y"
           }

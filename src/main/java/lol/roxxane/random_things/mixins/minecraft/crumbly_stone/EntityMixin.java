@@ -1,6 +1,6 @@
-package lol.roxxane.random_things.mixins.minecraft.unstable_stone;
+package lol.roxxane.random_things.mixins.minecraft.crumbly_stone;
 
-import lol.roxxane.random_things.UnstableStone;
+import lol.roxxane.random_things.CrumblyStone;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -31,8 +31,8 @@ abstract class EntityMixin {
 	@Inject(method = "checkFallDamage",
 		at = @At(value = "INVOKE",
 			target = "Lnet/minecraft/world/level/Level;gameEvent(Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V"))
-	private void rt$crumble_unstable_stones(double y, boolean on_ground, BlockState state, BlockPos pos, CallbackInfo ci) {
+	private void rt$crumble_crumbly_stones(double y, boolean on_ground, BlockState state, BlockPos pos, CallbackInfo ci) {
 		if (fallDistance / 2.0 >= random.nextFloat())
-			UnstableStone.try_crumble(level, pos, rt$self());
+			CrumblyStone.try_crumble(level, pos, rt$self());
 	}
 }
