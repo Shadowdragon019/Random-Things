@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-25T11:12:03.009957612	Registries
+// 1.20.1	2025-06-26T04:59:26.684915474	Registries
 f1cc48e7af4a79332c0877acb32e939219635120 data/minecraft/worldgen/configured_feature/ore_coal.json
 8337abc7bfae16dbc4adf83a966c221174c5777c data/minecraft/worldgen/configured_feature/ore_coal_buried.json
 ae01c1bc30daa16b7fe345429cb8def6f00f4a23 data/minecraft/worldgen/configured_feature/ore_copper_large.json
@@ -8,7 +8,7 @@ cbc22d25ea00b5bad711a6aa77d84cf7e724cd07 data/minecraft/worldgen/configured_feat
 e794bfaf9457f3be64c4a7b82a6e2786cdfef3a9 data/minecraft/worldgen/configured_feature/ore_diamond_small.json
 4e6fef57f04b324f1ea75bc0524fcdebc2e9fc0c data/minecraft/worldgen/configured_feature/ore_emerald.json
 c9e4e48b510c8d444b2cf6027751619a0b0f6832 data/minecraft/worldgen/configured_feature/ore_gold.json
-c9e4e48b510c8d444b2cf6027751619a0b0f6832 data/minecraft/worldgen/configured_feature/ore_gold_buried.json
+4009778cc281e873f9995911f1c54444b6e463d1 data/minecraft/worldgen/configured_feature/ore_gold_buried.json
 d536aafaea862d4ef60c0eee366c0cc0dcbf3ff8 data/minecraft/worldgen/configured_feature/ore_iron.json
 2c884c516f6ba1ec8b473e1e27eceaa80580dc04 data/minecraft/worldgen/configured_feature/ore_iron_small.json
 12946d865774daed6528d298a6224f8a6a269894 data/minecraft/worldgen/configured_feature/ore_lapis.json

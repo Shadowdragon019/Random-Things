@@ -118,7 +118,7 @@ public class RtConfiguredFeatures {
 		register_ore(OreFeatures.ORE_COPPER_LARGE, 20, copper_replaceables);
 		register_ore(OreFeatures.ORE_COPPPER_SMALL, 10, copper_replaceables);
 		register_ore(OreFeatures.ORE_GOLD, 9, gold_replaceables);
-		register_ore(OreFeatures.ORE_GOLD_BURIED, 9, gold_replaceables);
+		register_ore(OreFeatures.ORE_GOLD_BURIED, 9, 0.5f, gold_replaceables);
 		register_ore(OreFeatures.ORE_LAPIS, 7, lapis_replaceables);
 		register_ore(OreFeatures.ORE_LAPIS_BURIED, 7, 1, lapis_replaceables);
 		register_ore(OreFeatures.ORE_DIAMOND_BURIED, 8, 1, diamond_replaceables);

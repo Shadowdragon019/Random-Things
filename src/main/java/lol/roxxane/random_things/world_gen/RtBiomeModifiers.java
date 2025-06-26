@@ -15,8 +15,7 @@ import net.minecraftforge.common.world.ForgeBiomeModifiers.AddFeaturesBiomeModif
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class RtBiomeModifiers {
-	public static final ResourceKey<BiomeModifier> CRUMBLY_STONE =
-		register("crumbly_stone");
+	public static final ResourceKey<BiomeModifier> CRUMBLY_STONE = register("crumbly_stone");
 
 	@SuppressWarnings("FieldCanBeLocal")
 	private static HolderGetter<PlacedFeature> placed_features;

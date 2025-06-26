@@ -4,6 +4,9 @@ import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
+import lol.roxxane.random_things.Rt;
+import lol.roxxane.random_things.blocks.mass_ores.MassOre;
+import lol.roxxane.random_things.blocks.mass_ores.MassStone;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
@@ -214,33 +217,58 @@ public class RtBlocks {
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
 	private static RegistryEntry<Block> lapis_ore(Block base_block) {
-		return ore("lapis", base_block, null,
+		return ore("lapis", base_block, UniformInt.of(2, 5),
 			(loot, block) -> ore_loot(loot, block, Items.LAPIS_LAZULI, 4, 9),
 			Tags.Blocks.ORE_RATES_DENSE, BlockTags.LAPIS_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_STONE_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
 	private static RegistryEntry<Block> diamond_ore(Block base_block) {
-		return ore("diamond", base_block, null,
+		return ore("diamond", base_block, UniformInt.of(3, 7),
 			(loot, block) -> ore_loot(loot, block, Items.DIAMOND),
 			Tags.Blocks.ORE_RATES_SINGULAR, BlockTags.DIAMOND_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_IRON_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
 	private static RegistryEntry<Block> redstone_ore(Block base_block) {
-		return ore("redstone", base_block, null,
+		return ore("redstone", base_block, UniformInt.of(1, 5),
 			(loot, block) -> ore_loot(loot, block, Items.REDSTONE, 4, 5),
 			Tags.Blocks.ORE_RATES_DENSE, BlockTags.REDSTONE_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.IRON_ORES, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
 	private static RegistryEntry<Block> emerald_ore(Block base_block) {
-		return ore("emerald", base_block, null,
+		return ore("emerald", base_block, UniformInt.of(3, 7),
 			(loot, block) -> ore_loot(loot, block, Items.EMERALD),
 			Tags.Blocks.ORE_RATES_SINGULAR, BlockTags.EMERALD_ORES, Tags.Blocks.ORES_IN_GROUND_STONE,
 			BlockTags.NEEDS_IRON_TOOL, base_block == Blocks.SANDSTONE || base_block == Blocks.RED_SANDSTONE ?
 				BlockTags.MINEABLE_WITH_PICKAXE : BlockTags.MINEABLE_WITH_SHOVEL);
 	}
 
-	public static void register() {}
+	public static void register() {
+		for (var stone : MassStone.STONES) {
+			for (var ore : MassOre.ORES) {
+				var base_block = stone.base_block.get();
+
+				var entry = REGISTRATE.block("mass_ore_" +
+							stone.id.getNamespace() + "_" + stone.id.getPath() + "_" +
+							ore.id.getNamespace() + "_" + ore.id.getPath(),
+					p -> new Block(Properties.copy(base_block)))
+					.simpleItem();
+
+				//"block/mass_ore/minecraft_sand_minecraft_coal"
+				//"block/mass_ore_minecraft_sand_minecraft_coal"
+				entry.blockstate((context, provider) -> {
+					provider.models().withExistingParent("block/" + context.getName(),
+							Rt.location("block/mass_ore"))
+						.texture("stone", "minecraft:block/stone")
+						.texture("ore", Rt.location("block/mass_ore/minecraft_coal"))
+						.renderType("cutout");
+				});
+				entry.register();
+				break;
+			}
+			break;
+		}
+	}
 }

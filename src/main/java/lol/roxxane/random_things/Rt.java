@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 public class Rt {
 	public static final String ID = "random_things";
 	public static final Logger LOGGER = LogUtils.getLogger();
-	public static final Registrate REGISTRATE = Registrate.create(ID);
+	public static final Registrate REGISTRATE = Registrate.create(ID).skipErrors(false);
 
 	public Rt(FMLJavaModLoadingContext context) {
 		context.registerConfig(ModConfig.Type.SERVER, RtServerConfig.SPEC);
@@ -29,7 +29,8 @@ public class Rt {
 
 	@SuppressWarnings("unused")
 	public static void log(Object object) {
-		LOGGER.info(object.toString());
+		if (object == null) LOGGER.info("null");
+		else LOGGER.info(object.toString());
 	}
 
 	public static ResourceLocation location(String path) {
