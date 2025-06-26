@@ -62,13 +62,11 @@ public class MassOre {
 	public TagKey<Biome> biomes;
 	public ArrayList<FeatureConfigReplacer> configs_to_replace = new ArrayList<>();
 
-	/** ORE_RATES_SINGULAR & ORE_RATES_DENSE as well as MINEABLE_WITH_[TOOL] tags are handled automatically */
 	public MassOre(String id, Supplier<Item> raw, TagKey<Biome> biomes) {
 		this.id = ResourceLocation.parse(id);
 		this.raw = raw;
 		this.biomes = biomes;
 	}
-	/** ORE_RATES_SINGULAR & ORE_RATES_DENSE as well as MINEABLE_WITH_[TOOL] tags are handled automatically */
 	public MassOre(String id, Item raw, TagKey<Biome> biomes) {
 		this(id, () -> raw, biomes);
 	}
@@ -101,11 +99,11 @@ public class MassOre {
 		return this;
 	}
 
-	public final MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size) {
+	public MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size) {
 		configs_to_replace.add(new FeatureConfigReplacer(config, size));
 		return this;
 	}
-	public final MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size, float discard_chance) {
+	public MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size, float discard_chance) {
 		configs_to_replace.add(new FeatureConfigReplacer(config, size, discard_chance));
 		return this;
 	}

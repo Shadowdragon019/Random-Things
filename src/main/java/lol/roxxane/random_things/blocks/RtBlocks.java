@@ -281,6 +281,30 @@ public class RtBlocks {
 							location("block/" + context.getName())))
 					.build();
 
+				if (ore.min_drop == 1 && ore.max_drop == 1)
+					entry.loot((loot, block) ->
+						loot.add(block, LootTable.lootTable().withPool(
+							LootPool.lootPool().add(AlternativesEntry.alternatives(
+								LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
+								loot.applyExplosionDecay(block,
+									LootItem.lootTableItem(ore.raw.get())
+										.apply(ApplyBonusCount.addOreBonusCount(
+											Enchantments.BLOCK_FORTUNE))))))));
+				else entry.loot((loot, block) ->
+					loot.add(block, LootTable.lootTable().withPool(
+						LootPool.lootPool().add(
+							AlternativesEntry.alternatives(
+								LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
+								loot.applyExplosionDecay(block,
+									LootItem.lootTableItem(ore.raw.get())
+										.apply(SetItemCountFunction.setCount(
+											UniformGenerator.between(ore.min_drop, ore.max_drop)))
+										.apply(ApplyBonusCount.addOreBonusCount(
+											Enchantments.BLOCK_FORTUNE))))))));
+
+				entry.tag(stone.tags);
+				entry.tag(ore.tags);
+
 				MASS_ORES.add(entry.register());
 			}
 		}

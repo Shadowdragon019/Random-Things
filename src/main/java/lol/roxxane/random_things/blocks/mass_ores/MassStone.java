@@ -1,5 +1,7 @@
 package lol.roxxane.random_things.blocks.mass_ores;
 
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import lol.roxxane.random_things.tags.RtBlockTags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -42,8 +44,10 @@ public class MassStone {
 	public ResourceLocation id;
 	public Supplier<Block> base_block;
 	public Supplier<TargetBlockState> target_block_state;
-	public TagKey<Block> tags;
-	public MassStoneBlockStateConsumer blockstate = (context, provider, stone, ore) -> {
+	public TagKey<Block>[] tags;
+	public MassOreConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> blockstate =
+			(context, provider, stone, ore) ->
+		{
 		var stone_namespace = stone.id.getNamespace();
 		var stone_path = stone.id.getPath();
 		var ore_namespace = ore.id.getNamespace();
@@ -58,14 +62,16 @@ public class MassStone {
 					.renderType("cutout")).build());
 		};
 
-	public MassStone(String id, Supplier<Block> base_block, TagKey<Block> replace_tag, TagKey<Block> tags) {
+	@SafeVarargs
+	public MassStone(String id, Supplier<Block> base_block, TagKey<Block> replace_tag, TagKey<Block>... tags) {
 		this.id = ResourceLocation.parse(id);
 		this.base_block = base_block;
 		target_block_state = () -> OreConfiguration.target(new TagMatchTest(replace_tag),
 			base_block.get().defaultBlockState());
 		this.tags = tags;
 	}
-	public MassStone(String id, Block base_block, TagKey<Block> replace_tag, TagKey<Block> tags) {
+	@SafeVarargs
+	public MassStone(String id, Block base_block, TagKey<Block> replace_tag, TagKey<Block>... tags) {
 		this(id, () -> base_block, replace_tag, tags);
 	}
 

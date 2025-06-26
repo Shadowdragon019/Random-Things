@@ -11,6 +11,15 @@
     "random_things:red_sand_redstone_ore",
     "random_things:red_sandstone_redstone_ore",
     "random_things:dirt_redstone_ore",
-    "random_things:gravel_redstone_ore"
+    "random_things:gravel_redstone_ore",
+    "random_things:mass_ore/minecraft/sand/minecraft/iron",
+    "random_things:mass_ore/minecraft/sandstone/minecraft/iron",
+    "random_things:mass_ore/minecraft/red_sand/minecraft/iron",
+    "random_things:mass_ore/minecraft/red_sandstone/minecraft/iron",
+    "random_things:mass_ore/minecraft/dirt/minecraft/iron",
+    "random_things:mass_ore/minecraft/gravel/minecraft/iron",
+    "random_things:mass_ore/minecraft/diorite/minecraft/iron",
+    "random_things:mass_ore/minecraft/andesite/minecraft/iron",
+    "random_things:mass_ore/minecraft/granite/minecraft/iron"
   ]
 }
