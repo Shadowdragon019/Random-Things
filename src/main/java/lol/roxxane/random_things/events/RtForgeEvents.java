@@ -22,7 +22,7 @@ import static lol.roxxane.random_things.config.RtServerConfig.TEST;
 @Mod.EventBusSubscriber(modid = Rt.ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RtForgeEvents {
 	public static void entity_about_to_destroy_block(LivingEntity entity, BlockPos pos, BlockState state) {
-		if (state.is(EXPLOSIVE_STONE.get())) {
+		if (state.is(EXPLOSIVE_STONE.get()))
 			for (var offset : new BlockPos[]{
 				new BlockPos(-1, 0, 0),
 				new BlockPos(1, 0, 0),
@@ -36,7 +36,6 @@ public class RtForgeEvents {
 					explode_pos.getX(), explode_pos.getY(), explode_pos.getZ(),
 					EXPLOSIVE_STONE_EXPLOSION_SIZES.get(),Level.ExplosionInteraction.TNT);
 			}
-		}
 	}
 
 	@SubscribeEvent

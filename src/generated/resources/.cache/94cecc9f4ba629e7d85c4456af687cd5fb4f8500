@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-25T11:11:02.350379975	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-06-25T22:48:16.35703808	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 32f4fbf8f1a160aeb0abbe9e82827e9bc38d1cca assets/random_things/blockstates/crumbly_deepslate.json
 8b2493e9a6d52c4a619c600f6162284f0c31861f assets/random_things/blockstates/crumbly_stone.json
 15320b335714bceb72c97267296e67bf1eefedb0 assets/random_things/blockstates/dirt_coal_ore.json
@@ -9,6 +9,7 @@ b490f306815614fdde90859d06ed1f8916ec5c1b assets/random_things/blockstates/dirt_g
 73689ed94756637304095f7ca2282619e9ebe425 assets/random_things/blockstates/dirt_iron_ore.json
 ec33e71167096db08d2a145a3574f34c14cbfaa9 assets/random_things/blockstates/dirt_lapis_ore.json
 4afcf4d554abbeb990ac3b4c202e63d9836834a4 assets/random_things/blockstates/dirt_redstone_ore.json
+b6a2deec667d814114781b9cda4ec5da8edfb23f assets/random_things/blockstates/explosive_stone.json
 2ff3d0bd2e9da8bfa7e4b91aa1d02b0015f804f3 assets/random_things/blockstates/gravel_coal_ore.json
 35608e54360dc0302e78661483f759a5272b9a07 assets/random_things/blockstates/gravel_copper_ore.json
 5c046523ed3fa69fae2c8bb659ea98d4663b4fc8 assets/random_things/blockstates/gravel_diamond_ore.json
@@ -49,8 +50,8 @@ b62f861bd3bc3e14ed306a2d4ebe900772b9c6f6 assets/random_things/blockstates/sandst
 b4e1d414395b90409d353984ba8ef4a904602aa3 assets/random_things/blockstates/sandstone_iron_ore.json
 7c74efd473422967ee7597fd4388073b387a5c7c assets/random_things/blockstates/sandstone_lapis_ore.json
 a048c3d8936c03b52367a19a6f6ea7afaaefbb39 assets/random_things/blockstates/sandstone_redstone_ore.json
-79ee21c2216a93776d826761a1996d5f819d801a assets/random_things/lang/en_ud.json
-449c01adcc5ecab7c5d3cea1718644392edf2d02 assets/random_things/lang/en_us.json
+758f2ec4bcc8ddc3e8f006563a9345faa58f26d4 assets/random_things/lang/en_ud.json
+cd8abd1aeb4fddaabc4bc52fd9b2f4eeac15377f assets/random_things/lang/en_us.json
 278b40274af78b2933ffed4dde3484019f564136 assets/random_things/models/block/crumbly_deepslate.json
 17b626b654670a0dd96c5b412ff6602320db6a92 assets/random_things/models/block/crumbly_deepslate_horizontal.json
 0b80f949ecd3aefe30583d46fd72d53a62c8ed46 assets/random_things/models/block/crumbly_stone.json
@@ -62,6 +63,7 @@ c449e3cea165a8d61f187bff353d3decfc09513c assets/random_things/models/block/dirt_
 a18390037254f9590d6b11d26de5917cff1b28b8 assets/random_things/models/block/dirt_iron_ore.json
 3da093d8ef934353cccee492d55768c3e0f19015 assets/random_things/models/block/dirt_lapis_ore.json
 6061911518b4452450c2d9e77c58378586fd5bc1 assets/random_things/models/block/dirt_redstone_ore.json
+f3f6603eceafcb595efed9443679158bd3a9330b assets/random_things/models/block/explosive_stone.json
 b1a9ca600da9b6ffb79d3a5852d7b51e7a748a08 assets/random_things/models/block/gravel_coal_ore.json
 28c825ac78d61422c9d3fd218f1d17d14a5750e1 assets/random_things/models/block/gravel_copper_ore.json
 8ed4bee802c161dda694b32d5733d9778adc6f5a assets/random_things/models/block/gravel_diamond_ore.json
@@ -112,6 +114,7 @@ dfd60d721af5f1dce3227830a9260b9c40108c28 assets/random_things/models/item/dirt_d
 3b6c0095313227e4429936446f4c4f80d4ddcd71 assets/random_things/models/item/dirt_iron_ore.json
 c0ae2bb9cd1f9b6397ff3a820eb4253cb8f80e5c assets/random_things/models/item/dirt_lapis_ore.json
 81a4e39315aefe1f3a824e0de07f0b6f1dd453d7 assets/random_things/models/item/dirt_redstone_ore.json
+a63e6fad3023eeb6e0816696158e63601f182e63 assets/random_things/models/item/explosive_stone.json
 f60f4c53629b17c237526cc5b274aaff588024ea assets/random_things/models/item/gravel_coal_ore.json
 4d8483140e2f1147dad792699364ec90601ca650 assets/random_things/models/item/gravel_copper_ore.json
 1cb0ab9fff0dcdaef33974621987ee91596c672d assets/random_things/models/item/gravel_diamond_ore.json
@@ -162,7 +165,7 @@ dbb68522771870b1ae736d0633ff9b33bb8d901a data/minecraft/tags/blocks/diamond_ores
 7e9bf5dd17d27f5c0007d127d3e7cb331b44e198 data/minecraft/tags/blocks/gold_ores.json
 be662793024d845c6024bf65806b31aa0ede6646 data/minecraft/tags/blocks/iron_ores.json
 9ad5fac2d2ead1d5ee4eec4a2ef233cd9b146c91 data/minecraft/tags/blocks/lapis_ores.json
-0b917d6cfdb65ef7504d3347bfd13de0291651d6 data/minecraft/tags/blocks/mineable/pickaxe.json
+5b0d03565c9082d43b11497f7f266746b95d9ebf data/minecraft/tags/blocks/mineable/pickaxe.json
 a66d12d67b2e7d69f4a74726e32d6241203dc984 data/minecraft/tags/blocks/mineable/shovel.json
 556ea7bb130bc8ee37128ee09d83a5f293ef4d1a data/minecraft/tags/blocks/needs_iron_tool.json
 61f48c1607605fc7b3d892fc8117a087fbb575a3 data/minecraft/tags/blocks/needs_stone_tool.json
@@ -177,6 +180,7 @@ be31e52442b112c3b85d08bf19ca82d75b2ee06c data/random_things/loot_tables/blocks/d
 a9ff11efa1b08517adb7b63e59e5b16c5b9be8a0 data/random_things/loot_tables/blocks/dirt_iron_ore.json
 19504e9b560b56a84d671b26077feb3c0c498d6e data/random_things/loot_tables/blocks/dirt_lapis_ore.json
 ebc18441e317cc6d92d0c30cc7910003887ee592 data/random_things/loot_tables/blocks/dirt_redstone_ore.json
+b7103c2fa9b5d166486659880ec188a43ab1135f data/random_things/loot_tables/blocks/explosive_stone.json
 8c580e42844463c077110ef498d6a1de52ebee8e data/random_things/loot_tables/blocks/gravel_coal_ore.json
 494af5dbfc8236ac4059b40cad838a763ae89b9b data/random_things/loot_tables/blocks/gravel_copper_ore.json
 e4c8b94ea8a9576914b0e43d304c6305dfbc3b3f data/random_things/loot_tables/blocks/gravel_diamond_ore.json

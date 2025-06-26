@@ -16,6 +16,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
@@ -102,29 +104,34 @@ public class RtBlocks {
 		REGISTRATE.block("crumbly_stone",
 				p -> new Block(Properties.copy(Blocks.STONE)
 					.strength(0.75f, 0)))
-			.simpleItem()
-			.loot((loot, block) ->
-				loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH)))))
+			.loot(RtBlocks::requires_silk_touch)
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+			.simpleItem()
 			.register();
 	public static final RegistryEntry<RotatedPillarBlock> CRUMBLY_DEEPSLATE =
 		REGISTRATE.block("crumbly_deepslate",
 				p -> new RotatedPillarBlock(Properties.copy(Blocks.DEEPSLATE)
 					.strength(  1.5f, 0)))
-			.simpleItem()
-			.loot((loot, block) ->
-				loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
-					.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH)))))
+			.loot(RtBlocks::requires_silk_touch)
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
+			.simpleItem()
 			.register();
 
 	public static final RegistryEntry<Block> EXPLOSIVE_STONE =
 		REGISTRATE.block("explosive_stone",p ->
-				new Block(p.explosionResistance(3600000)))
+				new Block(p.mapColor(MapColor.DEEPSLATE)
+					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+					.strength(50, 1200)))
+			.loot(RtBlocks::requires_silk_touch)
+			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.simpleItem()
 			.register();
+
+	public static <T extends Block> void requires_silk_touch(RegistrateBlockLootTables loot, T block) {
+		loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
+			.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH))));
+	}
 
 	private static void ore_loot(RegistrateBlockLootTables loot, Block block, Item item) {
 		loot.add(block, LootTable.lootTable().withPool(
