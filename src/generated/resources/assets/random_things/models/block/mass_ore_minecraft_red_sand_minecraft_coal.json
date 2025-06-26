@@ -2,7 +2,7 @@
   "parent": "random_things:block/mass_ore",
   "render_type": "minecraft:cutout",
   "textures": {
-    "base": "minecraft:block/sand",
+    "base": "minecraft:block/red_sand",
     "ore": "random_things:block/mass_ore/minecraft_coal"
   }
 }

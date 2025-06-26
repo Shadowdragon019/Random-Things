@@ -3,6 +3,6 @@
   "render_type": "minecraft:cutout",
   "textures": {
     "base": "minecraft:block/sand",
-    "ore": "random_things:block/mass_ore/minecraft_coal"
+    "ore": "random_things:block/mass_ore/minecraft_copper"
   }
 }

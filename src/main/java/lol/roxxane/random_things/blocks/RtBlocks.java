@@ -256,19 +256,21 @@ public class RtBlocks {
 					p -> new Block(Properties.copy(base_block)))
 					.simpleItem();
 
-				//"block/mass_ore/minecraft_sand_minecraft_coal"
-				//"block/mass_ore_minecraft_sand_minecraft_coal"
 				entry.blockstate((context, provider) -> {
 					provider.models().withExistingParent("block/" + context.getName(),
 							Rt.location("block/mass_ore"))
-						.texture("stone", "minecraft:block/stone")
-						.texture("ore", Rt.location("block/mass_ore/minecraft_coal"))
+						.texture("base", stone.id.getNamespace() + ":block/" + stone.id.getPath())
+						.texture("ore", Rt.location("block/mass_ore/" +
+							ore.id.getNamespace() + "_" + ore.id.getPath()))
 						.renderType("cutout");
 				});
+				/*
+				entry.blockstate((context, provider) ->
+					provider.models().cubeAll("block/" + context.getName(),
+					Rt.location("block/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath())));*/
+
 				entry.register();
-				break;
 			}
-			break;
 		}
 	}
 }
