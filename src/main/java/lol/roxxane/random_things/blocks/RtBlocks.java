@@ -255,10 +255,25 @@ public class RtBlocks {
 				var ore_namespace = ore.id.getNamespace();
 				var ore_path = ore.id.getPath();
 
+				StringBuilder name = new StringBuilder();
+				Character last_char = null;
+
+				for (var _char : (stone_path + "_" + ore_path).toCharArray()) {
+					if (_char == '_')
+						_char = ' ';
+
+					if (last_char == null || Character.isWhitespace(last_char))
+						name.append(Character.toUpperCase(_char));
+					else name.append(_char);
+
+					last_char = _char;
+				}
+
 				var entry = REGISTRATE.block("mass_ore/" +
 							stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
 					p -> new Block(Properties.copy(base_block)))
 					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
+					.lang(name + " Ore")
 					.item()
 					// Have to do this manually because adding the /'s breaks it
 					.model((context, provider) ->
@@ -266,8 +281,7 @@ public class RtBlocks {
 							location("block/" + context.getName())))
 					.build();
 
-				var block = entry.register();
-				MASS_ORES.add(block);
+				MASS_ORES.add(entry.register());
 			}
 		}
 	}
