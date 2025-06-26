@@ -4,7 +4,6 @@ import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
-import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.blocks.mass_ores.MassOre;
 import lol.roxxane.random_things.blocks.mass_ores.MassStone;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
@@ -30,7 +29,6 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
@@ -38,10 +36,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 
 import static lol.roxxane.random_things.Rt.REGISTRATE;
+import static lol.roxxane.random_things.Rt.location;
 
 @SuppressWarnings("unused")
 public class RtBlocks {
 	public static final ArrayList<RegistryEntry<Block>> ORES_ENTRIES = new ArrayList<>();
+	public static final ArrayList<RegistryEntry<Block>> MASS_ORES = new ArrayList<>();
 
 	private static final LootItemCondition.Builder HAS_SILK_TOUCH =
 		MatchTool.toolMatches(ItemPredicate.Builder.item()
@@ -250,29 +250,24 @@ public class RtBlocks {
 		for (var stone : MassStone.STONES) {
 			for (var ore : MassOre.ORES) {
 				var base_block = stone.base_block.get();
+				var stone_namespace = stone.id.getNamespace();
+				var stone_path = stone.id.getPath();
+				var ore_namespace = ore.id.getNamespace();
+				var ore_path = ore.id.getPath();
 
-				var entry = REGISTRATE.block("mass_ore_" +
-							stone.id.getNamespace() + "_" + stone.id.getPath() + "_" +
-							ore.id.getNamespace() + "_" + ore.id.getPath(),
+				var entry = REGISTRATE.block("mass_ore/" +
+							stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
 					p -> new Block(Properties.copy(base_block)))
-					.simpleItem();
+					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
+					.item()
+					// Have to do this manually because adding the /'s breaks it
+					.model((context, provider) ->
+						provider.withExistingParent("item/" + context.getName(),
+							location("block/" + context.getName())))
+					.build();
 
-				entry.blockstate((context, provider) ->
-					provider.getVariantBuilder(context.get()).forAllStates(state ->
-						ConfiguredModel.builder().modelFile(
-							provider.models().withExistingParent("block/" + context.getName(),
-									Rt.location("block/mass_ore"))
-								.texture("base", stone.id.getNamespace() + ":block/" + stone.id.getPath())
-								.texture("ore", Rt.location("block/mass_ore/" +
-									ore.id.getNamespace() + "_" + ore.id.getPath()))
-								.renderType("cutout")).build()));
-
-				/*
-				entry.blockstate((context, provider) ->
-					provider.models().cubeAll("block/" + context.getName(),
-					Rt.location("block/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath())));*/
-
-				entry.register();
+				var block = entry.register();
+				MASS_ORES.add(block);
 			}
 		}
 	}

@@ -12,6 +12,9 @@ public class RtBlockTags {
 	public static final TagKey<Block> RED_SANDSTONE_ORE_REPLACEABLES = tag("red_sandstone_ore_replaceables");
 	public static final TagKey<Block> DIRT_ORE_REPLACEABLES = tag("dirt_ore_replaceables");
 	public static final TagKey<Block> GRAVEL_ORE_REPLACEABLES = tag("gravel_ore_replaceables");
+	public static final TagKey<Block> DIORITE_ORE_REPLACEABLES = tag("diorite_ore_replaceables");
+	public static final TagKey<Block> ANDESITE_ORE_REPLACEABLES = tag("andesite_ore_replaceables");
+	public static final TagKey<Block> GRANITE_ORE_REPLACEABLES = tag("granite_ore_replaceables");
 	public static final TagKey<Block> ALL_REPLACEABLES = tag("all_replaceables");
 	public static final TagKey<Block> CRUMBLY_STONES = tag("crumbly_stones");
 	public static final TagKey<Block> CRUMBLE_DESTROYS = tag("crumble_destroys");

@@ -14,6 +14,8 @@ public class RtModEvents {
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS || event.getTabKey() == CreativeModeTabs.SEARCH) {
 			for (var entry : RtBlocks.ORES_ENTRIES)
 				event.accept(entry);
+			for (var entry : RtBlocks.MASS_ORES)
+				event.accept(entry);
 			event.accept(RtBlocks.CRUMBLY_STONE);
 			event.accept(RtBlocks.CRUMBLY_DEEPSLATE);
 		}
