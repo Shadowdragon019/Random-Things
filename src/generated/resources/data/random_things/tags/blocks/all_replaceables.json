@@ -1,12 +1,15 @@
 {
   "values": [
+    "#minecraft:stone_ore_replaceables",
+    "#minecraft:deepslate_ore_replaceables",
     "#random_things:sand_ore_replaceables",
     "#random_things:sandstone_ore_replaceables",
     "#random_things:red_sand_ore_replaceables",
     "#random_things:red_sandstone_ore_replaceables",
-    "#random_things:gravel_ore_replaceables",
     "#random_things:dirt_ore_replaceables",
-    "#minecraft:stone_ore_replaceables",
-    "#minecraft:deepslate_ore_replaceables"
+    "#random_things:gravel_ore_replaceables",
+    "#random_things:diorite_ore_replaceables",
+    "#random_things:andesite_ore_replaceables",
+    "#random_things:granite_ore_replaceables"
   ]
 }

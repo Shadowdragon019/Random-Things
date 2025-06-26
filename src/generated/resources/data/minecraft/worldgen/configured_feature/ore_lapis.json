@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "random_things:sand_lapis_ore"
+          "Name": "random_things:mass_ore/minecraft/sand/minecraft/lapis"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "random_things:sandstone_lapis_ore"
+          "Name": "random_things:mass_ore/minecraft/sandstone/minecraft/lapis"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -24,7 +24,7 @@
       },
       {
         "state": {
-          "Name": "random_things:red_sand_lapis_ore"
+          "Name": "random_things:mass_ore/minecraft/red_sand/minecraft/lapis"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -33,7 +33,7 @@
       },
       {
         "state": {
-          "Name": "random_things:red_sandstone_lapis_ore"
+          "Name": "random_things:mass_ore/minecraft/red_sandstone/minecraft/lapis"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -42,7 +42,16 @@
       },
       {
         "state": {
-          "Name": "random_things:gravel_lapis_ore"
+          "Name": "random_things:mass_ore/minecraft/dirt/minecraft/lapis"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:dirt_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:mass_ore/minecraft/gravel/minecraft/lapis"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -51,11 +60,29 @@
       },
       {
         "state": {
-          "Name": "random_things:dirt_lapis_ore"
+          "Name": "random_things:mass_ore/minecraft/diorite/minecraft/lapis"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
-          "tag": "random_things:dirt_ore_replaceables"
+          "tag": "random_things:diorite_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:mass_ore/minecraft/andesite/minecraft/lapis"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:andesite_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:mass_ore/minecraft/granite/minecraft/lapis"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:granite_ore_replaceables"
         }
       },
       {

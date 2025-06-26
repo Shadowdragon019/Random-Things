@@ -34,6 +34,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static lol.roxxane.random_things.Rt.REGISTRATE;
 import static lol.roxxane.random_things.Rt.location;
@@ -42,6 +43,8 @@ import static lol.roxxane.random_things.Rt.location;
 public class RtBlocks {
 	public static final ArrayList<RegistryEntry<Block>> ORES_ENTRIES = new ArrayList<>();
 	public static final ArrayList<RegistryEntry<Block>> MASS_ORES = new ArrayList<>();
+
+	private static final HashMap<MassStone, HashMap<MassOre, RegistryEntry<Block>>> MASS_ORE_MAP;
 
 	private static final LootItemCondition.Builder HAS_SILK_TOUCH =
 		MatchTool.toolMatches(ItemPredicate.Builder.item()
@@ -104,6 +107,12 @@ public class RtBlocks {
 	public static final RegistryEntry<Block> DIRT_EMERALD_ORE = emerald_ore(Blocks.DIRT);
 	public static final RegistryEntry<Block> GRAVEL_EMERALD_ORE = emerald_ore(Blocks.GRAVEL);
 
+	static {
+		MASS_ORE_MAP = new HashMap<>(MassStone.STONES.length - 1);
+		for (var stone : MassStone.STONES)
+			MASS_ORE_MAP.put(stone, new HashMap<>());
+	}
+
 	public static final RegistryEntry<Block> CRUMBLY_STONE =
 		REGISTRATE.block("crumbly_stone",
 				p -> new Block(Properties.copy(Blocks.STONE)
@@ -131,6 +140,10 @@ public class RtBlocks {
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.simpleItem()
 			.register();
+
+	public static RegistryEntry<Block> get_mass_ore(MassStone stone, MassOre ore) {
+		return MASS_ORE_MAP.get(stone).get(ore);
+	}
 
 	public static <T extends Block> void requires_silk_touch(RegistrateBlockLootTables loot, T block) {
 		loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
@@ -269,7 +282,7 @@ public class RtBlocks {
 					last_char = _char;
 				}
 
-				var entry = REGISTRATE.block("mass_ore/" +
+				var builder = REGISTRATE.block("mass_ore/" +
 							stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
 					p -> new Block(Properties.copy(base_block)))
 					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
@@ -282,7 +295,7 @@ public class RtBlocks {
 					.build();
 
 				if (ore.min_drop == 1 && ore.max_drop == 1)
-					entry.loot((loot, block) ->
+					builder.loot((loot, block) ->
 						loot.add(block, LootTable.lootTable().withPool(
 							LootPool.lootPool().add(AlternativesEntry.alternatives(
 								LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
@@ -290,7 +303,7 @@ public class RtBlocks {
 									LootItem.lootTableItem(ore.raw.get())
 										.apply(ApplyBonusCount.addOreBonusCount(
 											Enchantments.BLOCK_FORTUNE))))))));
-				else entry.loot((loot, block) ->
+				else builder.loot((loot, block) ->
 					loot.add(block, LootTable.lootTable().withPool(
 						LootPool.lootPool().add(
 							AlternativesEntry.alternatives(
@@ -302,10 +315,14 @@ public class RtBlocks {
 										.apply(ApplyBonusCount.addOreBonusCount(
 											Enchantments.BLOCK_FORTUNE))))))));
 
-				entry.tag(stone.tags);
-				entry.tag(ore.tags);
+				builder.tag(stone.tags);
+				builder.tag(ore.tags);
 
-				MASS_ORES.add(entry.register());
+				var entry = builder.register();
+
+				MASS_ORE_MAP.get(stone).put(ore, entry);
+
+				MASS_ORES.add(entry);
 			}
 		}
 	}

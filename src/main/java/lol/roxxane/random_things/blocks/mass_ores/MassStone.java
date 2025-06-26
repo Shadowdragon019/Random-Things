@@ -8,9 +8,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration.TargetBlockState;
-import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 
 import java.util.function.Supplier;
@@ -43,7 +40,7 @@ public class MassStone {
 
 	public ResourceLocation id;
 	public Supplier<Block> base_block;
-	public Supplier<TargetBlockState> target_block_state;
+	public TagKey<Block> replace_tag;
 	public TagKey<Block>[] tags;
 	public MassOreConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> blockstate =
 			(context, provider, stone, ore) ->
@@ -66,8 +63,7 @@ public class MassStone {
 	public MassStone(String id, Supplier<Block> base_block, TagKey<Block> replace_tag, TagKey<Block>... tags) {
 		this.id = ResourceLocation.parse(id);
 		this.base_block = base_block;
-		target_block_state = () -> OreConfiguration.target(new TagMatchTest(replace_tag),
-			base_block.get().defaultBlockState());
+		this.replace_tag = replace_tag;
 		this.tags = tags;
 	}
 	@SafeVarargs
