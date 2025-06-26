@@ -30,6 +30,7 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
@@ -256,14 +257,16 @@ public class RtBlocks {
 					p -> new Block(Properties.copy(base_block)))
 					.simpleItem();
 
-				entry.blockstate((context, provider) -> {
-					provider.models().withExistingParent("block/" + context.getName(),
-							Rt.location("block/mass_ore"))
-						.texture("base", stone.id.getNamespace() + ":block/" + stone.id.getPath())
-						.texture("ore", Rt.location("block/mass_ore/" +
-							ore.id.getNamespace() + "_" + ore.id.getPath()))
-						.renderType("cutout");
-				});
+				entry.blockstate((context, provider) ->
+					provider.getVariantBuilder(context.get()).forAllStates(state ->
+						ConfiguredModel.builder().modelFile(
+							provider.models().withExistingParent("block/" + context.getName(),
+									Rt.location("block/mass_ore"))
+								.texture("base", stone.id.getNamespace() + ":block/" + stone.id.getPath())
+								.texture("ore", Rt.location("block/mass_ore/" +
+									ore.id.getNamespace() + "_" + ore.id.getPath()))
+								.renderType("cutout")).build()));
+
 				/*
 				entry.blockstate((context, provider) ->
 					provider.models().cubeAll("block/" + context.getName(),
