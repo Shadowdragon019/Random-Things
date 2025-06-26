@@ -35,28 +35,35 @@ public class MassStone {
 		new MassStone("minecraft:andesite", Blocks.ANDESITE,
 			RtBlockTags.ANDESITE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE),
 		new MassStone("minecraft:granite", Blocks.GRANITE,
-			RtBlockTags.GRANITE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE)
+			RtBlockTags.GRANITE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE),
+		new MassStone("minecraft:tuff", Blocks.TUFF,
+			RtBlockTags.TUFF_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE),
+		new MassStone("minecraft:dripstone", Blocks.DRIPSTONE_BLOCK,
+			RtBlockTags.DRIPSTONE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE)
+			.stone_model_path("dripstone_block"),
+		new MassStone("minecraft:clay", Blocks.CLAY,
+			RtBlockTags.CLAY_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_SHOVEL),
 	};
 
 	public ResourceLocation id;
 	public Supplier<Block> base_block;
 	public TagKey<Block> replace_tag;
 	public TagKey<Block>[] tags;
+	public String stone_texture_namespace;
+	public String stone_texture_path;
 	public MassOreConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> blockstate =
-			(context, provider, stone, ore) ->
+		(context, provider, stone, ore) ->
 		{
-		var stone_namespace = stone.id.getNamespace();
-		var stone_path = stone.id.getPath();
-		var ore_namespace = ore.id.getNamespace();
-		var ore_path = ore.id.getPath();
+			var ore_namespace = ore.id.getNamespace();
+			var ore_path = ore.id.getPath();
 
-		provider.getVariantBuilder(context.get()).forAllStates(state ->
-			ConfiguredModel.builder().modelFile(
-				provider.models().withExistingParent("block/" + context.getName(),
-						location("block/mass_ore"))
-					.texture("base", stone_namespace + ":block/" + stone_path)
-					.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path))
-					.renderType("cutout")).build());
+			provider.getVariantBuilder(context.get()).forAllStates(state ->
+				ConfiguredModel.builder().modelFile(
+					provider.models().withExistingParent("block/" + context.getName(),
+							location("block/mass_ore"))
+						.texture("base", stone_texture_namespace + ":block/" + stone_texture_path)
+						.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path))
+						.renderType("cutout")).build());
 		};
 
 	@SafeVarargs
@@ -65,6 +72,8 @@ public class MassStone {
 		this.base_block = base_block;
 		this.replace_tag = replace_tag;
 		this.tags = tags;
+		this.stone_texture_namespace = this.id.getNamespace();
+		this.stone_texture_path = this.id.getPath();
 	}
 	@SafeVarargs
 	public MassStone(String id, Block base_block, TagKey<Block> replace_tag, TagKey<Block>... tags) {
@@ -73,8 +82,6 @@ public class MassStone {
 
 	public MassStone cube_bottom_top() {
 		blockstate = (context, provider, stone, ore) -> {
-			var stone_namespace = stone.id.getNamespace();
-			var stone_path = stone.id.getPath();
 			var ore_namespace = ore.id.getNamespace();
 			var ore_path = ore.id.getPath();
 
@@ -82,12 +89,23 @@ public class MassStone {
 				ConfiguredModel.builder().modelFile(
 					provider.models().withExistingParent("block/" + context.getName(),
 							location("block/mass_ore_sandstone"))
-						.texture("top", stone_namespace + ":block/" + stone_path + "_top")
-						.texture("side", stone_namespace + ":block/" + stone_path)
-						.texture("bottom", stone_namespace + ":block/" + stone_path + "_bottom")
+						.texture("top", stone_texture_namespace + ":block/" + stone_texture_path + "_top")
+						.texture("side", stone_texture_namespace + ":block/" + stone_texture_path)
+						.texture("bottom",
+							stone_texture_namespace + ":block/" + stone_texture_path + "_bottom")
 						.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path))
 						.renderType("cutout")).build());
 		};
+		return this;
+	}
+
+
+	public MassStone stone_model_namespace(String stone_namespace) {
+		this.stone_texture_namespace = stone_namespace;
+		return this;
+	}
+	public MassStone stone_model_path(String stone_path) {
+		this.stone_texture_path = stone_path;
 		return this;
 	}
 }

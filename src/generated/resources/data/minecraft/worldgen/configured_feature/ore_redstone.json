@@ -87,6 +87,33 @@
       },
       {
         "state": {
+          "Name": "random_things:mass_ore/minecraft/tuff/minecraft/redstone"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:tuff_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:mass_ore/minecraft/dripstone/minecraft/redstone"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:dripstone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:mass_ore/minecraft/clay/minecraft/redstone"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:clay_ore_replaceables"
+        }
+      },
+      {
+        "state": {
           "Name": "minecraft:redstone_ore",
           "Properties": {
             "lit": "false"

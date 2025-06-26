@@ -87,6 +87,33 @@
       },
       {
         "state": {
+          "Name": "random_things:mass_ore/minecraft/tuff/minecraft/diamond"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:tuff_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:mass_ore/minecraft/dripstone/minecraft/diamond"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:dripstone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "random_things:mass_ore/minecraft/clay/minecraft/diamond"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "random_things:clay_ore_replaceables"
+        }
+      },
+      {
+        "state": {
           "Name": "minecraft:diamond_ore"
         },
         "target": {

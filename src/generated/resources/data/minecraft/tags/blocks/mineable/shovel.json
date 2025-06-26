@@ -63,6 +63,14 @@
     "random_things:mass_ore/minecraft/gravel/minecraft/lapis",
     "random_things:mass_ore/minecraft/gravel/minecraft/diamond",
     "random_things:mass_ore/minecraft/gravel/minecraft/redstone",
-    "random_things:mass_ore/minecraft/gravel/minecraft/emerald"
+    "random_things:mass_ore/minecraft/gravel/minecraft/emerald",
+    "random_things:mass_ore/minecraft/clay/minecraft/coal",
+    "random_things:mass_ore/minecraft/clay/minecraft/iron",
+    "random_things:mass_ore/minecraft/clay/minecraft/copper",
+    "random_things:mass_ore/minecraft/clay/minecraft/gold",
+    "random_things:mass_ore/minecraft/clay/minecraft/lapis",
+    "random_things:mass_ore/minecraft/clay/minecraft/diamond",
+    "random_things:mass_ore/minecraft/clay/minecraft/redstone",
+    "random_things:mass_ore/minecraft/clay/minecraft/emerald"
   ]
 }

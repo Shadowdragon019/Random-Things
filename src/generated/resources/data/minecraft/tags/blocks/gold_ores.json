@@ -14,6 +14,9 @@
     "random_things:mass_ore/minecraft/gravel/minecraft/gold",
     "random_things:mass_ore/minecraft/diorite/minecraft/gold",
     "random_things:mass_ore/minecraft/andesite/minecraft/gold",
-    "random_things:mass_ore/minecraft/granite/minecraft/gold"
+    "random_things:mass_ore/minecraft/granite/minecraft/gold",
+    "random_things:mass_ore/minecraft/tuff/minecraft/gold",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/gold",
+    "random_things:mass_ore/minecraft/clay/minecraft/gold"
   ]
 }

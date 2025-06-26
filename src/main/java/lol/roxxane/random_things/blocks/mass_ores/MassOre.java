@@ -67,10 +67,6 @@ public class MassOre {
 		this(id, () -> raw);
 	}
 
-	public MassOre processed(Supplier<Item> processed) {
-		this.processed = processed;
-		return this;
-	}
 	public MassOre processed(Item processed) {
 		this.processed = () -> processed;
 		return this;

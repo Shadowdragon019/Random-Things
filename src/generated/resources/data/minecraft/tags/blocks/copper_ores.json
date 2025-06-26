@@ -14,6 +14,9 @@
     "random_things:mass_ore/minecraft/gravel/minecraft/copper",
     "random_things:mass_ore/minecraft/diorite/minecraft/copper",
     "random_things:mass_ore/minecraft/andesite/minecraft/copper",
-    "random_things:mass_ore/minecraft/granite/minecraft/copper"
+    "random_things:mass_ore/minecraft/granite/minecraft/copper",
+    "random_things:mass_ore/minecraft/tuff/minecraft/copper",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/copper",
+    "random_things:mass_ore/minecraft/clay/minecraft/copper"
   ]
 }

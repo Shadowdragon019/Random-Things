@@ -20,6 +20,9 @@
     "random_things:mass_ore/minecraft/gravel/minecraft/iron",
     "random_things:mass_ore/minecraft/diorite/minecraft/iron",
     "random_things:mass_ore/minecraft/andesite/minecraft/iron",
-    "random_things:mass_ore/minecraft/granite/minecraft/iron"
+    "random_things:mass_ore/minecraft/granite/minecraft/iron",
+    "random_things:mass_ore/minecraft/tuff/minecraft/iron",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/iron",
+    "random_things:mass_ore/minecraft/clay/minecraft/iron"
   ]
 }

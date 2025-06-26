@@ -1,0 +1,8 @@
+{
+  "parent": "random_things:block/mass_ore",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base": "minecraft:block/dripstone_block",
+    "ore": "random_things:block/mass_ore/minecraft/redstone"
+  }
+}

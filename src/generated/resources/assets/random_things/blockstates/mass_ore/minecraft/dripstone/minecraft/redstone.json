@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "random_things:block/mass_ore/minecraft/dripstone/minecraft/redstone"
+    }
+  }
+}

@@ -10,6 +10,9 @@
     "#random_things:gravel_ore_replaceables",
     "#random_things:diorite_ore_replaceables",
     "#random_things:andesite_ore_replaceables",
-    "#random_things:granite_ore_replaceables"
+    "#random_things:granite_ore_replaceables",
+    "#random_things:tuff_ore_replaceables",
+    "#random_things:dripstone_ore_replaceables",
+    "#random_things:clay_ore_replaceables"
   ]
 }

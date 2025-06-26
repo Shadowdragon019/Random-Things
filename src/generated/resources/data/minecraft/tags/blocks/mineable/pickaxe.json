@@ -58,6 +58,22 @@
     "random_things:mass_ore/minecraft/granite/minecraft/lapis",
     "random_things:mass_ore/minecraft/granite/minecraft/diamond",
     "random_things:mass_ore/minecraft/granite/minecraft/redstone",
-    "random_things:mass_ore/minecraft/granite/minecraft/emerald"
+    "random_things:mass_ore/minecraft/granite/minecraft/emerald",
+    "random_things:mass_ore/minecraft/tuff/minecraft/coal",
+    "random_things:mass_ore/minecraft/tuff/minecraft/iron",
+    "random_things:mass_ore/minecraft/tuff/minecraft/copper",
+    "random_things:mass_ore/minecraft/tuff/minecraft/gold",
+    "random_things:mass_ore/minecraft/tuff/minecraft/lapis",
+    "random_things:mass_ore/minecraft/tuff/minecraft/diamond",
+    "random_things:mass_ore/minecraft/tuff/minecraft/redstone",
+    "random_things:mass_ore/minecraft/tuff/minecraft/emerald",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/coal",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/iron",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/copper",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/gold",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/lapis",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/diamond",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/redstone",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/emerald"
   ]
 }
