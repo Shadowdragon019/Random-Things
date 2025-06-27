@@ -1,6 +1,5 @@
 {
   "parent": "random_things:block/mass_ore_sandstone",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "minecraft:block/sandstone_bottom",
     "ore": "random_things:block/mass_ore/minecraft/redstone",

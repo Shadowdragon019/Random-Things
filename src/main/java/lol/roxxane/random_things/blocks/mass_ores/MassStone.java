@@ -64,8 +64,8 @@ public class MassStone {
 					provider.models().withExistingParent("block/" + context.getName(),
 							location("block/mass_ore"))
 						.texture("base", stone_texture_namespace + ":block/" + stone_texture_path)
-						.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path))
-						.renderType("cutout")).build());
+						.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path)))
+					.build());
 		};
 
 	@SafeVarargs
@@ -95,8 +95,8 @@ public class MassStone {
 						.texture("side", stone_texture_namespace + ":block/" + stone_texture_path)
 						.texture("bottom",
 							stone_texture_namespace + ":block/" + stone_texture_path + "_bottom")
-						.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path))
-						.renderType("cutout")).build());
+						.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path)))
+					.build());
 		};
 		return this;
 	}

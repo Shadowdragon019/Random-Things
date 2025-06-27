@@ -1,6 +1,5 @@
 {
   "parent": "random_things:block/mass_ore",
-  "render_type": "minecraft:cutout",
   "textures": {
     "base": "minecraft:block/sand",
     "ore": "random_things:block/mass_ore/minecraft/diamond"
