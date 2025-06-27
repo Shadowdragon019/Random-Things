@@ -1,11 +1,5 @@
 {
   "values": [
-    "random_things:sand_lapis_ore",
-    "random_things:sandstone_lapis_ore",
-    "random_things:red_sand_lapis_ore",
-    "random_things:red_sandstone_lapis_ore",
-    "random_things:dirt_lapis_ore",
-    "random_things:gravel_lapis_ore",
     "random_things:mass_ore/minecraft/sand/minecraft/lapis",
     "random_things:mass_ore/minecraft/sandstone/minecraft/lapis",
     "random_things:mass_ore/minecraft/red_sand/minecraft/lapis",

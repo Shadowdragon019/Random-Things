@@ -1,11 +1,5 @@
 {
   "values": [
-    "random_things:sand_gold_ore",
-    "random_things:sandstone_gold_ore",
-    "random_things:red_sand_gold_ore",
-    "random_things:red_sandstone_gold_ore",
-    "random_things:dirt_gold_ore",
-    "random_things:gravel_gold_ore",
     "random_things:mass_ore/minecraft/sand/minecraft/gold",
     "random_things:mass_ore/minecraft/sandstone/minecraft/gold",
     "random_things:mass_ore/minecraft/red_sand/minecraft/gold",

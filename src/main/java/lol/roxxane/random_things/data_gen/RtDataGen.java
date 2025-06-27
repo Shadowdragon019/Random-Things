@@ -16,8 +16,6 @@ public class RtDataGen {
 
 		generator.addProvider(event.includeServer(),
 			new RtWorldGenProvider(pack_output, lookup_provider));
-		generator.addProvider(event.includeClient(),
-			new RtBlockModelProvider(pack_output,existing_file_helper));
 		generator.addProvider(event.includeServer(),
 			new RtBlockTagProvider(pack_output, lookup_provider, existing_file_helper));
 	}

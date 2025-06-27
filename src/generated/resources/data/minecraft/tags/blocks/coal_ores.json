@@ -1,11 +1,5 @@
 {
   "values": [
-    "random_things:sand_coal_ore",
-    "random_things:sandstone_coal_ore",
-    "random_things:red_sand_coal_ore",
-    "random_things:red_sandstone_coal_ore",
-    "random_things:dirt_coal_ore",
-    "random_things:gravel_coal_ore",
     "random_things:mass_ore/minecraft/sand/minecraft/coal",
     "random_things:mass_ore/minecraft/sandstone/minecraft/coal",
     "random_things:mass_ore/minecraft/red_sand/minecraft/coal",

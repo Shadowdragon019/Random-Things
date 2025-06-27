@@ -10,13 +10,9 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-// TODO: Clay shit. It spawns after clay so clay will have to do the replacing... I don't think it even can?
-
 // fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 // execute as @a at @a run fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 // effect give Dev minecraft:night_vision infinite 255 true
-// I wanna gen stuff dynamicly with - https://www.curseforge.com/minecraft/mc-mods/dynamic-asset-generator
-// Or just render the block below it with the ore texture on top
 // What if crumbly stone blob had a lava blob in them?
 // TODO: Dungeon that uses Crumbly Stone (maybe combo it with deadly walls? like a stone that explodes when broken or a block is placed next to it)
 @Mod(Rt.ID)

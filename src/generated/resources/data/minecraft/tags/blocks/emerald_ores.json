@@ -1,11 +1,5 @@
 {
   "values": [
-    "random_things:sand_emerald_ore",
-    "random_things:sandstone_emerald_ore",
-    "random_things:red_sand_emerald_ore",
-    "random_things:red_sandstone_emerald_ore",
-    "random_things:dirt_emerald_ore",
-    "random_things:gravel_emerald_ore",
     "random_things:mass_ore/minecraft/sand/minecraft/emerald",
     "random_things:mass_ore/minecraft/sandstone/minecraft/emerald",
     "random_things:mass_ore/minecraft/red_sand/minecraft/emerald",

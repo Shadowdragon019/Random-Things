@@ -12,8 +12,10 @@ public class RtModEvents {
 	@SubscribeEvent
 	public static void fill_creative_tabs(BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS || event.getTabKey() == CreativeModeTabs.SEARCH) {
-			for (var entry : RtBlocks.MASS_ORES)
-				event.accept(entry);
+			for (var map : RtBlocks.MASS_ORE_MAP.values())
+				for (var entry : map.values())
+					event.accept(entry);
+
 			event.accept(RtBlocks.CRUMBLY_STONE);
 			event.accept(RtBlocks.CRUMBLY_DEEPSLATE);
 			event.accept(RtBlocks.EXPLOSIVE_STONE);

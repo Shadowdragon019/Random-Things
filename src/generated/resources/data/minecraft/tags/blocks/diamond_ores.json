@@ -1,11 +1,5 @@
 {
   "values": [
-    "random_things:sand_diamond_ore",
-    "random_things:sandstone_diamond_ore",
-    "random_things:red_sand_diamond_ore",
-    "random_things:red_sandstone_diamond_ore",
-    "random_things:dirt_diamond_ore",
-    "random_things:gravel_diamond_ore",
     "random_things:mass_ore/minecraft/sand/minecraft/diamond",
     "random_things:mass_ore/minecraft/sandstone/minecraft/diamond",
     "random_things:mass_ore/minecraft/red_sand/minecraft/diamond",
