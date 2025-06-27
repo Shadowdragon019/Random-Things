@@ -1,0 +1,15 @@
+{
+  "values": [
+    "random_things:mass_ore/minecraft/sand/minecraft/coal",
+    "random_things:mass_ore/minecraft/sandstone/minecraft/coal",
+    "random_things:mass_ore/minecraft/red_sand/minecraft/coal",
+    "random_things:mass_ore/minecraft/red_sandstone/minecraft/coal",
+    "random_things:mass_ore/minecraft/dirt/minecraft/coal",
+    "random_things:mass_ore/minecraft/gravel/minecraft/coal",
+    "random_things:mass_ore/minecraft/diorite/minecraft/coal",
+    "random_things:mass_ore/minecraft/andesite/minecraft/coal",
+    "random_things:mass_ore/minecraft/granite/minecraft/coal",
+    "random_things:mass_ore/minecraft/tuff/minecraft/coal",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/coal"
+  ]
+}

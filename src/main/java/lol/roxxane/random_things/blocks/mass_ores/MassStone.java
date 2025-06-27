@@ -50,7 +50,7 @@ public class MassStone {
 	public ResourceLocation id;
 	public Supplier<Block> base_block;
 	public TagKey<Block> replace_tag;
-	public TagKey<Block>[] tags;
+	public TagKey<Block>[] block_tags;
 	public String stone_texture_namespace;
 	public String stone_texture_path;
 	public MassOreConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> blockstate =
@@ -69,17 +69,17 @@ public class MassStone {
 		};
 
 	@SafeVarargs
-	public MassStone(String id, Supplier<Block> base_block, TagKey<Block> replace_tag, TagKey<Block>... tags) {
+	public MassStone(String id, Supplier<Block> base_block, TagKey<Block> replace_tag, TagKey<Block>... block_tags) {
 		this.id = ResourceLocation.parse(id);
 		this.base_block = base_block;
 		this.replace_tag = replace_tag;
-		this.tags = tags;
+		this.block_tags = block_tags;
 		this.stone_texture_namespace = this.id.getNamespace();
 		this.stone_texture_path = this.id.getPath();
 	}
 	@SafeVarargs
-	public MassStone(String id, Block base_block, TagKey<Block> replace_tag, TagKey<Block>... tags) {
-		this(id, () -> base_block, replace_tag, tags);
+	public MassStone(String id, Block base_block, TagKey<Block> replace_tag, TagKey<Block>... block_tags) {
+		this(id, () -> base_block, replace_tag, block_tags);
 	}
 
 	public MassStone cube_bottom_top() {

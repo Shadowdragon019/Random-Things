@@ -5,6 +5,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import lol.roxxane.random_things.blocks.mass_ores.*;
 import lol.roxxane.random_things.util.StringUtil;
+import lol.roxxane.random_things.util.TriConsumer;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
@@ -32,7 +33,6 @@ import java.util.HashMap;
 import static lol.roxxane.random_things.Rt.REGISTRATE;
 import static lol.roxxane.random_things.Rt.location;
 
-// TODO: Item tags
 public class RtBlocks {
 	public static final HashMap<MassStone, HashMap<MassOre, RegistryEntry<Block>>> MASS_ORE_MAP;
 	public static final LootItemCondition.Builder HAS_SILK_TOUCH =
@@ -79,6 +79,12 @@ public class RtBlocks {
 		return MASS_ORE_MAP.get(stone).get(ore);
 	}
 
+	public static void for_each_mass_ore(TriConsumer<MassStone, MassOre, Block> consumer) {
+		for (var stone_entry : MASS_ORE_MAP.entrySet())
+			for (var ore_entry : stone_entry.getValue().entrySet())
+				consumer.accept(stone_entry.getKey(), ore_entry.getKey(), ore_entry.getValue().get());
+	}
+
 	public static <T extends Block> void requires_silk_touch(RegistrateBlockLootTables loot, T block) {
 		loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
 			.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH))));
@@ -96,24 +102,26 @@ public class RtBlocks {
 
 				if (ore.is_redstone())
 					if (stone.falls()) block_factory =
-						p -> new FallingRedstoneMassOreBlock(stone.properties(), ore.xp(), ore.drops_xp());
+						p -> new FallingRedstoneMassOreBlock(stone.properties(), ore.block_xp(), ore.drops_xp());
 					else block_factory =
-						p -> new RedstoneMassOreBlock(stone.properties(), ore.xp(), ore.drops_xp());
+						p -> new RedstoneMassOreBlock(stone.properties(), ore.block_xp(), ore.drops_xp());
 				else
 					if (stone.falls()) block_factory =
-						p -> new FallingMassOreBlock(stone.properties(), ore.xp(), ore.drops_xp());
+						p -> new FallingMassOreBlock(stone.properties(), ore.block_xp(), ore.drops_xp());
 					else block_factory =
-						p -> new MassOreBlock(stone.properties(), ore.xp(), ore.drops_xp());
+						p -> new MassOreBlock(stone.properties(), ore.block_xp(), ore.drops_xp());
 
 				var builder = REGISTRATE.block(
 					"mass_ore/" + stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
 						block_factory)
 					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
-					.tag(stone.tags)
-					.tag(ore.tags)
+					.tag(stone.block_tags)
+					.tag(ore.blocks_tags)
 					.lang(StringUtil.format_name(stone_path + " " + ore_path) +
 						(ore.is_lapis() ? " Lazuli" : "")  + " Ore")
 					.item()
+					.tag(ore.item_tags)
+					.tag(ore.ore_tag)
 					// Have to do this manually because adding the /'s breaks it
 					.model((context, provider) ->
 						provider.withExistingParent("item/" + context.getName(),
@@ -121,7 +129,7 @@ public class RtBlocks {
 					.build();
 
 				var loot_item =
-					LootItem.lootTableItem(ore.raw.get());
+					LootItem.lootTableItem(ore.material.get());
 				if (ore.min_drop == 1 && ore.max_drop == 1) {
 					builder.tag(Tags.Blocks.ORE_RATES_SINGULAR);
 				} else {

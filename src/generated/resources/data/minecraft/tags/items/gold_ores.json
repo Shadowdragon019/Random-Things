@@ -1,0 +1,15 @@
+{
+  "values": [
+    "random_things:mass_ore/minecraft/sand/minecraft/gold",
+    "random_things:mass_ore/minecraft/sandstone/minecraft/gold",
+    "random_things:mass_ore/minecraft/red_sand/minecraft/gold",
+    "random_things:mass_ore/minecraft/red_sandstone/minecraft/gold",
+    "random_things:mass_ore/minecraft/dirt/minecraft/gold",
+    "random_things:mass_ore/minecraft/gravel/minecraft/gold",
+    "random_things:mass_ore/minecraft/diorite/minecraft/gold",
+    "random_things:mass_ore/minecraft/andesite/minecraft/gold",
+    "random_things:mass_ore/minecraft/granite/minecraft/gold",
+    "random_things:mass_ore/minecraft/tuff/minecraft/gold",
+    "random_things:mass_ore/minecraft/dripstone/minecraft/gold"
+  ]
+}
