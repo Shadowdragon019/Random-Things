@@ -109,4 +109,8 @@ public class MassOre {
 		configs_to_replace.add(new FeatureConfigReplacer(config, size, discard_chance));
 		return this;
 	}
+
+	public boolean is_redstone() {
+		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "redstone"));
+	}
 }

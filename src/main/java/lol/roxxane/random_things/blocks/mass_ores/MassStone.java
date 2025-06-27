@@ -8,6 +8,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FallingBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 
 import java.util.function.Supplier;
@@ -106,5 +108,13 @@ public class MassStone {
 	public MassStone stone_model_path(String stone_path) {
 		this.stone_texture_path = stone_path;
 		return this;
+	}
+
+	public boolean falls() {
+		return base_block.get() instanceof FallingBlock;
+	}
+
+	public BlockBehaviour.Properties properties() {
+		return BlockBehaviour.Properties.copy(base_block.get());
 	}
 }

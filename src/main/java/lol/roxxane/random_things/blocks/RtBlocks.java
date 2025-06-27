@@ -4,15 +4,14 @@ import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import lol.roxxane.random_things.blocks.mass_ores.*;
+import lol.roxxane.random_things.util.StringUtil;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -88,38 +87,23 @@ public class RtBlocks {
 	public static void register() {
 		for (var stone : MassStone.STONES) {
 			for (var ore : MassOre.ORES) {
-				var base_block = stone.base_block.get();
 				var stone_namespace = stone.id.getNamespace();
 				var stone_path = stone.id.getPath();
 				var ore_namespace = ore.id.getNamespace();
 				var ore_path = ore.id.getPath();
-				var properties = Properties.copy(base_block);
-				var falls = stone.base_block.get() instanceof FallingBlock;
-				var is_redstone = ore.id.equals(ResourceLocation.parse("minecraft:redstone"));
-
-				StringBuilder name = new StringBuilder();
-				Character last_char = null;
-
-				for (var _char : (stone_path + "_" + ore_path).toCharArray()) {
-					if (_char == '_')
-						_char = ' ';
-
-					if (last_char == null || Character.isWhitespace(last_char))
-						name.append(Character.toUpperCase(_char));
-					else name.append(_char);
-
-					last_char = _char;
-				}
 
 				NonNullFunction<Properties, Block> block_factory;
 
-				if (is_redstone)
-					if (falls) block_factory =
-						p -> new FallingRedstoneMassOreBlock(properties, ore.xp(),ore.drops_xp());
-					else block_factory = p -> new RedstoneMassOreBlock(properties, ore.xp(),ore.drops_xp());
+				if (ore.is_redstone())
+					if (stone.falls()) block_factory =
+						p -> new FallingRedstoneMassOreBlock(stone.properties(), ore.xp(),ore.drops_xp());
+					else block_factory =
+						p -> new RedstoneMassOreBlock(stone.properties(), ore.xp(),ore.drops_xp());
 				else
-					if (falls) block_factory = p -> new FallingMassOreBlock(properties, ore.xp(),ore.drops_xp());
-					else block_factory = p -> new MassOreBlock(properties, ore.xp(),ore.drops_xp());
+					if (stone.falls()) block_factory =
+						p -> new FallingMassOreBlock(stone.properties(), ore.xp(),ore.drops_xp());
+					else block_factory =
+						p -> new MassOreBlock(stone.properties(), ore.xp(),ore.drops_xp());
 
 				var builder = REGISTRATE.block(
 					"mass_ore/" + stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
@@ -127,7 +111,7 @@ public class RtBlocks {
 					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
 					.tag(stone.tags)
 					.tag(ore.tags)
-					.lang(name + " Ore")
+					.lang(StringUtil.format_name(stone_path + " " + ore_path) + " Ore")
 					.item()
 					// Have to do this manually because adding the /'s breaks it
 					.model((context, provider) ->
@@ -156,9 +140,7 @@ public class RtBlocks {
 									.apply(ApplyBonusCount.addOreBonusCount(
 										Enchantments.BLOCK_FORTUNE))))))));
 
-				var entry = builder.register();
-
-				MASS_ORE_MAP.get(stone).put(ore, entry);
+				MASS_ORE_MAP.get(stone).put(ore, builder.register());
 			}
 		}
 	}
