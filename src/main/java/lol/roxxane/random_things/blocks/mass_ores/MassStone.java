@@ -9,7 +9,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 
 import java.util.function.Supplier;
@@ -114,7 +114,7 @@ public class MassStone {
 		return base_block.get() instanceof FallingBlock;
 	}
 
-	public BlockBehaviour.Properties properties() {
-		return BlockBehaviour.Properties.copy(base_block.get());
+	public Properties properties() {
+		return Properties.copy(base_block.get()).destroyTime(3);
 	}
 }

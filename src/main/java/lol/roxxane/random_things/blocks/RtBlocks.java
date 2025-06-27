@@ -96,14 +96,14 @@ public class RtBlocks {
 
 				if (ore.is_redstone())
 					if (stone.falls()) block_factory =
-						p -> new FallingRedstoneMassOreBlock(stone.properties(), ore.xp(),ore.drops_xp());
+						p -> new FallingRedstoneMassOreBlock(stone.properties(), ore.xp(), ore.drops_xp());
 					else block_factory =
-						p -> new RedstoneMassOreBlock(stone.properties(), ore.xp(),ore.drops_xp());
+						p -> new RedstoneMassOreBlock(stone.properties(), ore.xp(), ore.drops_xp());
 				else
 					if (stone.falls()) block_factory =
-						p -> new FallingMassOreBlock(stone.properties(), ore.xp(),ore.drops_xp());
+						p -> new FallingMassOreBlock(stone.properties(), ore.xp(), ore.drops_xp());
 					else block_factory =
-						p -> new MassOreBlock(stone.properties(), ore.xp(),ore.drops_xp());
+						p -> new MassOreBlock(stone.properties(), ore.xp(), ore.drops_xp());
 
 				var builder = REGISTRATE.block(
 					"mass_ore/" + stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
