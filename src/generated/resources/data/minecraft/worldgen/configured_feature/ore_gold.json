@@ -105,15 +105,6 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/clay/minecraft/gold"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "random_things:clay_ore_replaceables"
-        }
-      },
-      {
-        "state": {
           "Name": "minecraft:gold_ore"
         },
         "target": {

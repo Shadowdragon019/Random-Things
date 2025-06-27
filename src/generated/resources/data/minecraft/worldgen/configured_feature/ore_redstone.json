@@ -6,7 +6,10 @@
     "targets": [
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/sand/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/sand/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -15,7 +18,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/sandstone/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/sandstone/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -24,7 +30,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/red_sand/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/red_sand/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -33,7 +42,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/red_sandstone/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/red_sandstone/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -42,7 +54,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/dirt/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/dirt/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -51,7 +66,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/gravel/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/gravel/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -60,7 +78,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/diorite/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/diorite/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -69,7 +90,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/andesite/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/andesite/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -78,7 +102,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/granite/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/granite/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -87,7 +114,10 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/tuff/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/tuff/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -96,20 +126,14 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/dripstone/minecraft/redstone"
+          "Name": "random_things:mass_ore/minecraft/dripstone/minecraft/redstone",
+          "Properties": {
+            "lit": "false"
+          }
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
           "tag": "random_things:dripstone_ore_replaceables"
-        }
-      },
-      {
-        "state": {
-          "Name": "random_things:mass_ore/minecraft/clay/minecraft/redstone"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "random_things:clay_ore_replaceables"
         }
       },
       {

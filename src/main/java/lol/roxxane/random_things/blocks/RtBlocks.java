@@ -4,11 +4,11 @@ import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
-import lol.roxxane.random_things.blocks.mass_ores.MassOre;
-import lol.roxxane.random_things.blocks.mass_ores.MassStone;
+import lol.roxxane.random_things.blocks.mass_ores.*;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -39,6 +39,7 @@ import java.util.HashMap;
 import static lol.roxxane.random_things.Rt.REGISTRATE;
 import static lol.roxxane.random_things.Rt.location;
 
+// TODO: Item tags
 @SuppressWarnings("unused")
 public class RtBlocks {
 	public static final ArrayList<RegistryEntry<Block>> ORES_ENTRIES = new ArrayList<>();
@@ -186,7 +187,8 @@ public class RtBlocks {
 				$ -> new Block(properties.requiresCorrectToolForDrops());
 		else
 			if (base_block instanceof FallingBlock) block_function =
-				$ -> new FallingOreBlock(properties.requiresCorrectToolForDrops(), xp);
+				$ -> new FallingMassOreBlock(properties.requiresCorrectToolForDrops(), xp,
+					false);
 			else block_function =
 				$ -> new DropExperienceBlock(properties.requiresCorrectToolForDrops(), xp);
 
@@ -267,6 +269,9 @@ public class RtBlocks {
 				var stone_path = stone.id.getPath();
 				var ore_namespace = ore.id.getNamespace();
 				var ore_path = ore.id.getPath();
+				var properties = Properties.copy(base_block);
+				var falls = stone.base_block.get() instanceof FallingBlock;
+				var is_redstone = ore.id.equals(ResourceLocation.parse("minecraft:redstone"));
 
 				StringBuilder name = new StringBuilder();
 				Character last_char = null;
@@ -282,9 +287,19 @@ public class RtBlocks {
 					last_char = _char;
 				}
 
-				var builder = REGISTRATE.block("mass_ore/" +
-							stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
-					p -> new Block(Properties.copy(base_block)))
+				NonNullFunction<Properties, Block> block_factory;
+
+				if (is_redstone)
+					if (falls) block_factory =
+						p -> new FallingRedstoneMassOreBlock(properties, ore.xp(),ore.drops_xp());
+					else block_factory = p -> new RedstoneMassOreBlock(properties, ore.xp(),ore.drops_xp());
+				else
+					if (falls) block_factory = p -> new FallingMassOreBlock(properties, ore.xp(),ore.drops_xp());
+					else block_factory = p -> new MassOreBlock(properties, ore.xp(),ore.drops_xp());
+
+				var builder = REGISTRATE.block(
+					"mass_ore/" + stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
+						block_factory)
 					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
 					.lang(name + " Ore")
 					.item()
@@ -294,7 +309,8 @@ public class RtBlocks {
 							location("block/" + context.getName())))
 					.build();
 
-				if (ore.min_drop == 1 && ore.max_drop == 1)
+				if (ore.min_drop == 1 && ore.max_drop == 1) {
+					builder.tag(Tags.Blocks.ORE_RATES_SINGULAR);
 					builder.loot((loot, block) ->
 						loot.add(block, LootTable.lootTable().withPool(
 							LootPool.lootPool().add(AlternativesEntry.alternatives(
@@ -303,18 +319,22 @@ public class RtBlocks {
 									LootItem.lootTableItem(ore.raw.get())
 										.apply(ApplyBonusCount.addOreBonusCount(
 											Enchantments.BLOCK_FORTUNE))))))));
-				else builder.loot((loot, block) ->
-					loot.add(block, LootTable.lootTable().withPool(
-						LootPool.lootPool().add(
-							AlternativesEntry.alternatives(
-								LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
-								loot.applyExplosionDecay(block,
-									LootItem.lootTableItem(ore.raw.get())
-										.apply(SetItemCountFunction.setCount(
-											UniformGenerator.between(ore.min_drop, ore.max_drop)))
-										.apply(ApplyBonusCount.addOreBonusCount(
-											Enchantments.BLOCK_FORTUNE))))))));
-
+				} else {
+					if ((ore.min_drop + ore.max_drop) / 2.0 < 1)
+						builder.tag(Tags.Blocks.ORE_RATES_SINGULAR);
+					else builder.tag(Tags.Blocks.ORE_RATES_DENSE);
+					builder.loot((loot, block) ->
+						loot.add(block, LootTable.lootTable().withPool(
+							LootPool.lootPool().add(
+								AlternativesEntry.alternatives(
+									LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
+									loot.applyExplosionDecay(block,
+										LootItem.lootTableItem(ore.raw.get())
+											.apply(SetItemCountFunction.setCount(
+												UniformGenerator.between(ore.min_drop, ore.max_drop)))
+											.apply(ApplyBonusCount.addOreBonusCount(
+												Enchantments.BLOCK_FORTUNE))))))));
+				}
 				builder.tag(stone.tags);
 				builder.tag(ore.tags);
 

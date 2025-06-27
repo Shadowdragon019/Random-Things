@@ -16,7 +16,6 @@
     "random_things:mass_ore/minecraft/andesite/minecraft/lapis",
     "random_things:mass_ore/minecraft/granite/minecraft/lapis",
     "random_things:mass_ore/minecraft/tuff/minecraft/lapis",
-    "random_things:mass_ore/minecraft/dripstone/minecraft/lapis",
-    "random_things:mass_ore/minecraft/clay/minecraft/lapis"
+    "random_things:mass_ore/minecraft/dripstone/minecraft/lapis"
   ]
 }

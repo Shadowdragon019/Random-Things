@@ -17,7 +17,6 @@ public class RtBlockTags {
 	public static final TagKey<Block> GRANITE_ORE_REPLACEABLES = tag("granite_ore_replaceables");
 	public static final TagKey<Block> TUFF_ORE_REPLACEABLES = tag("tuff_ore_replaceables");
 	public static final TagKey<Block> DRIPSTONE_ORE_REPLACEABLES = tag("dripstone_ore_replaceables");
-	public static final TagKey<Block> CLAY_ORE_REPLACEABLES = tag("clay_ore_replaceables");
 	public static final TagKey<Block> ALL_REPLACEABLES = tag("all_replaceables");
 	public static final TagKey<Block> CRUMBLY_STONES = tag("crumbly_stones");
 	public static final TagKey<Block> CRUMBLE_DESTROYS = tag("crumble_destroys");

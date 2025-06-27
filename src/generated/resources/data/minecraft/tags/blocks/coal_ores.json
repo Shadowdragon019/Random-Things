@@ -16,7 +16,6 @@
     "random_things:mass_ore/minecraft/andesite/minecraft/coal",
     "random_things:mass_ore/minecraft/granite/minecraft/coal",
     "random_things:mass_ore/minecraft/tuff/minecraft/coal",
-    "random_things:mass_ore/minecraft/dripstone/minecraft/coal",
-    "random_things:mass_ore/minecraft/clay/minecraft/coal"
+    "random_things:mass_ore/minecraft/dripstone/minecraft/coal"
   ]
 }

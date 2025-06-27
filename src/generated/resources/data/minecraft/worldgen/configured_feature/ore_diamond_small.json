@@ -105,15 +105,6 @@
       },
       {
         "state": {
-          "Name": "random_things:mass_ore/minecraft/clay/minecraft/diamond"
-        },
-        "target": {
-          "predicate_type": "minecraft:tag_match",
-          "tag": "random_things:clay_ore_replaceables"
-        }
-      },
-      {
-        "state": {
           "Name": "minecraft:diamond_ore"
         },
         "target": {

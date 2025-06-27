@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "lit=false": {
+      "model": "random_things:block/mass_ore/minecraft/diorite/minecraft/redstone"
+    },
+    "lit=true": {
       "model": "random_things:block/mass_ore/minecraft/diorite/minecraft/redstone"
     }
   }

@@ -41,8 +41,8 @@ public class MassStone {
 		new MassStone("minecraft:dripstone", Blocks.DRIPSTONE_BLOCK,
 			RtBlockTags.DRIPSTONE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE)
 			.stone_model_path("dripstone_block"),
-		new MassStone("minecraft:clay", Blocks.CLAY,
-			RtBlockTags.CLAY_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_SHOVEL),
+		/*new MassStone("minecraft:clay", Blocks.CLAY,
+			RtBlockTags.CLAY_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_SHOVEL),*/
 	};
 
 	public ResourceLocation id;
@@ -98,7 +98,6 @@ public class MassStone {
 		};
 		return this;
 	}
-
 
 	public MassStone stone_model_namespace(String stone_namespace) {
 		this.stone_texture_namespace = stone_namespace;

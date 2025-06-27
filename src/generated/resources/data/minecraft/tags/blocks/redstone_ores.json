@@ -16,7 +16,6 @@
     "random_things:mass_ore/minecraft/andesite/minecraft/redstone",
     "random_things:mass_ore/minecraft/granite/minecraft/redstone",
     "random_things:mass_ore/minecraft/tuff/minecraft/redstone",
-    "random_things:mass_ore/minecraft/dripstone/minecraft/redstone",
-    "random_things:mass_ore/minecraft/clay/minecraft/redstone"
+    "random_things:mass_ore/minecraft/dripstone/minecraft/redstone"
   ]
 }

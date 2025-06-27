@@ -16,7 +16,6 @@
     "random_things:mass_ore/minecraft/andesite/minecraft/diamond",
     "random_things:mass_ore/minecraft/granite/minecraft/diamond",
     "random_things:mass_ore/minecraft/tuff/minecraft/diamond",
-    "random_things:mass_ore/minecraft/dripstone/minecraft/diamond",
-    "random_things:mass_ore/minecraft/clay/minecraft/diamond"
+    "random_things:mass_ore/minecraft/dripstone/minecraft/diamond"
   ]
 }

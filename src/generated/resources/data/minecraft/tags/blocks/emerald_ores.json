@@ -16,7 +16,6 @@
     "random_things:mass_ore/minecraft/andesite/minecraft/emerald",
     "random_things:mass_ore/minecraft/granite/minecraft/emerald",
     "random_things:mass_ore/minecraft/tuff/minecraft/emerald",
-    "random_things:mass_ore/minecraft/dripstone/minecraft/emerald",
-    "random_things:mass_ore/minecraft/clay/minecraft/emerald"
+    "random_things:mass_ore/minecraft/dripstone/minecraft/emerald"
   ]
 }
