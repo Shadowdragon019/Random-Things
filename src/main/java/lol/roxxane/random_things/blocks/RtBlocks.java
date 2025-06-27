@@ -28,13 +28,17 @@ import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.common.Tags;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static lol.roxxane.random_things.Rt.REGISTRATE;
 import static lol.roxxane.random_things.Rt.location;
 
 public class RtBlocks {
+	// TODO: Replace this with something that preserves insertion order
 	public static final HashMap<MassStone, HashMap<MassOre, RegistryEntry<Block>>> MASS_ORE_MAP;
+	public static final ArrayList<RegistryEntry<Block>> MASS_ORES = new ArrayList<>();
+
 	public static final LootItemCondition.Builder HAS_SILK_TOUCH =
 		MatchTool.toolMatches(ItemPredicate.Builder.item()
 			.hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH,
@@ -149,7 +153,9 @@ public class RtBlocks {
 									.apply(ApplyBonusCount.addOreBonusCount(
 										Enchantments.BLOCK_FORTUNE))))))));
 
-				MASS_ORE_MAP.get(stone).put(ore, builder.register());
+				var entry = builder.register();
+				MASS_ORE_MAP.get(stone).put(ore, entry);
+				MASS_ORES.add(entry);
 			}
 		}
 	}

@@ -49,6 +49,19 @@ public class MassOre {
 			.recipe_xp(1)
 			.replace_config(OreFeatures.ORE_GOLD, 9)
 			.replace_config(OreFeatures.ORE_GOLD_BURIED, 9, 0.5f),
+		new MassOre("minecraft:redstone", Items.REDSTONE, ItemTags.REDSTONE_ORES)
+			.block_tags(BlockTags.REDSTONE_ORES, BlockTags.NEEDS_IRON_TOOL)
+			.item_tags(Tags.Items.ORE_RATES_DENSE)
+			.block_xp(1, 5)
+			.drops(4, 5)
+			.recipe_xp(0.7f)
+			.replace_config(OreFeatures.ORE_REDSTONE, 8),
+		new MassOre("minecraft:emerald", Items.EMERALD, ItemTags.EMERALD_ORES)
+			.item_tags(Tags.Items.ORE_RATES_SINGULAR)
+			.block_tags(BlockTags.EMERALD_ORES, BlockTags.NEEDS_IRON_TOOL, BlockTags.SNAPS_GOAT_HORN)
+			.block_xp(3, 7)
+			.recipe_xp(1)
+			.replace_config(OreFeatures.ORE_EMERALD, 3),
 		new MassOre("minecraft:lapis", Items.LAPIS_LAZULI, ItemTags.LAPIS_ORES)
 			.block_tags(BlockTags.LAPIS_ORES)
 			.item_tags(Tags.Items.ORE_RATES_DENSE)
@@ -65,19 +78,6 @@ public class MassOre {
 			.replace_config(OreFeatures.ORE_DIAMOND_BURIED, 8, 1)
 			.replace_config(OreFeatures.ORE_DIAMOND_LARGE, 12, 0.7f)
 			.replace_config(OreFeatures.ORE_DIAMOND_SMALL, 4, 0.5f),
-		new MassOre("minecraft:redstone", Items.REDSTONE, ItemTags.REDSTONE_ORES)
-			.block_tags(BlockTags.REDSTONE_ORES, BlockTags.NEEDS_IRON_TOOL)
-			.item_tags(Tags.Items.ORE_RATES_DENSE)
-			.block_xp(1, 5)
-			.drops(4, 5)
-			.recipe_xp(0.7f)
-			.replace_config(OreFeatures.ORE_REDSTONE, 8),
-		new MassOre("minecraft:emerald", Items.EMERALD, ItemTags.EMERALD_ORES)
-			.item_tags(Tags.Items.ORE_RATES_SINGULAR)
-			.block_tags(BlockTags.EMERALD_ORES, BlockTags.NEEDS_IRON_TOOL, BlockTags.SNAPS_GOAT_HORN)
-			.block_xp(3, 7)
-			.recipe_xp(1)
-			.replace_config(OreFeatures.ORE_EMERALD, 3)
 	};
 
 	public @NotNull ResourceLocation id;

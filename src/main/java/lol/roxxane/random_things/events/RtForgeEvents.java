@@ -3,6 +3,7 @@ package lol.roxxane.random_things.events;
 import lol.roxxane.random_things.CrumblyStone;
 import lol.roxxane.random_things.Rt;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -10,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -87,5 +89,11 @@ public class RtForgeEvents {
 			level.explode(null, pos.getX(), pos.getY(), pos.getZ(),
 				EXPLOSIVE_STONE_EXPLOSION_SIZES.get(), Level.ExplosionInteraction.TNT);
 		}
+	}
+
+	@SubscribeEvent
+	public static void tooltip_event(ItemTooltipEvent event) {
+		event.getToolTip().addAll(event.getItemStack().getTags().map(tag ->
+			Component.literal("§7" + tag.location())).toList());
 	}
 }

@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-27T18:05:41.093976141	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-06-27T18:38:40.595940223	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 32f4fbf8f1a160aeb0abbe9e82827e9bc38d1cca assets/random_things/blockstates/crumbly_deepslate.json
 8b2493e9a6d52c4a619c600f6162284f0c31861f assets/random_things/blockstates/crumbly_stone.json
 b6a2deec667d814114781b9cda4ec5da8edfb23f assets/random_things/blockstates/explosive_stone.json
@@ -275,10 +275,10 @@ d9523d9d9355c744d8f781955ff79c94e7a5b07f assets/random_things/models/item/mass_o
 5cffd21f39a17e6e487e24856eddbd379546b114 assets/random_things/models/item/mass_ore/minecraft/tuff/minecraft/iron.json
 72f8bf5a4dd82eba70c841264f602eba89863f88 assets/random_things/models/item/mass_ore/minecraft/tuff/minecraft/lapis.json
 195a1466d405d8edfe0a312f5b3da8ee1129fd6b assets/random_things/models/item/mass_ore/minecraft/tuff/minecraft/redstone.json
-480320b9faed423b78957b3114dcc0ff35ce92f1 data/forge/tags/blocks/ore_rates/dense.json
-326c9a09c6d2432c1e0ca1fb11863d2c3cfcd5a1 data/forge/tags/blocks/ore_rates/singular.json
-480320b9faed423b78957b3114dcc0ff35ce92f1 data/forge/tags/items/ore_rates/dense.json
-326c9a09c6d2432c1e0ca1fb11863d2c3cfcd5a1 data/forge/tags/items/ore_rates/singular.json
+758f2affe58326f92cd286bb18895109a792b9f6 data/forge/tags/blocks/ore_rates/dense.json
+33c083e9d617795dc0d076a019a57abf2b722311 data/forge/tags/blocks/ore_rates/singular.json
+758f2affe58326f92cd286bb18895109a792b9f6 data/forge/tags/items/ore_rates/dense.json
+33c083e9d617795dc0d076a019a57abf2b722311 data/forge/tags/items/ore_rates/singular.json
 59570770a9b165952dfc0df751abddfbf7bd19ce data/minecraft/tags/blocks/coal_ores.json
 f2214e109aee70f927fa6ad15fa02607fdd7b4df data/minecraft/tags/blocks/copper_ores.json
 37ff8bd26b689e01c4b078606fb6e175ecb89c62 data/minecraft/tags/blocks/diamond_ores.json
@@ -287,9 +287,9 @@ b86486c22cf64ae01d6944be068ed9c3c3192784 data/minecraft/tags/blocks/gold_ores.js
 b86486c22cf64ae01d6944be068ed9c3c3192784 data/minecraft/tags/blocks/guarded_by_piglins.json
 8ec579893e2758ff9a84d61006a2f48d737b3413 data/minecraft/tags/blocks/iron_ores.json
 99d7b45a51b1db73a0ba56c2b5e420e9b312566b data/minecraft/tags/blocks/lapis_ores.json
-cda2e996561ad8e5859852d764d555ec29cf2a96 data/minecraft/tags/blocks/mineable/pickaxe.json
-aa59ecfeb84ebab720e7ccfe39ec663eb07858ea data/minecraft/tags/blocks/mineable/shovel.json
-20d3e563adb3746118f897f6c55552ca02cacc43 data/minecraft/tags/blocks/needs_iron_tool.json
+7de97768ba474a1c51d7e31032412a2067e5042f data/minecraft/tags/blocks/mineable/pickaxe.json
+e4c58a762d3b5a096805e8513cb957a267b1fa1a data/minecraft/tags/blocks/mineable/shovel.json
+c13314fbb645aa4f92f37fd9ac9cfe84e1326843 data/minecraft/tags/blocks/needs_iron_tool.json
 05b3887609b88a2de6ba82e8f861ecaa42b7f095 data/minecraft/tags/blocks/needs_stone_tool.json
 9dc87830524c784623c0a17fff0bcc6e77148ba5 data/minecraft/tags/blocks/redstone_ores.json
 8eeb841f2ee47661a6dbf71b7c9b1ff8eac6b1b3 data/minecraft/tags/blocks/snaps_goat_horn.json
