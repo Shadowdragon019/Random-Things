@@ -111,7 +111,8 @@ public class RtBlocks {
 					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
 					.tag(stone.tags)
 					.tag(ore.tags)
-					.lang(StringUtil.format_name(stone_path + " " + ore_path) + " Ore")
+					.lang(StringUtil.format_name(stone_path + " " + ore_path) +
+						(ore.is_lapis() ? " Lazuli" : "")  + " Ore")
 					.item()
 					// Have to do this manually because adding the /'s breaks it
 					.model((context, provider) ->

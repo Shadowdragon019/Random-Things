@@ -113,4 +113,7 @@ public class MassOre {
 	public boolean is_redstone() {
 		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "redstone"));
 	}
+	public boolean is_lapis() {
+		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "lapis"));
+	}
 }
