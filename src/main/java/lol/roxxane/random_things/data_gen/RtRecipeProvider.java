@@ -31,7 +31,7 @@ public class RtRecipeProvider extends RecipeProvider {
 	}
 
 	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer) {
-		SimpleCookingRecipeBuilder.generic(Ingredient.of(ore.ore_tag), RecipeCategory.MISC,
+		SimpleCookingRecipeBuilder.generic(Ingredient.of(ore.item_ore_tag), RecipeCategory.MISC,
 				ore.processed == null ? () -> ore.material.get() : () -> ore.processed.get(),
 				ore.recipe_xp, 200, serializer)
 			.group(ore.cooking_group)

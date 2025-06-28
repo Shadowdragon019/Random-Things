@@ -16,6 +16,7 @@ import java.util.function.Supplier;
 
 import static lol.roxxane.random_things.Rt.location;
 
+@SuppressWarnings("SameParameterValue")
 public class MassStone {
 	public static final MassStone[] STONES = new MassStone[]{
 		new MassStone("minecraft:sand", Blocks.SAND,
@@ -43,8 +44,6 @@ public class MassStone {
 		new MassStone("minecraft:dripstone", Blocks.DRIPSTONE_BLOCK,
 			RtBlockTags.DRIPSTONE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE)
 			.stone_model_path("dripstone_block"),
-		/*new MassStone("minecraft:clay", Blocks.CLAY,
-			RtBlockTags.CLAY_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_SHOVEL),*/
 	};
 
 	public ResourceLocation id;
@@ -82,7 +81,7 @@ public class MassStone {
 		this(id, () -> base_block, replace_tag, block_tags);
 	}
 
-	public MassStone cube_bottom_top() {
+	MassStone cube_bottom_top() {
 		blockstate = (context, provider, stone, ore) -> {
 			var ore_namespace = ore.id.getNamespace();
 			var ore_path = ore.id.getPath();
@@ -101,11 +100,12 @@ public class MassStone {
 		return this;
 	}
 
-	public MassStone stone_model_namespace(String stone_namespace) {
+	@SuppressWarnings("unused")
+	MassStone stone_model_namespace(String stone_namespace) {
 		this.stone_texture_namespace = stone_namespace;
 		return this;
 	}
-	public MassStone stone_model_path(String stone_path) {
+	MassStone stone_model_path(String stone_path) {
 		this.stone_texture_path = stone_path;
 		return this;
 	}

@@ -9,7 +9,9 @@ import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -79,6 +81,7 @@ public class RtBlocks {
 		return MASS_ORE_MAP.get(stone).get(ore);
 	}
 
+	@SuppressWarnings("unused")
 	public static void for_each_mass_ore(TriConsumer<MassStone, MassOre, Block> consumer) {
 		for (var stone_entry : MASS_ORE_MAP.entrySet())
 			for (var ore_entry : stone_entry.getValue().entrySet())
@@ -90,6 +93,7 @@ public class RtBlocks {
 			.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH))));
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void register() {
 		for (var stone : MassStone.STONES) {
 			for (var ore : MassOre.ORES) {
@@ -107,26 +111,23 @@ public class RtBlocks {
 					if (stone.falls()) block_factory = FallingMassOreBlock::new;
 					else block_factory = MassOreBlock::new;
 
+				@SuppressWarnings("RedundantCast")
 				var builder = REGISTRATE.block(
 					"mass_ore/" + stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
 						p -> block_factory.apply(stone.properties(), ore.block_xp))
 					.tag(stone.block_tags)
+					.tag((TagKey<Block>[]) ore.block_tags.toArray(TagKey[]::new))
 					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
 					.lang(StringUtil.format_name(stone_path + " " + ore_path) +
 						(ore.is_lapis() ? " Lazuli" : "")  + " Ore")
 					.loot((tables, block) -> ore.loot.accept(tables, block, stone))
 					.item()
-					.tag(ore.ore_tag)
+					.tag((TagKey<Item>[]) ore.item_tags.toArray(TagKey[]::new))
 					// Have to do this manually because adding the /'s breaks it
 					.model((context, provider) ->
 						provider.withExistingParent("item/" + context.getName(),
 							location("block/" + context.getName())))
 					.build();
-
-				for (var tag : ore.block_tags)
-					builder.tag(tag);
-				for (var tag : ore.item_tags)
-					builder.item().tag(tag);
 
 				var entry = builder.register();
 				MASS_ORE_MAP.get(stone).put(ore, entry);
