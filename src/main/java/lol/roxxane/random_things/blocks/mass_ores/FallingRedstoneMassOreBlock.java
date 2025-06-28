@@ -15,13 +15,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.level.block.Blocks.REDSTONE_ORE;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT;
 
 public class FallingRedstoneMassOreBlock extends FallingMassOreBlock {
-	public FallingRedstoneMassOreBlock(Properties properties, IntProvider xp, boolean drops_xp) {
-		super(properties, xp, drops_xp);
+	public FallingRedstoneMassOreBlock(Properties properties, @Nullable IntProvider xp) {
+		super(properties, xp);
 		registerDefaultState(defaultBlockState().setValue(LIT, false));
 	}
 

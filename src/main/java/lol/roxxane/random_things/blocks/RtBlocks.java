@@ -2,7 +2,6 @@ package lol.roxxane.random_things.blocks;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import com.tterrag.registrate.util.nullness.NonNullFunction;
 import lol.roxxane.random_things.blocks.mass_ores.*;
 import lol.roxxane.random_things.util.StringUtil;
 import lol.roxxane.random_things.util.TriConsumer;
@@ -10,6 +9,7 @@ import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -19,17 +19,13 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.common.Tags;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.BiFunction;
 
 import static lol.roxxane.random_things.Rt.REGISTRATE;
 import static lol.roxxane.random_things.Rt.location;
@@ -102,29 +98,24 @@ public class RtBlocks {
 				var ore_namespace = ore.id.getNamespace();
 				var ore_path = ore.id.getPath();
 
-				NonNullFunction<Properties, Block> block_factory;
+				final BiFunction<Properties, IntProvider, Block> block_factory;
 
 				if (ore.is_redstone())
-					if (stone.falls()) block_factory =
-						p -> new FallingRedstoneMassOreBlock(stone.properties(), ore.block_xp(), ore.drops_xp());
-					else block_factory =
-						p -> new RedstoneMassOreBlock(stone.properties(), ore.block_xp(), ore.drops_xp());
+					if (stone.falls()) block_factory = FallingRedstoneMassOreBlock::new;
+					else block_factory = RedstoneMassOreBlock::new;
 				else
-					if (stone.falls()) block_factory =
-						p -> new FallingMassOreBlock(stone.properties(), ore.block_xp(), ore.drops_xp());
-					else block_factory =
-						p -> new MassOreBlock(stone.properties(), ore.block_xp(), ore.drops_xp());
+					if (stone.falls()) block_factory = FallingMassOreBlock::new;
+					else block_factory = MassOreBlock::new;
 
 				var builder = REGISTRATE.block(
 					"mass_ore/" + stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
-						block_factory)
-					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
+						p -> block_factory.apply(stone.properties(), ore.block_xp))
 					.tag(stone.block_tags)
-					.tag(ore.blocks_tags)
+					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
 					.lang(StringUtil.format_name(stone_path + " " + ore_path) +
 						(ore.is_lapis() ? " Lazuli" : "")  + " Ore")
+					.loot((tables, block) -> ore.loot.accept(tables, block, stone))
 					.item()
-					.tag(ore.item_tags)
 					.tag(ore.ore_tag)
 					// Have to do this manually because adding the /'s breaks it
 					.model((context, provider) ->
@@ -132,26 +123,10 @@ public class RtBlocks {
 							location("block/" + context.getName())))
 					.build();
 
-				var loot_item =
-					LootItem.lootTableItem(ore.material.get());
-				if (ore.min_drop == 1 && ore.max_drop == 1) {
-					builder.tag(Tags.Blocks.ORE_RATES_SINGULAR);
-				} else {
-					if ((ore.min_drop + ore.max_drop) / 2.0 < 1)
-						builder.tag(Tags.Blocks.ORE_RATES_SINGULAR);
-					else builder.tag(Tags.Blocks.ORE_RATES_DENSE);
-
-					loot_item.apply(SetItemCountFunction.setCount(
-						UniformGenerator.between(ore.min_drop, ore.max_drop)));
-				}
-				builder.loot((loot, block) ->
-					loot.add(block, LootTable.lootTable().withPool(
-						LootPool.lootPool().add(
-							AlternativesEntry.alternatives(
-								LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
-								loot.applyExplosionDecay(block, loot_item
-									.apply(ApplyBonusCount.addOreBonusCount(
-										Enchantments.BLOCK_FORTUNE))))))));
+				for (var tag : ore.block_tags)
+					builder.tag(tag);
+				for (var tag : ore.item_tags)
+					builder.item().tag(tag);
 
 				var entry = builder.register();
 				MASS_ORE_MAP.get(stone).put(ore, entry);

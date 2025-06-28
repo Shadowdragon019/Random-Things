@@ -1,35 +1,49 @@
 package lol.roxxane.random_things.blocks.mass_ores;
 
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
+import lol.roxxane.random_things.util.TriConsumer;
 import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Supplier;
 
+import static lol.roxxane.random_things.blocks.RtBlocks.HAS_SILK_TOUCH;
+
+// TODO: Make this & MassStone more general
+@SuppressWarnings("unused")
 public class MassOre {
 	public static final MassOre[] ORES = new MassOre[]{
 		new MassOre("minecraft:coal", Items.COAL, ItemTags.COAL_ORES)
 			.block_tags(BlockTags.COAL_ORES, BlockTags.SNAPS_GOAT_HORN)
-			.item_tags(Tags.Items.ORE_RATES_SINGULAR)
 			.block_xp(0, 2)
 			.recipe_xp(0.1f)
 			.replace_config(OreFeatures.ORE_COAL, 17)
 			.replace_config(OreFeatures.ORE_COAL_BURIED, 17, 0.5f),
 		new MassOre("minecraft:iron", Items.RAW_IRON, ItemTags.IRON_ORES)
 			.block_tags(BlockTags.IRON_ORES, BlockTags.NEEDS_STONE_TOOL, BlockTags.SNAPS_GOAT_HORN)
-			.item_tags(Tags.Items.ORE_RATES_SINGULAR)
 			.processed(Items.IRON_INGOT)
 			.recipe_xp(0.7f)
 			.replace_config(OreFeatures.ORE_IRON, 4)
@@ -37,7 +51,6 @@ public class MassOre {
 			.is_ingot(),
 		new MassOre("minecraft:copper", Items.RAW_COPPER, ItemTags.COPPER_ORES)
 			.block_tags(BlockTags.COPPER_ORES, BlockTags.NEEDS_STONE_TOOL, BlockTags.SNAPS_GOAT_HORN)
-			.item_tags(Tags.Items.ORE_RATES_DENSE)
 			.drops(2, 5)
 			.recipe_xp(0.7f)
 			.processed(Items.COPPER_INGOT)
@@ -54,20 +67,17 @@ public class MassOre {
 			.is_ingot(),
 		new MassOre("minecraft:redstone", Items.REDSTONE, ItemTags.REDSTONE_ORES)
 			.block_tags(BlockTags.REDSTONE_ORES, BlockTags.NEEDS_IRON_TOOL)
-			.item_tags(Tags.Items.ORE_RATES_DENSE)
 			.block_xp(1, 5)
 			.drops(4, 5)
 			.recipe_xp(0.7f)
 			.replace_config(OreFeatures.ORE_REDSTONE, 8),
 		new MassOre("minecraft:emerald", Items.EMERALD, ItemTags.EMERALD_ORES)
-			.item_tags(Tags.Items.ORE_RATES_SINGULAR)
 			.block_tags(BlockTags.EMERALD_ORES, BlockTags.NEEDS_IRON_TOOL, BlockTags.SNAPS_GOAT_HORN)
 			.block_xp(3, 7)
 			.recipe_xp(1)
 			.replace_config(OreFeatures.ORE_EMERALD, 3),
 		new MassOre("minecraft:lapis", Items.LAPIS_LAZULI, ItemTags.LAPIS_ORES)
 			.block_tags(BlockTags.LAPIS_ORES)
-			.item_tags(Tags.Items.ORE_RATES_DENSE)
 			.block_xp(2, 4)
 			.drops(4, 9)
 			.recipe_xp(0.2f)
@@ -76,7 +86,6 @@ public class MassOre {
 			.cooking_group("lapis_lazuli"),
 		new MassOre("minecraft:diamond", Items.DIAMOND, ItemTags.DIAMOND_ORES)
 			.block_tags(BlockTags.DIAMOND_ORES, BlockTags.NEEDS_IRON_TOOL)
-			.item_tags(Tags.Items.ORE_RATES_SINGULAR)
 			.block_xp(1, 5)
 			.recipe_xp(1)
 			.replace_config(OreFeatures.ORE_DIAMOND_BURIED, 8, 1)
@@ -86,17 +95,18 @@ public class MassOre {
 
 	public @NotNull ResourceLocation id;
 	public @NotNull Supplier<Item> material;
-	public @Nullable Supplier<Item> processed;
-	public int min_block_xp = 0;
-	public int max_block_xp = 0;
-	public @NotNull TagKey<Block>[] blocks_tags;
-	public @NotNull TagKey<Item>[] item_tags;
+	public @Nullable Supplier<Item> processed = null;
+	public @Nullable IntProvider block_xp = null;
+	public @NotNull ArrayList<TagKey<Block>> block_tags = new ArrayList<>();
+	public @NotNull ArrayList<TagKey<Item>> item_tags = new ArrayList<>();
 	public @NotNull TagKey<Item> ore_tag;
 	public int min_drop = 1;
 	public int max_drop = 1;
 	public @NotNull ArrayList<FeatureConfigReplacer> configs_to_replace = new ArrayList<>();
 	public float recipe_xp = 0;
 	public String cooking_group;
+	public @NotNull TriConsumer<RegistrateBlockLootTables, Block, MassStone> loot =
+		($, $1, $2) -> drops(1, 1);
 
 	MassOre(@NotNull String id, @NotNull Supplier<Item> material, @NotNull TagKey<Item> ore_tag) {
 		this.id = ResourceLocation.parse(id);
@@ -108,31 +118,35 @@ public class MassOre {
 		this(id, () -> material, ore_tag);
 	}
 
-	public UniformInt block_xp() {
-		return UniformInt.of(min_block_xp, max_block_xp);
-	}
 	public boolean drops_xp() {
-		return min_block_xp != 0 || max_block_xp != 0;
+		return block_xp != null;
+	}
+	public boolean is_redstone() {
+		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "redstone"));
+	}
+	public boolean is_lapis() {
+		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "lapis"));
 	}
 
 	MassOre processed(Item processed) {
 		this.processed = () -> processed;
 		return this;
 	}
-	MassOre block_xp(int min_xp, int max_xp) {
-		this.min_block_xp = min_xp;
-		this.max_block_xp = max_xp;
+	MassOre processed(Supplier<Item> processed) {
+		this.processed = processed;
 		return this;
 	}
-	MassOre drops(int min_drop, int max_drop) {
-		this.min_drop = min_drop;
-		this.max_drop = max_drop;
-
+	MassOre block_xp(IntProvider block_xp) {
+		this.block_xp = block_xp;
+		return this;
+	}
+	MassOre block_xp(int min, int max) {
+		block_xp = UniformInt.of(min, max);
 		return this;
 	}
 	@SafeVarargs
-	final MassOre block_tags(TagKey<Block>... blocks_tags) {
-		this.blocks_tags = blocks_tags;
+	final MassOre block_tags(TagKey<Block>... block_tags) {
+		this.block_tags.addAll(Arrays.asList(block_tags));
 		return this;
 	}
 	MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size) {
@@ -143,15 +157,9 @@ public class MassOre {
 		configs_to_replace.add(new FeatureConfigReplacer(config, size, discard_chance));
 		return this;
 	}
-	public boolean is_redstone() {
-		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "redstone"));
-	}
-	public boolean is_lapis() {
-		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "lapis"));
-	}
 	@SafeVarargs
 	final MassOre item_tags(TagKey<Item>... item_tags) {
-		this.item_tags = item_tags;
+		this.item_tags.addAll(Arrays.asList(item_tags));
 		return this;
 	}
 	MassOre recipe_xp(float recipe_xp) {
@@ -166,5 +174,39 @@ public class MassOre {
 	MassOre cooking_group(String cooking_group) {
 		this.cooking_group = cooking_group;
 		return this;
+	}
+	MassOre loot(TriConsumer<RegistrateBlockLootTables, Block, MassStone> loot) {
+		this.loot = loot;
+		return this;
+	}
+	MassOre drops(int min_drops, int max_drops) {
+		return loot((loot, block, stone) -> {
+			var loot_item =
+				LootItem.lootTableItem(material.get());
+
+			if (min_drops == 1 && max_drops == 1) {
+				block_tags(Tags.Blocks.ORE_RATES_SINGULAR);
+				item_tags(Tags.Items.ORE_RATES_SINGULAR);
+			} else {
+				if ((min_drops + max_drops) / 2.0 < 1) {
+					block_tags(Tags.Blocks.ORE_RATES_SPARSE);
+					item_tags(Tags.Items.ORE_RATES_SPARSE);
+				} else {
+					block_tags(Tags.Blocks.ORE_RATES_DENSE);
+					item_tags(Tags.Items.ORE_RATES_DENSE);
+				}
+
+				loot_item.apply(SetItemCountFunction.setCount(
+					UniformGenerator.between(min_drops, max_drops)));
+			}
+
+			loot.add(block, LootTable.lootTable().withPool(
+				LootPool.lootPool().add(
+					AlternativesEntry.alternatives(
+						LootItem.lootTableItem(block).when(HAS_SILK_TOUCH),
+						loot.applyExplosionDecay(block, loot_item
+							.apply(ApplyBonusCount.addOreBonusCount(
+								Enchantments.BLOCK_FORTUNE)))))));
+		});
 	}
 }
