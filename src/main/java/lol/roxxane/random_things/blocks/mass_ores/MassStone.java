@@ -3,6 +3,7 @@ package lol.roxxane.random_things.blocks.mass_ores;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import lol.roxxane.random_things.tags.RtBlockTags;
+import lol.roxxane.random_things.util.QuadConsumer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -52,7 +53,7 @@ public class MassStone {
 	public TagKey<Block>[] block_tags;
 	public String stone_texture_namespace;
 	public String stone_texture_path;
-	public MassOreConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> blockstate =
+	public QuadConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider, MassStone, MassOre> blockstate =
 		(context, provider, stone, ore) ->
 		{
 			var ore_namespace = ore.id.getNamespace();
