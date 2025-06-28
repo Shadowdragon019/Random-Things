@@ -2,12 +2,14 @@ package lol.roxxane.random_things.events;
 
 import lol.roxxane.random_things.CrumblyStone;
 import lol.roxxane.random_things.Rt;
+import lol.roxxane.random_things.tags.RtBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -16,7 +18,6 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static lol.roxxane.random_things.blocks.RtBlocks.EXPLOSIVE_STONE;
 import static lol.roxxane.random_things.config.RtServerConfig.EXPLOSIVE_STONE_EXPLOSION_SIZES;
 import static lol.roxxane.random_things.config.RtServerConfig.TEST;
 
@@ -24,7 +25,7 @@ import static lol.roxxane.random_things.config.RtServerConfig.TEST;
 @Mod.EventBusSubscriber(modid = Rt.ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RtForgeEvents {
 	public static void entity_about_to_destroy_block(LivingEntity entity, BlockPos pos, BlockState state) {
-		if (state.is(EXPLOSIVE_STONE.get()))
+		if (state.is(RtBlockTags.EXPLOSIVE_STONES))
 			for (var offset : new BlockPos[]{
 				new BlockPos(-1, 0, 0),
 				new BlockPos(1, 0, 0),
@@ -37,6 +38,7 @@ public class RtForgeEvents {
 				entity.level().explode(null,
 					explode_pos.getX(), explode_pos.getY(), explode_pos.getZ(),
 					EXPLOSIVE_STONE_EXPLOSION_SIZES.get(),Level.ExplosionInteraction.TNT);
+				entity.level().setBlockAndUpdate(pos, Blocks.LAVA.defaultBlockState());
 			}
 	}
 
@@ -83,8 +85,8 @@ public class RtForgeEvents {
 		var pos = event.getPos();
 
 		if (!(entity instanceof Player player && player.isCreative()) &&
-			event.getPlacedAgainst().is(EXPLOSIVE_STONE.get()) &&
-			!level.getBlockState(pos).is(EXPLOSIVE_STONE.get())
+			event.getPlacedAgainst().is(RtBlockTags.EXPLOSIVE_STONES) &&
+			!level.getBlockState(pos).is(RtBlockTags.EXPLOSIVE_STONES)
 		) {
 			level.explode(null, pos.getX(), pos.getY(), pos.getZ(),
 				EXPLOSIVE_STONE_EXPLOSION_SIZES.get(), Level.ExplosionInteraction.TNT);

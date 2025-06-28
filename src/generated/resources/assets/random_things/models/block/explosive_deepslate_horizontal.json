@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "random_things:block/explosive_deepslate_end",
+    "side": "random_things:block/explosive_deepslate_side"
+  }
+}

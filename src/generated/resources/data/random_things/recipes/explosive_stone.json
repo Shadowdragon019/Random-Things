@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "explosive_stone",
+  "key": {
+    "l": {
+      "item": "minecraft:lava_bucket"
+    },
+    "s": {
+      "item": "minecraft:stone"
+    }
+  },
+  "pattern": [
+    "sss",
+    "sls",
+    "sss"
+  ],
+  "result": {
+    "count": 8,
+    "item": "random_things:explosive_stone"
+  },
+  "show_notification": true
+}

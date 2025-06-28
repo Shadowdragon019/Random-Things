@@ -3,15 +3,19 @@ package lol.roxxane.random_things.blocks;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import lol.roxxane.random_things.blocks.mass_ores.*;
+import lol.roxxane.random_things.tags.RtBlockTags;
 import lol.roxxane.random_things.util.StringUtil;
 import lol.roxxane.random_things.util.TriConsumer;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -31,6 +35,7 @@ import java.util.function.BiFunction;
 
 import static lol.roxxane.random_things.Rt.REGISTRATE;
 import static lol.roxxane.random_things.Rt.location;
+import static net.minecraft.advancements.critereon.InventoryChangeTrigger.TriggerInstance.hasItems;
 
 public class RtBlocks {
 	// TODO: Replace this with something that preserves insertion order
@@ -61,15 +66,61 @@ public class RtBlocks {
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
 			.simpleItem()
 			.register();
-	public static final RegistryEntry<Block> EXPLOSIVE_STONE =
-		REGISTRATE.block("explosive_stone",p ->
-				new Block(p.mapColor(MapColor.DEEPSLATE)
+	public static final RegistryEntry<RotatedPillarBlock> EXPLOSIVE_DEEPSLATE =
+		REGISTRATE.block("explosive_deepslate",p ->
+				new RotatedPillarBlock(p.mapColor(MapColor.DEEPSLATE)
 					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
 					.strength(50, 1200)))
 			.loot(RtBlocks::requires_silk_touch)
-			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.EXPLOSIVE_STONES)
+			.blockstate((context, provider) -> provider.axisBlock(context.get()))
 			.simpleItem()
+			.recipe((context, provider) ->
+				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get(), 8)
+					.pattern("ddd")
+					.pattern("dld")
+					.pattern("ddd")
+					.define('d', Items.DEEPSLATE)
+					.define('l', Items.LAVA_BUCKET)
+					.group("explosive_stone")
+					.unlockedBy("has_stone", hasItems(context.get()))
+					.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
+					.save(provider))
 			.register();
+	public static final RegistryEntry<Block> EXPLOSIVE_STONE =
+		REGISTRATE.block("explosive_stone",p ->
+				new Block(p.mapColor(MapColor.STONE)
+					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+					.strength(50, 1200)))
+			.loot(RtBlocks::requires_silk_touch)
+			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.EXPLOSIVE_STONES)
+			.simpleItem()
+			.recipe((context, provider) ->
+				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get(), 8)
+					.pattern("sss")
+					.pattern("sls")
+					.pattern("sss")
+					.define('s', Items.STONE)
+					.define('l', Items.LAVA_BUCKET)
+					.group("explosive_stone")
+					.unlockedBy("has_stone", hasItems(context.get()))
+					.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
+					.save(provider))
+			.register();
+	/*
+	    public <T extends ItemLike> void slab(DataIngredient source, RecipeCategory category, Supplier<? extends T> result, @Nullable String group, boolean stone) {
+        ShapedRecipeBuilder.shaped(category, result.get(), 6)
+            .pattern("XXX")
+            .define('X', source)
+            .group(group)
+            .unlockedBy("has_" + safeName(source), source.getCritereon(this))
+            .save(this, safeId(result.get()));
+        if (stone) {
+            stonecutting(source, category, result, 2);
+        }
+    }
+
+	 */
 
 	static {
 		MASS_ORE_MAP = new HashMap<>(MassStone.STONES.length - 1);
@@ -93,7 +144,6 @@ public class RtBlocks {
 			.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH))));
 	}
 
-	@SuppressWarnings("unchecked")
 	public static void register() {
 		for (var stone : MassStone.STONES) {
 			for (var ore : MassOre.ORES) {
@@ -111,13 +161,14 @@ public class RtBlocks {
 					if (stone.falls()) block_factory = FallingMassOreBlock::new;
 					else block_factory = MassOreBlock::new;
 
-				@SuppressWarnings("RedundantCast")
+				@SuppressWarnings({"RedundantCast", "unchecked"})
 				var builder = REGISTRATE.block(
 					"mass_ore/" + stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
 						p -> block_factory.apply(stone.properties(), ore.block_xp))
 					.tag(stone.block_tags)
 					.tag((TagKey<Block>[]) ore.block_tags.toArray(TagKey[]::new))
-					.blockstate((context, provider) -> stone.blockstate.accept(context, provider, stone, ore))
+					.blockstate((context, provider) ->
+						stone.blockstate.accept(context, provider, stone, ore))
 					.lang(StringUtil.format_name(stone_path + " " + ore_path) +
 						(ore.is_lapis() ? " Lazuli" : "")  + " Ore")
 					.loot((tables, block) -> ore.loot.accept(tables, block, stone))

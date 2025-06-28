@@ -18,6 +18,7 @@ public class RtModEvents {
 			event.accept(RtBlocks.CRUMBLY_STONE);
 			event.accept(RtBlocks.CRUMBLY_DEEPSLATE);
 			event.accept(RtBlocks.EXPLOSIVE_STONE);
+			event.accept(RtBlocks.EXPLOSIVE_DEEPSLATE);
 		}
 	}
 }
