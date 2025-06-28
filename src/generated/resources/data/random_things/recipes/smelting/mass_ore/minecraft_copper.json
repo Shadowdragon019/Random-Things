@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.7,
-  "group": "copper",
+  "group": "copper_ingot",
   "ingredient": {
     "tag": "minecraft:copper_ores"
   },

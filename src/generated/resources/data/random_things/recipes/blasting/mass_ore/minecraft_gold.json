@@ -1,9 +1,9 @@
 {
   "type": "minecraft:blasting",
   "category": "misc",
-  "cookingtime": 100,
+  "cookingtime": 200,
   "experience": 1.0,
-  "group": "gold",
+  "group": "gold_ingot",
   "ingredient": {
     "tag": "minecraft:gold_ores"
   },

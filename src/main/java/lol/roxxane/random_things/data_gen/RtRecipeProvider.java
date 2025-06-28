@@ -7,6 +7,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import org.jetbrains.annotations.NotNull;
@@ -29,24 +30,20 @@ public class RtRecipeProvider extends RecipeProvider {
 		}
 	}
 
-	private void smelt(MassOre ore) {
+	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer) {
 		SimpleCookingRecipeBuilder.generic(Ingredient.of(ore.ore_tag), RecipeCategory.MISC,
 				ore.processed == null ? () -> ore.material.get() : () -> ore.processed.get(),
-				ore.recipe_xp, 200, RecipeSerializer.SMELTING_RECIPE)
-			.group(ore.id.getPath())
+				ore.recipe_xp, 200, serializer)
+			.group(ore.cooking_group)
 			.unlockedBy("has_" + ore.id.getNamespace() + "_" + ore.id.getPath() + "_ore",
 				has(ore.material.get()))
 			.save(writer,
-				Rt.location("smelting/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath()));
+				Rt.location(type + "/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath()));
+	}
+	private void smelt(MassOre ore) {
+		cook(ore, "smelting", RecipeSerializer.SMELTING_RECIPE);
 	}
 	private void blast(MassOre ore) {
-		SimpleCookingRecipeBuilder.generic(Ingredient.of(ore.ore_tag), RecipeCategory.MISC,
-				ore.processed == null ? () -> ore.material.get() : () -> ore.processed.get(),
-				ore.recipe_xp, 100, RecipeSerializer.BLASTING_RECIPE)
-			.group(ore.id.getPath())
-			.unlockedBy("has_" + ore.id.getNamespace() + "_" + ore.id.getPath() + "_ore",
-				has(ore.material.get()))
-			.save(writer,
-				Rt.location("blasting/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath()));
+		cook(ore, "blasting", RecipeSerializer.BLASTING_RECIPE);
 	}
 }

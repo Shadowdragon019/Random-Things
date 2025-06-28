@@ -33,7 +33,8 @@ public class MassOre {
 			.processed(Items.IRON_INGOT)
 			.recipe_xp(0.7f)
 			.replace_config(OreFeatures.ORE_IRON, 4)
-			.replace_config(OreFeatures.ORE_IRON_SMALL, 4),
+			.replace_config(OreFeatures.ORE_IRON_SMALL, 4)
+			.is_ingot(),
 		new MassOre("minecraft:copper", Items.RAW_COPPER, ItemTags.COPPER_ORES)
 			.block_tags(BlockTags.COPPER_ORES, BlockTags.NEEDS_STONE_TOOL, BlockTags.SNAPS_GOAT_HORN)
 			.item_tags(Tags.Items.ORE_RATES_DENSE)
@@ -41,14 +42,16 @@ public class MassOre {
 			.recipe_xp(0.7f)
 			.processed(Items.COPPER_INGOT)
 			.replace_config(OreFeatures.ORE_COPPER_LARGE, 20)
-			.replace_config(OreFeatures.ORE_COPPPER_SMALL, 10),
+			.replace_config(OreFeatures.ORE_COPPPER_SMALL, 10)
+			.is_ingot(),
 		new MassOre("minecraft:gold", Items.RAW_GOLD, ItemTags.GOLD_ORES)
 			.block_tags(BlockTags.GOLD_ORES, BlockTags.NEEDS_IRON_TOOL, BlockTags.GUARDED_BY_PIGLINS)
 			.item_tags(Tags.Items.ORE_RATES_SINGULAR)
 			.processed(Items.GOLD_INGOT)
 			.recipe_xp(1)
 			.replace_config(OreFeatures.ORE_GOLD, 9)
-			.replace_config(OreFeatures.ORE_GOLD_BURIED, 9, 0.5f),
+			.replace_config(OreFeatures.ORE_GOLD_BURIED, 9, 0.5f)
+			.is_ingot(),
 		new MassOre("minecraft:redstone", Items.REDSTONE, ItemTags.REDSTONE_ORES)
 			.block_tags(BlockTags.REDSTONE_ORES, BlockTags.NEEDS_IRON_TOOL)
 			.item_tags(Tags.Items.ORE_RATES_DENSE)
@@ -69,7 +72,8 @@ public class MassOre {
 			.drops(4, 9)
 			.recipe_xp(0.2f)
 			.replace_config(OreFeatures.ORE_LAPIS, 7)
-			.replace_config(OreFeatures.ORE_LAPIS_BURIED, 7, 1),
+			.replace_config(OreFeatures.ORE_LAPIS_BURIED, 7, 1)
+			.cooking_group("lapis_lazuli"),
 		new MassOre("minecraft:diamond", Items.DIAMOND, ItemTags.DIAMOND_ORES)
 			.block_tags(BlockTags.DIAMOND_ORES, BlockTags.NEEDS_IRON_TOOL)
 			.item_tags(Tags.Items.ORE_RATES_SINGULAR)
@@ -92,26 +96,18 @@ public class MassOre {
 	public int max_drop = 1;
 	public @NotNull ArrayList<FeatureConfigReplacer> configs_to_replace = new ArrayList<>();
 	public float recipe_xp = 0;
+	public String cooking_group;
 
-	public MassOre(@NotNull String id, @NotNull Supplier<Item> material, @NotNull TagKey<Item> ore_tag) {
+	MassOre(@NotNull String id, @NotNull Supplier<Item> material, @NotNull TagKey<Item> ore_tag) {
 		this.id = ResourceLocation.parse(id);
 		this.material = material;
 		this.ore_tag = ore_tag;
+		cooking_group = this.id.getPath();
 	}
-	public MassOre(@NotNull String id, @NotNull Item material, @NotNull TagKey<Item> ore_tag) {
+	MassOre(@NotNull String id, @NotNull Item material, @NotNull TagKey<Item> ore_tag) {
 		this(id, () -> material, ore_tag);
 	}
 
-	public MassOre processed(Item processed) {
-		this.processed = () -> processed;
-		return this;
-	}
-
-	public MassOre block_xp(int min_xp, int max_xp) {
-		this.min_block_xp = min_xp;
-		this.max_block_xp = max_xp;
-		return this;
-	}
 	public UniformInt block_xp() {
 		return UniformInt.of(min_block_xp, max_block_xp);
 	}
@@ -119,43 +115,56 @@ public class MassOre {
 		return min_block_xp != 0 || max_block_xp != 0;
 	}
 
-	public MassOre drops(int min_drop, int max_drop) {
+	MassOre processed(Item processed) {
+		this.processed = () -> processed;
+		return this;
+	}
+	MassOre block_xp(int min_xp, int max_xp) {
+		this.min_block_xp = min_xp;
+		this.max_block_xp = max_xp;
+		return this;
+	}
+	MassOre drops(int min_drop, int max_drop) {
 		this.min_drop = min_drop;
 		this.max_drop = max_drop;
 
 		return this;
 	}
-
 	@SafeVarargs
-	public final MassOre block_tags(TagKey<Block>... blocks_tags) {
+	final MassOre block_tags(TagKey<Block>... blocks_tags) {
 		this.blocks_tags = blocks_tags;
 		return this;
 	}
-
-	public MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size) {
+	MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size) {
 		configs_to_replace.add(new FeatureConfigReplacer(config, size));
 		return this;
 	}
-	public MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size, float discard_chance) {
+	MassOre replace_config(ResourceKey<ConfiguredFeature<?, ?>> config, int size, float discard_chance) {
 		configs_to_replace.add(new FeatureConfigReplacer(config, size, discard_chance));
 		return this;
 	}
-
 	public boolean is_redstone() {
 		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "redstone"));
 	}
 	public boolean is_lapis() {
 		return id.equals(ResourceLocation.fromNamespaceAndPath("minecraft", "lapis"));
 	}
-
 	@SafeVarargs
-	public final MassOre item_tags(TagKey<Item>... item_tags) {
+	final MassOre item_tags(TagKey<Item>... item_tags) {
 		this.item_tags = item_tags;
 		return this;
 	}
-
-	public MassOre recipe_xp(float recipe_xp) {
+	MassOre recipe_xp(float recipe_xp) {
 		this.recipe_xp = recipe_xp;
+		return this;
+	}
+	MassOre is_ingot() {
+		cooking_group = id.getPath() + "_ingot";
+		return this;
+	}
+	@SuppressWarnings("SameParameterValue")
+	MassOre cooking_group(String cooking_group) {
+		this.cooking_group = cooking_group;
 		return this;
 	}
 }
