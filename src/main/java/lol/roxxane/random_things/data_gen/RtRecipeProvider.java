@@ -30,10 +30,12 @@ public class RtRecipeProvider extends RecipeProvider {
 		}
 	}
 
-	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer) {
+	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer,
+		int cook_time)
+	{
 		SimpleCookingRecipeBuilder.generic(Ingredient.of(ore.item_ore_tag), RecipeCategory.MISC,
 				ore.processed == null ? () -> ore.material.get() : () -> ore.processed.get(),
-				ore.recipe_xp, 200, serializer)
+				ore.recipe_xp, cook_time, serializer)
 			.group(ore.cooking_group)
 			.unlockedBy("has_" + ore.id.getNamespace() + "_" + ore.id.getPath() + "_ore",
 				has(ore.material.get()))
@@ -41,9 +43,9 @@ public class RtRecipeProvider extends RecipeProvider {
 				Rt.location(type + "/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath()));
 	}
 	private void smelt(MassOre ore) {
-		cook(ore, "smelting", RecipeSerializer.SMELTING_RECIPE);
+		cook(ore, "smelting", RecipeSerializer.SMELTING_RECIPE, 200);
 	}
 	private void blast(MassOre ore) {
-		cook(ore, "blasting", RecipeSerializer.BLASTING_RECIPE);
+		cook(ore, "blasting", RecipeSerializer.BLASTING_RECIPE, 100);
 	}
 }
