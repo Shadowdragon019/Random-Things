@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_lava": {
+    "has_gravel": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:lava_bucket"
+              "minecraft:gravel"
             ]
           }
         ]
@@ -18,7 +18,7 @@
         "items": [
           {
             "items": [
-              "random_things:explosive_stone"
+              "minecraft:stone"
             ]
           }
         ]
@@ -27,7 +27,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "random_things:explosive_stone"
+        "recipe": "random_things:crumbly_stone"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -35,13 +35,13 @@
   "requirements": [
     [
       "has_stone",
-      "has_lava",
+      "has_gravel",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "random_things:explosive_stone"
+      "random_things:crumbly_stone"
     ]
   },
   "sends_telemetry_event": false

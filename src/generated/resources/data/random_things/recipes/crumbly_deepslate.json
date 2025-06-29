@@ -1,23 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "group": "explosive_stone",
   "key": {
     "d": {
       "item": "minecraft:deepslate"
     },
-    "l": {
-      "item": "minecraft:lava_bucket"
+    "g": {
+      "item": "minecraft:gravel"
     }
   },
   "pattern": [
-    "ddd",
-    "dld",
-    "ddd"
+    "dg",
+    "gd"
   ],
   "result": {
-    "count": 8,
-    "item": "random_things:explosive_deepslate"
+    "count": 4,
+    "item": "random_things:crumbly_deepslate"
   },
   "show_notification": true
 }

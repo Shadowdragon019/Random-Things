@@ -60,7 +60,7 @@ public class CrumblyStone {
 	public static void try_crumble(Level level, BlockPos pos, @Nullable Entity entity) {
 		if (level.isClientSide || entity instanceof ItemEntity)
 			return;
-		if (entity instanceof Player player && player.isSpectator())
+		if (entity instanceof Player player && (player.isSpectator() || player.isCreative()))
 			return;
 		if (!level.getBlockState(pos).is(CRUMBLY_STONES))
 			return;

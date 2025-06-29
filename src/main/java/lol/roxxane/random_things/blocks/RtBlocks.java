@@ -28,13 +28,13 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.BiFunction;
 
-import static lol.roxxane.random_things.Rt.REGISTRATE;
-import static lol.roxxane.random_things.Rt.location;
+import static lol.roxxane.random_things.Rt.*;
 import static net.minecraft.advancements.critereon.InventoryChangeTrigger.TriggerInstance.hasItems;
 
 public class RtBlocks {
@@ -52,18 +52,66 @@ public class RtBlocks {
 	public static final RegistryEntry<Block> CRUMBLY_STONE =
 		REGISTRATE.block("crumbly_stone",
 				p -> new Block(Properties.copy(Blocks.STONE)
-					.strength(0.75f, 0)))
+					.strength(0.5f, 0)))
 			.loot(RtBlocks::requires_silk_touch)
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+			.recipe((context, provider) ->
+				ShapedRecipeBuilder.shaped(RecipeCategory.MISC, context.get(), 4)
+					.pattern("sg")
+					.pattern("gs")
+					.define('s', Items.STONE)
+					.define('g', Items.GRAVEL)
+					.unlockedBy("has_stone", hasItems(Items.STONE))
+					.unlockedBy("has_gravel", hasItems(Items.GRAVEL))
+					.save(provider))
 			.simpleItem()
 			.register();
 	public static final RegistryEntry<RotatedPillarBlock> CRUMBLY_DEEPSLATE =
 		REGISTRATE.block("crumbly_deepslate",
 				p -> new RotatedPillarBlock(Properties.copy(Blocks.DEEPSLATE)
-					.strength(  1.5f, 0)))
+					.strength(1, 0)))
 			.loot(RtBlocks::requires_silk_touch)
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
+			.recipe((context, provider) ->
+				ShapedRecipeBuilder.shaped(RecipeCategory.MISC, context.get(), 4)
+					.pattern("dg")
+					.pattern("gd")
+					.define('d', Items.DEEPSLATE)
+					.define('g', Items.GRAVEL)
+					.unlockedBy("has_deepslate", hasItems(Items.DEEPSLATE))
+					.unlockedBy("has_gravel", hasItems(Items.GRAVEL))
+					.save(provider))
+			.simpleItem()
+			.register();
+	public static final RegistryEntry<Block> EXPLOSIVE_STONE =
+		REGISTRATE.block("explosive_stone",p ->
+				new Block(p.mapColor(MapColor.STONE)
+					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+					.strength(50, 1200)))
+			.loot(RtBlocks::requires_silk_touch)
+			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.EXPLOSIVE_STONES)
+			.recipe((context, provider) ->
+				ShapedRecipeBuilder.shaped(RecipeCategory.MISC, context.get(), 8)
+					.pattern("sss")
+					.pattern("sls")
+					.pattern("sss")
+					.define('s', Items.STONE)
+					.define('l', Items.LAVA_BUCKET)
+					.group("explosive_stone")
+					.unlockedBy("has_stone", hasItems(Items.STONE))
+					.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
+					.save(provider))
+			.blockstate((context, provider) -> {
+				provider.models().cubeColumn(context.getName(),
+					block_location(context.getName()),
+					block_location(context.getName() + "_end"));
+				// I have no clue how to just make it point to the normal model without doing all this
+				provider.getVariantBuilder(context.get()).forAllStates($ ->
+					ConfiguredModel.builder()
+						.modelFile(provider.models().getExistingFile(block_location(context.getName())))
+						.build());
+			})
 			.simpleItem()
 			.register();
 	public static final RegistryEntry<RotatedPillarBlock> EXPLOSIVE_DEEPSLATE =
@@ -76,51 +124,17 @@ public class RtBlocks {
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
 			.simpleItem()
 			.recipe((context, provider) ->
-				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get(), 8)
+				ShapedRecipeBuilder.shaped(RecipeCategory.MISC, context.get(), 8)
 					.pattern("ddd")
 					.pattern("dld")
 					.pattern("ddd")
 					.define('d', Items.DEEPSLATE)
 					.define('l', Items.LAVA_BUCKET)
 					.group("explosive_stone")
-					.unlockedBy("has_stone", hasItems(context.get()))
+					.unlockedBy("has_deepslate", hasItems(Items.DEEPSLATE))
 					.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
 					.save(provider))
 			.register();
-	public static final RegistryEntry<Block> EXPLOSIVE_STONE =
-		REGISTRATE.block("explosive_stone",p ->
-				new Block(p.mapColor(MapColor.STONE)
-					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-					.strength(50, 1200)))
-			.loot(RtBlocks::requires_silk_touch)
-			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.EXPLOSIVE_STONES)
-			.simpleItem()
-			.recipe((context, provider) ->
-				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get(), 8)
-					.pattern("sss")
-					.pattern("sls")
-					.pattern("sss")
-					.define('s', Items.STONE)
-					.define('l', Items.LAVA_BUCKET)
-					.group("explosive_stone")
-					.unlockedBy("has_stone", hasItems(context.get()))
-					.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
-					.save(provider))
-			.register();
-	/*
-	    public <T extends ItemLike> void slab(DataIngredient source, RecipeCategory category, Supplier<? extends T> result, @Nullable String group, boolean stone) {
-        ShapedRecipeBuilder.shaped(category, result.get(), 6)
-            .pattern("XXX")
-            .define('X', source)
-            .group(group)
-            .unlockedBy("has_" + safeName(source), source.getCritereon(this))
-            .save(this, safeId(result.get()));
-        if (stone) {
-            stonecutting(source, category, result, 2);
-        }
-    }
-
-	 */
 
 	static {
 		MASS_ORE_MAP = new HashMap<>(MassStone.STONES.length - 1);

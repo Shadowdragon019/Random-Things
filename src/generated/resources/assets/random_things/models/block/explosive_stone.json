@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "random_things:block/explosive_stone"
+    "end": "random_things:block/explosive_stone_end",
+    "side": "random_things:block/explosive_stone"
   }
 }

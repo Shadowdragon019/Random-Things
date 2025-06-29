@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-28T11:42:18.786369256	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-06-28T13:52:47.685496673	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 32f4fbf8f1a160aeb0abbe9e82827e9bc38d1cca assets/random_things/blockstates/crumbly_deepslate.json
 8b2493e9a6d52c4a619c600f6162284f0c31861f assets/random_things/blockstates/crumbly_stone.json
 555d0901e387b683cd4b6b4257f18c4a8b79761a assets/random_things/blockstates/explosive_deepslate.json
@@ -98,7 +98,7 @@ c2714c17bd18850bd82c2b90a492ba154420299c assets/random_things/lang/en_us.json
 0b80f949ecd3aefe30583d46fd72d53a62c8ed46 assets/random_things/models/block/crumbly_stone.json
 a003324df5b883b559aea321c5b43d2a0328770d assets/random_things/models/block/explosive_deepslate.json
 4a0aa2c18766f5a29c05069cf14c71328a8726f5 assets/random_things/models/block/explosive_deepslate_horizontal.json
-f3f6603eceafcb595efed9443679158bd3a9330b assets/random_things/models/block/explosive_stone.json
+3660ece7cbb25856f9233a5d44339573bc868356 assets/random_things/models/block/explosive_stone.json
 8b6c5c63633e0c1c7b3ea91c8ef7b13ec5bd1568 assets/random_things/models/block/mass_ore/minecraft/andesite/minecraft/coal.json
 599272a6e7811030a3199ccf3f4c72042bc34847 assets/random_things/models/block/mass_ore/minecraft/andesite/minecraft/copper.json
 c2723f68f9184b4a24993d653f1a3c92808f5d20 assets/random_things/models/block/mass_ore/minecraft/andesite/minecraft/diamond.json
@@ -291,9 +291,9 @@ b86486c22cf64ae01d6944be068ed9c3c3192784 data/minecraft/tags/blocks/gold_ores.js
 b86486c22cf64ae01d6944be068ed9c3c3192784 data/minecraft/tags/blocks/guarded_by_piglins.json
 8ec579893e2758ff9a84d61006a2f48d737b3413 data/minecraft/tags/blocks/iron_ores.json
 99d7b45a51b1db73a0ba56c2b5e420e9b312566b data/minecraft/tags/blocks/lapis_ores.json
-fec568d853d140c3776a72b9ad5af486c256d1bd data/minecraft/tags/blocks/mineable/pickaxe.json
+823e29757fd09a62627b2fd3692b40ff555e99d2 data/minecraft/tags/blocks/mineable/pickaxe.json
 e4c58a762d3b5a096805e8513cb957a267b1fa1a data/minecraft/tags/blocks/mineable/shovel.json
-4f5193a8f5a423814ca55d1124d1e39b6c3ed57f data/minecraft/tags/blocks/needs_diamond_tool.json
+2c8e859e69de210a3e4bddd415e9d72bf40b5a05 data/minecraft/tags/blocks/needs_diamond_tool.json
 c13314fbb645aa4f92f37fd9ac9cfe84e1326843 data/minecraft/tags/blocks/needs_iron_tool.json
 05b3887609b88a2de6ba82e8f861ecaa42b7f095 data/minecraft/tags/blocks/needs_stone_tool.json
 9dc87830524c784623c0a17fff0bcc6e77148ba5 data/minecraft/tags/blocks/redstone_ores.json
@@ -306,8 +306,10 @@ b86486c22cf64ae01d6944be068ed9c3c3192784 data/minecraft/tags/items/gold_ores.jso
 8ec579893e2758ff9a84d61006a2f48d737b3413 data/minecraft/tags/items/iron_ores.json
 99d7b45a51b1db73a0ba56c2b5e420e9b312566b data/minecraft/tags/items/lapis_ores.json
 9dc87830524c784623c0a17fff0bcc6e77148ba5 data/minecraft/tags/items/redstone_ores.json
-482c8c1ce2689fa1c7721b4cf70fb45fec45dfe4 data/random_things/advancements/recipes/building_blocks/explosive_deepslate.json
-54635787d82c77ac18aefb70eaba4853546b5158 data/random_things/advancements/recipes/building_blocks/explosive_stone.json
+dcab185a1a84ab02681e77ab1dd6977f4d954345 data/random_things/advancements/recipes/misc/crumbly_deepslate.json
+492688017a885e62682807253c6dd7da8065a9c0 data/random_things/advancements/recipes/misc/crumbly_stone.json
+79e68cff9235617be8c20a40f4e2335697589116 data/random_things/advancements/recipes/misc/explosive_deepslate.json
+d9fdab10666cefa4dfdd6bb669a653a564bb0176 data/random_things/advancements/recipes/misc/explosive_stone.json
 21e35034ba159d57839f66a1951a87e81bbe82c0 data/random_things/loot_tables/blocks/crumbly_deepslate.json
 f23f9eb6465856f63bf51b128952af8daab37d05 data/random_things/loot_tables/blocks/crumbly_stone.json
 c68a562340098f2fe23a4e3bdecfc3b25b4a7bc3 data/random_things/loot_tables/blocks/explosive_deepslate.json
@@ -400,6 +402,8 @@ e6e45e0788d163df4377af527d7a6f8328f586ae data/random_things/loot_tables/blocks/m
 636c2af5c50c123342591eefdbdd39faff27dcdf data/random_things/loot_tables/blocks/mass_ore/minecraft/tuff/minecraft/iron.json
 a6165bc2e89fb0d00777e44f3b891e16471edb48 data/random_things/loot_tables/blocks/mass_ore/minecraft/tuff/minecraft/lapis.json
 9cfeefe4c7e8de22ec50e27575f9694ee14f0bec data/random_things/loot_tables/blocks/mass_ore/minecraft/tuff/minecraft/redstone.json
-b3e4dcd7ce6a159dbfd6a1ae4c0734ce81bebf9e data/random_things/recipes/explosive_deepslate.json
-1073b5c5ca7d8b11f8572dc520f875e4f5291ec4 data/random_things/recipes/explosive_stone.json
-4f5193a8f5a423814ca55d1124d1e39b6c3ed57f data/random_things/tags/blocks/explosive_stones.json
+8c487c4f760c8bede192e756620b50e7cfacd66d data/random_things/recipes/crumbly_deepslate.json
+ca1fa5f7dff551864084b9fc0e963386f300cd0d data/random_things/recipes/crumbly_stone.json
+c1888b29a847e9a9351663e745da558d008f79ae data/random_things/recipes/explosive_deepslate.json
+cc1ed80ede842e0d228f3fc49fbe1b25413f3461 data/random_things/recipes/explosive_stone.json
+2c8e859e69de210a3e4bddd415e9d72bf40b5a05 data/random_things/tags/blocks/explosive_stones.json

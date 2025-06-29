@@ -3,6 +3,7 @@ package lol.roxxane.random_things;
 import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.Registrate;
 import lol.roxxane.random_things.blocks.RtBlocks;
+import lol.roxxane.random_things.config.RtClientConfig;
 import lol.roxxane.random_things.config.RtServerConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +24,7 @@ public class Rt {
 
 	public Rt(FMLJavaModLoadingContext context) {
 		context.registerConfig(ModConfig.Type.SERVER, RtServerConfig.SPEC);
+		context.registerConfig(ModConfig.Type.CLIENT, RtClientConfig.SPEC);
 
 		RtBlocks.register();
 	}
@@ -35,5 +37,9 @@ public class Rt {
 
 	public static ResourceLocation location(String path) {
 		return ResourceLocation.fromNamespaceAndPath(ID, path);
+	}
+
+	public static ResourceLocation block_location(String path) {
+		return ResourceLocation.fromNamespaceAndPath(ID, "block/" + path);
 	}
 }
