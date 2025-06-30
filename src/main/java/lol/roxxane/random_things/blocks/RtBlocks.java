@@ -88,7 +88,8 @@ public class RtBlocks {
 		REGISTRATE.block("explosive_stone",p ->
 				new Block(p.mapColor(MapColor.STONE)
 					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-					.strength(50, 1200)))
+					.strength(50, 1200)
+					.lightLevel(state -> 15)))
 			.loot(RtBlocks::requires_silk_touch)
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.EXPLOSIVE_STONES)
 			.recipe((context, provider) ->
@@ -118,7 +119,8 @@ public class RtBlocks {
 		REGISTRATE.block("explosive_deepslate",p ->
 				new RotatedPillarBlock(p.mapColor(MapColor.DEEPSLATE)
 					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-					.strength(50, 1200)))
+					.strength(50, 1200)
+					.lightLevel(state -> 15)))
 			.loot(RtBlocks::requires_silk_touch)
 			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.EXPLOSIVE_STONES)
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
