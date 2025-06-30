@@ -2,11 +2,13 @@ package lol.roxxane.random_things.events;
 
 import lol.roxxane.random_things.CrumblyStone;
 import lol.roxxane.random_things.Rt;
+import lol.roxxane.random_things.config.RtClientConfig;
 import lol.roxxane.random_things.tags.RtBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -19,7 +21,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static lol.roxxane.random_things.config.RtServerConfig.EXPLOSIVE_STONE_EXPLOSION_SIZES;
-import static lol.roxxane.random_things.config.RtServerConfig.TEST;
 
 @SuppressWarnings("resource")
 @Mod.EventBusSubscriber(modid = Rt.ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -34,7 +35,7 @@ public class RtForgeEvents {
 				new BlockPos(0, 0, -1),
 				new BlockPos(0, 0, 1),
 			}) {
-				var explode_pos = pos.offset(offset.multiply(TEST.get()));
+				var explode_pos = pos.offset(offset);
 				entity.level().explode(null,
 					explode_pos.getX(), explode_pos.getY(), explode_pos.getZ(),
 					EXPLOSIVE_STONE_EXPLOSION_SIZES.get(),Level.ExplosionInteraction.TNT);
@@ -93,9 +94,38 @@ public class RtForgeEvents {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@SubscribeEvent
 	public static void tooltip_event(ItemTooltipEvent event) {
-		event.getToolTip().addAll(event.getItemStack().getTags().map(tag ->
-			Component.literal("§7" + tag.location())).toList());
+		var tooltip = event.getToolTip();
+		var stack = event.getItemStack();
+		var item = stack.getItem();
+
+		var item_tag_list = stack.getTags().map(tag ->
+			Component.literal("§2 " + tag.location())).toList();
+
+		if (RtClientConfig.ITEM_TAGS_IN_TOOLTIPS.get() && !item_tag_list.isEmpty()) {
+			tooltip.add(Component.empty());
+			tooltip.add(Component.translatable("tooltip.random_things.item_tags_header"));
+			tooltip.addAll(item_tag_list);
+		}
+
+		if (item instanceof BlockItem block_item && RtClientConfig.BLOCK_TAGS_IN_TOOLTIPS.get()) {
+			var block = block_item.getBlock();
+			var block_tag_list = block.builtInRegistryHolder().tags().map(tag ->
+				Component.literal("§2 " + tag.location())).toList();
+
+			if (!block_tag_list.isEmpty()) {
+				tooltip.add(Component.empty());
+				tooltip.add(Component.translatable("tooltip.random_things.block_tags_header"));
+				tooltip.addAll(block_tag_list);
+			}
+		}
+
+		if (RtClientConfig.NBT_IN_TOOLTIPS.get()) {
+			tooltip.add(Component.empty());
+			tooltip.add(Component.translatable("tooltip.random_things.nbt_header"));
+			tooltip.add(Component.literal("§2 " + stack.serializeNBT().toString()));
+		}
 	}
 }

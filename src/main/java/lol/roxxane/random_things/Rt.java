@@ -26,6 +26,10 @@ public class Rt {
 		context.registerConfig(ModConfig.Type.SERVER, RtServerConfig.SPEC);
 		context.registerConfig(ModConfig.Type.CLIENT, RtClientConfig.SPEC);
 
+		REGISTRATE.addRawLang("tooltip.random_things.item_tags_header", "§7Item Tags");
+		REGISTRATE.addRawLang("tooltip.random_things.block_tags_header", "§7Block Tags");
+		REGISTRATE.addRawLang("tooltip.random_things.nbt_header", "§7NBT Header");
+
 		RtBlocks.register();
 	}
 

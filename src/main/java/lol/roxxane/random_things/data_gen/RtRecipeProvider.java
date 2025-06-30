@@ -34,7 +34,7 @@ public class RtRecipeProvider extends RecipeProvider {
 		int cook_time)
 	{
 		SimpleCookingRecipeBuilder.generic(Ingredient.of(ore.item_ore_tag), RecipeCategory.MISC,
-				ore.processed == null ? () -> ore.material.get() : () -> ore.processed.get(),
+				ore.processed == null ? ore.material.get() : ore.processed.get(),
 				ore.recipe_xp, cook_time, serializer)
 			.group(ore.cooking_group)
 			.unlockedBy("has_" + ore.id.getNamespace() + "_" + ore.id.getPath() + "_ore",

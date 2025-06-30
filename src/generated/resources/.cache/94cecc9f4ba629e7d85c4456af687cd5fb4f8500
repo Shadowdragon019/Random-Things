@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-28T13:52:47.685496673	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-06-29T16:44:42.300774201	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 32f4fbf8f1a160aeb0abbe9e82827e9bc38d1cca assets/random_things/blockstates/crumbly_deepslate.json
 8b2493e9a6d52c4a619c600f6162284f0c31861f assets/random_things/blockstates/crumbly_stone.json
 555d0901e387b683cd4b6b4257f18c4a8b79761a assets/random_things/blockstates/explosive_deepslate.json
@@ -91,8 +91,8 @@ fa9f7ff0482fedb2770238784c9aadde60b065ca assets/random_things/blockstates/mass_o
 5175e28ad80c8dbf2a99f8211668c9c105d7f3a2 assets/random_things/blockstates/mass_ore/minecraft/tuff/minecraft/iron.json
 cd5f5c66d0fda04f3b858ad8b7dae6a82659d822 assets/random_things/blockstates/mass_ore/minecraft/tuff/minecraft/lapis.json
 3977b13fa745fa1dc20dbb0e11165f9c6cef46b4 assets/random_things/blockstates/mass_ore/minecraft/tuff/minecraft/redstone.json
-dfe7924494a3663887628f9be9e733663362bc3f assets/random_things/lang/en_ud.json
-c2714c17bd18850bd82c2b90a492ba154420299c assets/random_things/lang/en_us.json
+6ae7f342265377f4023823c6a0c0384fefe30d23 assets/random_things/lang/en_ud.json
+be9384b9003374421478843ab19eea110a6961f1 assets/random_things/lang/en_us.json
 278b40274af78b2933ffed4dde3484019f564136 assets/random_things/models/block/crumbly_deepslate.json
 17b626b654670a0dd96c5b412ff6602320db6a92 assets/random_things/models/block/crumbly_deepslate_horizontal.json
 0b80f949ecd3aefe30583d46fd72d53a62c8ed46 assets/random_things/models/block/crumbly_stone.json
