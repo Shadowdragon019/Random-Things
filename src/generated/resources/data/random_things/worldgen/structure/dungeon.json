@@ -1,0 +1,6 @@
+{
+  "type": "random_things:dungeon",
+  "biomes": "#random_things:has_structure/dungeon",
+  "spawn_overrides": {},
+  "step": "surface_structures"
+}

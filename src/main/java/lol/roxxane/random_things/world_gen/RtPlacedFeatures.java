@@ -1,6 +1,5 @@
 package lol.roxxane.random_things.world_gen;
 
-import lol.roxxane.random_things.Rt;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -11,6 +10,8 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
+
+import static lol.roxxane.random_things.Rt.location;
 
 public class RtPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> CRUMBLY_STONE = register("crumbly_stone");
@@ -33,7 +34,7 @@ public class RtPlacedFeatures {
 
 	@SuppressWarnings("SameParameterValue")
 	private static ResourceKey<PlacedFeature> register(String path) {
-		return ResourceKey.create(Registries.PLACED_FEATURE, Rt.location(path));
+		return ResourceKey.create(Registries.PLACED_FEATURE, location(path));
 	}
 
 	@SuppressWarnings("SameParameterValue")

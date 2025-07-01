@@ -35,6 +35,7 @@ public class RtDataGen {
 			server_provider(new RtBlockTagProvider(output, provider, existing_file_helper)).contentsGetter(),
 			existing_file_helper));
 		server_provider(new RtRecipeProvider(output));
+		server_provider(new RtBiomeTagProvider(output, provider, existing_file_helper));
 	}
 
 	private static <T extends DataProvider> T server_provider(T provider) {
