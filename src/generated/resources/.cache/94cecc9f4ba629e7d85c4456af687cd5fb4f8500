@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-01T00:18:19.463872886	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-08-01T00:21:59.277103333	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 32f4fbf8f1a160aeb0abbe9e82827e9bc38d1cca assets/random_things/blockstates/crumbly_deepslate.json
 8b2493e9a6d52c4a619c600f6162284f0c31861f assets/random_things/blockstates/crumbly_stone.json
 0d8845f61f5c95a0a0fc45303367cbfa39a8c3b3 assets/random_things/blockstates/lava_filled_deepslate.json
@@ -404,6 +404,6 @@ a6165bc2e89fb0d00777e44f3b891e16471edb48 data/random_things/loot_tables/blocks/m
 9cfeefe4c7e8de22ec50e27575f9694ee14f0bec data/random_things/loot_tables/blocks/mass_ore/minecraft/tuff/minecraft/redstone.json
 8c487c4f760c8bede192e756620b50e7cfacd66d data/random_things/recipes/crumbly_deepslate.json
 ca1fa5f7dff551864084b9fc0e963386f300cd0d data/random_things/recipes/crumbly_stone.json
-cef01c40e9a9f227cf75898f8ca2a6f60552fc9d data/random_things/recipes/lava_filled_deepslate.json
-51a4ccde2032c223db74ca0e8c933553f11d63b8 data/random_things/recipes/lava_filled_stone.json
-61cfdc0e4c8fff8d7c90c3fdf607911726de642a data/random_things/tags/blocks/explosive_stones.json
+9bf0ac7c1434ad76e5eaed6598ef46c7337ebc23 data/random_things/recipes/lava_filled_deepslate.json
+34e260ef5158a62a947b8557dc847600fa7ec81e data/random_things/recipes/lava_filled_stone.json
+61cfdc0e4c8fff8d7c90c3fdf607911726de642a data/random_things/tags/blocks/lava_filled_stones.json
