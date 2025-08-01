@@ -84,14 +84,14 @@ public class RtBlocks {
 					.save(provider))
 			.simpleItem()
 			.register();
-	public static final RegistryEntry<Block> EXPLOSIVE_STONE =
-		REGISTRATE.block("explosive_stone",p ->
+	public static final RegistryEntry<Block> LAVA_FILLED_STONE =
+		REGISTRATE.block("lava_filled_stone",p ->
 				new Block(p.mapColor(MapColor.STONE)
 					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
 					.strength(50, 1200)
 					.lightLevel(state -> 15)))
 			.loot(RtBlocks::requires_silk_touch)
-			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.EXPLOSIVE_STONES)
+			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.LAVA_FILLED_STONES)
 			.recipe((context, provider) ->
 				ShapedRecipeBuilder.shaped(RecipeCategory.MISC, context.get(), 8)
 					.pattern("sss")
@@ -115,14 +115,14 @@ public class RtBlocks {
 			})
 			.simpleItem()
 			.register();
-	public static final RegistryEntry<RotatedPillarBlock> EXPLOSIVE_DEEPSLATE =
-		REGISTRATE.block("explosive_deepslate",p ->
+	public static final RegistryEntry<RotatedPillarBlock> LAVA_FILLED_DEEPSLATE =
+		REGISTRATE.block("lava_filled_deepslate",p ->
 				new RotatedPillarBlock(p.mapColor(MapColor.DEEPSLATE)
 					.instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
 					.strength(50, 1200)
 					.lightLevel(state -> 15)))
 			.loot(RtBlocks::requires_silk_touch)
-			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.EXPLOSIVE_STONES)
+			.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL, RtBlockTags.LAVA_FILLED_STONES)
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
 			.simpleItem()
 			.recipe((context, provider) ->

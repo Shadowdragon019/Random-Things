@@ -22,13 +22,13 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static lol.roxxane.random_things.config.RtServerConfig.EXPLOSIVE_STONE_EXPLOSION_SIZES;
+import static lol.roxxane.random_things.config.RtServerConfig.LAVA_FILLED_STONE_EXPLOSION_SIZES;
 
 @SuppressWarnings("resource")
 @Mod.EventBusSubscriber(modid = Rt.ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RtForgeEvents {
 	public static void entity_about_to_destroy_block(LivingEntity entity, BlockPos pos, BlockState state) {
-		if (state.is(RtBlockTags.EXPLOSIVE_STONES))
+		if (state.is(RtBlockTags.LAVA_FILLED_STONES))
 			for (var offset : new BlockPos[]{
 				new BlockPos(-1, 0, 0),
 				new BlockPos(1, 0, 0),
@@ -40,7 +40,7 @@ public class RtForgeEvents {
 				var explode_pos = pos.offset(offset);
 				entity.level().explode(null,
 					explode_pos.getX(), explode_pos.getY(), explode_pos.getZ(),
-					EXPLOSIVE_STONE_EXPLOSION_SIZES.get(),Level.ExplosionInteraction.TNT);
+					LAVA_FILLED_STONE_EXPLOSION_SIZES.get(),Level.ExplosionInteraction.TNT);
 				entity.level().setBlockAndUpdate(pos, Blocks.LAVA.defaultBlockState());
 			}
 	}
@@ -74,7 +74,7 @@ public class RtForgeEvents {
 		var state = level.getBlockState(pos);
 		var player = event.getEntity();
 
-		if (state.is(RtBlockTags.EXPLOSIVE_STONES) && player.getRemainingFireTicks() < 200)
+		if (state.is(RtBlockTags.LAVA_FILLED_STONES) && player.getRemainingFireTicks() < 200)
 			player.setRemainingFireTicks(200);
 	}
 
@@ -109,11 +109,11 @@ public class RtForgeEvents {
 		var pos = event.getPos();
 
 		if (!(entity instanceof Player player && player.isCreative()) &&
-			event.getPlacedAgainst().is(RtBlockTags.EXPLOSIVE_STONES) &&
-			!level.getBlockState(pos).is(RtBlockTags.EXPLOSIVE_STONES)
+			event.getPlacedAgainst().is(RtBlockTags.LAVA_FILLED_STONES) &&
+			!level.getBlockState(pos).is(RtBlockTags.LAVA_FILLED_STONES)
 		) {
 			level.explode(null, pos.getX(), pos.getY(), pos.getZ(),
-				EXPLOSIVE_STONE_EXPLOSION_SIZES.get(), Level.ExplosionInteraction.TNT);
+				LAVA_FILLED_STONE_EXPLOSION_SIZES.get(), Level.ExplosionInteraction.TNT);
 		}
 	}
 

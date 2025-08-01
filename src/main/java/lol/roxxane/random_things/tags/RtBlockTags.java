@@ -20,7 +20,7 @@ public class RtBlockTags {
 	public static final TagKey<Block> ALL_REPLACEABLES = tag("all_replaceables");
 	public static final TagKey<Block> CRUMBLY_STONES = tag("crumbly_stones");
 	public static final TagKey<Block> CRUMBLE_DESTROYS = tag("crumble_destroys");
-	public static final TagKey<Block> EXPLOSIVE_STONES = tag("explosive_stones");
+	public static final TagKey<Block> LAVA_FILLED_STONES = tag("explosive_stones");
 
 	private static TagKey<Block> tag(String path) {
 		return BlockTags.create(Rt.location(path));

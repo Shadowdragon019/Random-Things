@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "random_things:block/explosive_stone_end",
-    "side": "random_things:block/explosive_stone"
-  }
-}

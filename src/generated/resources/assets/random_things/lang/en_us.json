@@ -1,8 +1,8 @@
 {
   "block.random_things.crumbly_deepslate": "Crumbly Deepslate",
   "block.random_things.crumbly_stone": "Crumbly Stone",
-  "block.random_things.explosive_deepslate": "Explosive Deepslate",
-  "block.random_things.explosive_stone": "Explosive Stone",
+  "block.random_things.lava_filled_deepslate": "Lava Filled Deepslate",
+  "block.random_things.lava_filled_stone": "Lava Filled Stone",
   "block.random_things.mass_ore.minecraft.andesite.minecraft.coal": "Andesite Coal Ore",
   "block.random_things.mass_ore.minecraft.andesite.minecraft.copper": "Andesite Copper Ore",
   "block.random_things.mass_ore.minecraft.andesite.minecraft.diamond": "Andesite Diamond Ore",
@@ -91,7 +91,7 @@
   "block.random_things.mass_ore.minecraft.tuff.minecraft.iron": "Tuff Iron Ore",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.lapis": "Tuff Lapis Lazuli Ore",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.redstone": "Tuff Redstone Ore",
-  "tooltip.random_things.block_tags_header": "§7Block Tags",
-  "tooltip.random_things.item_tags_header": "§7Item Tags",
-  "tooltip.random_things.nbt_header": "§7NBT Header"
+  "tooltip.random_things.block_tags_header": "§7Block Tags:",
+  "tooltip.random_things.item_tags_header": "§7Item Tags:",
+  "tooltip.random_things.nbt_header": "§7NBT:"
 }

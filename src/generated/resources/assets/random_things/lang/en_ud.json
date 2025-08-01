@@ -1,8 +1,8 @@
 {
   "block.random_things.crumbly_deepslate": "ǝʇɐןsdǝǝᗡ ʎןqɯnɹƆ",
   "block.random_things.crumbly_stone": "ǝuoʇS ʎןqɯnɹƆ",
-  "block.random_things.explosive_deepslate": "ǝʇɐןsdǝǝᗡ ǝʌısoןdxƎ",
-  "block.random_things.explosive_stone": "ǝuoʇS ǝʌısoןdxƎ",
+  "block.random_things.lava_filled_deepslate": "ǝʇɐןsdǝǝᗡ pǝןןıℲ ɐʌɐꞀ",
+  "block.random_things.lava_filled_stone": "ǝuoʇS pǝןןıℲ ɐʌɐꞀ",
   "block.random_things.mass_ore.minecraft.andesite.minecraft.coal": "ǝɹO ןɐoƆ ǝʇısǝpuⱯ",
   "block.random_things.mass_ore.minecraft.andesite.minecraft.copper": "ǝɹO ɹǝddoƆ ǝʇısǝpuⱯ",
   "block.random_things.mass_ore.minecraft.andesite.minecraft.diamond": "ǝɹO puoɯɐıᗡ ǝʇısǝpuⱯ",
@@ -91,7 +91,7 @@
   "block.random_things.mass_ore.minecraft.tuff.minecraft.iron": "ǝɹO uoɹI ɟɟn⟘",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.lapis": "ǝɹO ıןnzɐꞀ sıdɐꞀ ɟɟn⟘",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.redstone": "ǝɹO ǝuoʇspǝᴚ ɟɟn⟘",
-  "tooltip.random_things.block_tags_header": "sbɐ⟘ ʞɔoןᗺㄥ§",
-  "tooltip.random_things.item_tags_header": "sbɐ⟘ ɯǝʇIㄥ§",
-  "tooltip.random_things.nbt_header": "ɹǝpɐǝH ⟘ᗺNㄥ§"
+  "tooltip.random_things.block_tags_header": ":sbɐ⟘ ʞɔoןᗺㄥ§",
+  "tooltip.random_things.item_tags_header": ":sbɐ⟘ ɯǝʇIㄥ§",
+  "tooltip.random_things.nbt_header": ":⟘ᗺNㄥ§"
 }
