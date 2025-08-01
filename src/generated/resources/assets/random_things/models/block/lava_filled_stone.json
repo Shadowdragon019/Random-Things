@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "random_things:block/lava_filled_stone_end",
+    "side": "random_things:block/lava_filled_stone"
+  }
+}
