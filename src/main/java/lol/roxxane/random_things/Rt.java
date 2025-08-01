@@ -5,7 +5,6 @@ import com.tterrag.registrate.Registrate;
 import lol.roxxane.random_things.blocks.RtBlocks;
 import lol.roxxane.random_things.config.RtClientConfig;
 import lol.roxxane.random_things.config.RtServerConfig;
-import lol.roxxane.random_things.world_gen.structures.RtStructureTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -23,15 +22,12 @@ public class Rt {
 	public static final Registrate REGISTRATE = Registrate.create(ID).skipErrors(false);
 
 	public Rt(FMLJavaModLoadingContext context) {
-		var mod_event_bus = context.getModEventBus();
 		context.registerConfig(ModConfig.Type.SERVER, RtServerConfig.SPEC);
 		context.registerConfig(ModConfig.Type.CLIENT, RtClientConfig.SPEC);
 
-		RtStructureTypes.register(mod_event_bus);
-
-		REGISTRATE.addRawLang("tooltip.random_things.item_tags_header", "§7Item Tags");
-		REGISTRATE.addRawLang("tooltip.random_things.block_tags_header", "§7Block Tags");
-		REGISTRATE.addRawLang("tooltip.random_things.nbt_header", "§7NBT Header");
+		REGISTRATE.addRawLang("tooltip.random_things.item_tags_header", "§7Item Tags:");
+		REGISTRATE.addRawLang("tooltip.random_things.block_tags_header", "§7Block Tags:");
+		REGISTRATE.addRawLang("tooltip.random_things.nbt_header", "§7NBT:");
 
 		RtBlocks.register();
 	}

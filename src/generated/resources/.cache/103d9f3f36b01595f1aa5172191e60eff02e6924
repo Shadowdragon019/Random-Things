@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-01T09:11:36.190885285	Registries
+// 1.20.1	2025-07-31T22:32:21.129346301	Registries
 a0a908ea2b2cabe63a0fb9452db31fa23b9ac7ac data/minecraft/worldgen/configured_feature/ore_coal.json
 a8c4b9ab5a6bbe304a2072e123a2f1221781142f data/minecraft/worldgen/configured_feature/ore_coal_buried.json
 3927d71af8348c4d9c41468274d0f3e59e7eb110 data/minecraft/worldgen/configured_feature/ore_copper_large.json
@@ -17,4 +17,3 @@ dd85e5dff5ea8083f3b6d27d13f55a14315a9050 data/minecraft/worldgen/configured_feat
 523a6c090a9a075193663ed98bf2fdb451756d19 data/random_things/forge/biome_modifier/crumbly_stone.json
 d6c69a4320f80380af61b6711f8603b6884903c5 data/random_things/worldgen/configured_feature/crumbly_stone.json
 c839d5ceec87186ebba8cecd0583c119d1137d20 data/random_things/worldgen/placed_feature/crumbly_stone.json
-dc3b3559d41365f7a9ef98acaa893b5071de6a80 data/random_things/worldgen/structure/dungeon.json

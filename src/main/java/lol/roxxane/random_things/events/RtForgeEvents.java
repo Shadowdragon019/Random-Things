@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,6 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import static lol.roxxane.random_things.config.RtServerConfig.EXPLOSIVE_STONE_EXPLOSION_SIZES;
 
+// TODO: Make crumbly deepslate ignite the player when mining
 @SuppressWarnings("resource")
 @Mod.EventBusSubscriber(modid = Rt.ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RtForgeEvents {
@@ -72,6 +74,16 @@ public class RtForgeEvents {
 		var on_pos = entity.getOnPos();
 
 		if ((entity.isSprinting() ? 0.05 : 0.01) >= level.random.nextFloat())
+			CrumblyStone.try_crumble(level, on_pos, entity);
+	}
+
+	@SubscribeEvent
+	public static void living_fall_event(LivingFallEvent event) {
+		var entity = event.getEntity();
+		var level = entity.level();
+		var on_pos = entity.getOnPos();
+
+		if (event.getDistance() > 1)
 			CrumblyStone.try_crumble(level, on_pos, entity);
 	}
 

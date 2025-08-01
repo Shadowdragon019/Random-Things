@@ -1,0 +1,15 @@
+{
+	"name": "random_things:dungeon",
+	"fallback": "empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"element_type": "single_pool_element",
+				"projection": "rigid",
+				"location": "random_things:dungeon",
+				"processors": []
+			}
+		}
+	]
+}
