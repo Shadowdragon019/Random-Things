@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "random_things:transmutations",
+  "ingredients": [
+    {
+      "item": "random_things:philosophers_stone"
+    },
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "minecraft:redstone_block"
+    }
+  ],
+  "result": {
+    "item": "minecraft:lapis_block"
+  }
+}

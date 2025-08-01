@@ -91,6 +91,7 @@
   "block.random_things.mass_ore.minecraft.tuff.minecraft.iron": "Tuff Iron Ore",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.lapis": "Tuff Lapis Lazuli Ore",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.redstone": "Tuff Redstone Ore",
+  "item.random_things.philosophers_stone": "Philosopher's Stone",
   "tooltip.random_things.block_tags_header": "§7Block Tags:",
   "tooltip.random_things.item_tags_header": "§7Item Tags:",
   "tooltip.random_things.nbt_header": "§7NBT:"

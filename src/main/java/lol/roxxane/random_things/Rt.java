@@ -5,6 +5,7 @@ import com.tterrag.registrate.Registrate;
 import lol.roxxane.random_things.blocks.RtBlocks;
 import lol.roxxane.random_things.config.RtClientConfig;
 import lol.roxxane.random_things.config.RtServerConfig;
+import lol.roxxane.random_things.items.RtItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -30,6 +31,7 @@ public class Rt {
 		REGISTRATE.addRawLang("tooltip.random_things.nbt_header", "§7NBT:");
 
 		RtBlocks.register();
+		RtItems.register();
 	}
 
 	@SuppressWarnings("unused")
