@@ -1,0 +1,12 @@
+{
+  "type": "random_things:transmutation",
+  "ingredient": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:emerald"
+    }
+  ],
+  "inputs_per_output": 8
+}

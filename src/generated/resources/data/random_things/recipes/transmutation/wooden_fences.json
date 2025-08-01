@@ -1,0 +1,7 @@
+{
+  "type": "random_things:transmutation",
+  "ingredient": {
+    "tag": "forge:fences/wooden"
+  },
+  "inputs_per_output": 1
+}

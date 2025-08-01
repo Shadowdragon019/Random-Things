@@ -1,0 +1,12 @@
+{
+  "type": "random_things:transmutation",
+  "ingredient": [
+    {
+      "item": "minecraft:redstone_block"
+    },
+    {
+      "item": "minecraft:lapis_block"
+    }
+  ],
+  "inputs_per_output": 2
+}

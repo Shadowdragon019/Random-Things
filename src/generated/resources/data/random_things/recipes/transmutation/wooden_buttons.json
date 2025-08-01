@@ -1,0 +1,7 @@
+{
+  "type": "random_things:transmutation",
+  "ingredient": {
+    "tag": "minecraft:wooden_buttons"
+  },
+  "inputs_per_output": 1
+}

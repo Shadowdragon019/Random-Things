@@ -6,6 +6,7 @@ import lol.roxxane.random_things.blocks.RtBlocks;
 import lol.roxxane.random_things.config.RtClientConfig;
 import lol.roxxane.random_things.config.RtServerConfig;
 import lol.roxxane.random_things.items.RtItems;
+import lol.roxxane.random_things.recipes.RtRecipeSerializers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -32,6 +33,7 @@ public class Rt {
 
 		RtBlocks.register();
 		RtItems.register();
+		RtRecipeSerializers.register();
 	}
 
 	@SuppressWarnings("unused")

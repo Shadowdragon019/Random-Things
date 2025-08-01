@@ -1,0 +1,12 @@
+{
+  "type": "random_things:transmutation",
+  "ingredient": [
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    }
+  ],
+  "inputs_per_output": 2
+}
