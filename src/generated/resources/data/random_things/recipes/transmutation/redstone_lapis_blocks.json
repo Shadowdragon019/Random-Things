@@ -1,12 +1,8 @@
 {
   "type": "random_things:transmutation",
-  "ingredient": [
-    {
-      "item": "minecraft:redstone_block"
-    },
-    {
-      "item": "minecraft:lapis_block"
-    }
-  ],
-  "inputs_per_output": 2
+  "input_amount": 2,
+  "items": [
+    "minecraft:redstone_block",
+    "minecraft:lapis_block"
+  ]
 }

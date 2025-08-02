@@ -1,1 +1,8 @@
-// 1.20.1	2025-08-01T11:05:30.188877045	Tags for minecraft:item mod id random_things
+// 1.20.1	2025-08-02T02:52:40.723414694	Tags for minecraft:item mod id random_things
+9c0cb49a5441c5a95ff60baa98fc9ccae07b670f data/random_things/tags/items/timber.json
+4dc305b9d98221b9b7f6150b3771d080b0d9742f data/random_things/tags/items/timber/barked.json
+cbebf5c7c34379571866ff2c6820391339cd4c47 data/random_things/tags/items/timber/barked_logs.json
+701d6e8376b9d400e609504c79ca3857c5ac634a data/random_things/tags/items/timber/barked_woods.json
+58004f4bba0483a65b116df2ffbb9c1bd5786599 data/random_things/tags/items/timber/stripped.json
+504f8ab9ca7ec3899a4c0d4c35a89bf3fb8e717c data/random_things/tags/items/timber/stripped_logs.json
+8f8b3f417e0bd025a80ca0527553977af0e1051f data/random_things/tags/items/timber/stripped_woods.json
