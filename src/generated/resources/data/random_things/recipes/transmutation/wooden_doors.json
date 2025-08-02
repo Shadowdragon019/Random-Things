@@ -1,7 +1,4 @@
 {
   "type": "random_things:transmutation",
-  "ingredient": {
-    "tag": "minecraft:wooden_doors"
-  },
-  "inputs_per_output": 1
+  "tags": "minecraft:wooden_doors"
 }

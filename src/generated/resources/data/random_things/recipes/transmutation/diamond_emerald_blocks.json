@@ -1,12 +1,8 @@
 {
   "type": "random_things:transmutation",
-  "ingredient": [
-    {
-      "item": "minecraft:diamond_block"
-    },
-    {
-      "item": "minecraft:emerald_block"
-    }
-  ],
-  "inputs_per_output": 8
+  "input_amount": 8,
+  "items": [
+    "minecraft:diamond_block",
+    "minecraft:emerald_block"
+  ]
 }

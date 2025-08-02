@@ -3,6 +3,7 @@ package lol.roxxane.random_things.data_gen;
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.blocks.mass_ores.MassOre;
 import lol.roxxane.random_things.recipes.TransmutationRecipe;
+import lol.roxxane.random_things.tags.RtItemTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class RtRecipeProvider extends RecipeProvider {
@@ -33,33 +35,31 @@ public class RtRecipeProvider extends RecipeProvider {
 			blast(ore);
 		}
 
-		new TransmutationRecipe("planks", 1, ItemTags.PLANKS).save(writer);
-		new TransmutationRecipe("wooden_stairs", 1, ItemTags.WOODEN_STAIRS).save(writer);
-		new TransmutationRecipe("wooden_slabs", 1, ItemTags.WOODEN_SLABS).save(writer);
-		new TransmutationRecipe("wooden_fences", 1, Tags.Items.FENCES_WOODEN).save(writer);
-		new TransmutationRecipe("wooden_fences_gates", 1,
-			Tags.Items.FENCE_GATES_WOODEN).save(writer);
-		new TransmutationRecipe("wooden_doors", 1, ItemTags.WOODEN_DOORS).save(writer);
-		new TransmutationRecipe("wooden_trapdoors", 1, ItemTags.WOODEN_TRAPDOORS).save(writer);
-		new TransmutationRecipe("wooden_pressure_plates", 1,
-			ItemTags.WOODEN_PRESSURE_PLATES).save(writer);
-		new TransmutationRecipe("wooden_buttons", 1, ItemTags.WOODEN_BUTTONS).save(writer);
-		new TransmutationRecipe("saplings", 1, ItemTags.SAPLINGS).save(writer);
-		new TransmutationRecipe("iron_gold_ingots", 2,
-			Items.IRON_INGOT, Items.GOLD_INGOT).save(writer);
-		new TransmutationRecipe("iron_gold_nuggets", 2,
-			Items.IRON_NUGGET, Items.GOLD_NUGGET).save(writer);
-		new TransmutationRecipe("iron_gold_blocks", 2,
-			Items.IRON_BLOCK, Items.GOLD_BLOCK).save(writer);
-		new TransmutationRecipe("diamond_emerald", 8,
-			Items.DIAMOND, Items.EMERALD).save(writer);
-		new TransmutationRecipe("diamond_emerald_blocks", 8,
-			Items.DIAMOND_BLOCK, Items.EMERALD_BLOCK).save(writer);
-		new TransmutationRecipe("redstone_lapis", 2,
-			Items.REDSTONE, Items.LAPIS_LAZULI).save(writer);
-		new TransmutationRecipe("redstone_lapis_blocks", 2,
-			Items.REDSTONE_BLOCK, Items.LAPIS_BLOCK).save(writer);
-		// TODO: Logs
+		for (var tag : List.of(ItemTags.PLANKS, ItemTags.WOODEN_STAIRS, ItemTags.WOODEN_SLABS, ItemTags.WOODEN_DOORS,
+			ItemTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_BUTTONS, ItemTags.SAPLINGS)
+		)
+			new TransmutationRecipe(tag).save(writer);
+
+		for (var recipe : List.of(
+			new TransmutationRecipe("wooden_fences").tags(Tags.Items.FENCES_WOODEN),
+			new TransmutationRecipe("wooden_fence_gates").tags(Tags.Items.FENCE_GATES_WOODEN),
+			new TransmutationRecipe("iron_gold_nuggets")
+				.input_amount(2).items(Items.IRON_NUGGET, Items.GOLD_NUGGET),
+			new TransmutationRecipe("iron_gold_ingots").input_amount(2).items(Items.IRON_INGOT, Items.GOLD_INGOT),
+			new TransmutationRecipe("iron_gold_blocks").input_amount(2).items(Items.IRON_BLOCK, Items.GOLD_BLOCK),
+			new TransmutationRecipe("diamond_emerald").input_amount(8).items(Items.DIAMOND, Items.EMERALD),
+			new TransmutationRecipe("diamond_emerald_blocks")
+				.input_amount(8).items(Items.DIAMOND_BLOCK, Items.EMERALD_BLOCK),
+			new TransmutationRecipe("redstone_lapis").input_amount(2).items(Items.REDSTONE, Items.LAPIS_LAZULI),
+			new TransmutationRecipe("redstone_lapis_blocks")
+				.input_amount(2).items(Items.REDSTONE_BLOCK, Items.LAPIS_BLOCK),
+			new TransmutationRecipe("barked_log").tags(RtItemTags.BARKED_LOGS),
+			new TransmutationRecipe("stripped_logs").tags(RtItemTags.STRIPPED_LOGS),
+			new TransmutationRecipe("barked_woods").tags(RtItemTags.BARKED_WOODS),
+			new TransmutationRecipe("stripped_woods").tags(RtItemTags.STRIPPED_WOODS)
+		)) {
+			recipe.save(writer);
+		}
 	}
 
 	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer,

@@ -1,12 +1,8 @@
 {
   "type": "random_things:transmutation",
-  "ingredient": [
-    {
-      "item": "minecraft:redstone"
-    },
-    {
-      "item": "minecraft:lapis_lazuli"
-    }
-  ],
-  "inputs_per_output": 2
+  "input_amount": 2,
+  "items": [
+    "minecraft:redstone",
+    "minecraft:lapis_lazuli"
+  ]
 }

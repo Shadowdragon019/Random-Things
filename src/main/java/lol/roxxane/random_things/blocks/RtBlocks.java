@@ -4,7 +4,7 @@ import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import lol.roxxane.random_things.blocks.mass_ores.*;
 import lol.roxxane.random_things.tags.RtBlockTags;
-import lol.roxxane.random_things.util.StringUtil;
+import lol.roxxane.random_things.util.StringUtils;
 import lol.roxxane.random_things.util.TriConsumer;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -185,7 +185,7 @@ public class RtBlocks {
 					.tag((TagKey<Block>[]) ore.block_tags.toArray(TagKey[]::new))
 					.blockstate((context, provider) ->
 						stone.blockstate.accept(context, provider, stone, ore))
-					.lang(StringUtil.format_name(stone_path + " " + ore_path) +
+					.lang(StringUtils.format_name(stone_path + " " + ore_path) +
 						(ore.is_lapis() ? " Lazuli" : "")  + " Ore")
 					.loot((tables, block) -> ore.loot.accept(tables, block, stone))
 					.item()

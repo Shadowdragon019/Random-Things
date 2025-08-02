@@ -42,6 +42,12 @@ public class Rt {
 		else LOGGER.info(object.toString());
 	}
 
+	@SuppressWarnings("unused")
+	public static void warn(Object object) {
+		if (object == null) LOGGER.info("null");
+		else LOGGER.warn(object.toString());
+	}
+
 	public static ResourceLocation location(String path) {
 		return ResourceLocation.fromNamespaceAndPath(ID, path);
 	}

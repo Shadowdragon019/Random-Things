@@ -1,7 +1,4 @@
 {
   "type": "random_things:transmutation",
-  "ingredient": {
-    "tag": "minecraft:saplings"
-  },
-  "inputs_per_output": 1
+  "tags": "minecraft:saplings"
 }

@@ -7,7 +7,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class StringUtil {
+@SuppressWarnings("unused")
+public class StringUtils {
 	public static String format_name(String input) {
 		StringBuilder output = new StringBuilder();
 		Character last_char = null;

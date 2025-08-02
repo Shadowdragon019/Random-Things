@@ -10,6 +10,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -38,14 +39,17 @@ public class RtJeiPlugin implements IModPlugin {
 				ingredients.add(Ingredient.of(RtItems.PHILOSOPHERS_STONE.get()));
 
 				var i = 0;
-				while (i < transmutation_recipe.inputs_per_output) {
-					ingredients.add(transmutation_recipe.ingredient);
+				while (i < transmutation_recipe.input_amount) {
+					ingredients.add(Ingredient.of(
+						transmutation_recipe.finalized_items().toArray(Item[]::new)));
 					i++;
 				}
 
 				registration.addRecipes(RecipeTypes.CRAFTING, List.of(
 					new ShapelessRecipe(transmutation_recipe.getId(), "",
-						CraftingBookCategory.MISC,ItemStack.EMPTY, ingredients)
+						CraftingBookCategory.MISC,
+						new ItemStack(RtItems.PHILOSOPHERS_STONE.get(),
+							transmutation_recipe.output_amount), ingredients)
 				));
 			}
 	}
