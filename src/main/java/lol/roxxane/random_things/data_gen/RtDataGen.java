@@ -36,6 +36,7 @@ public class RtDataGen {
 			existing_file_helper));
 		server_provider(new RtRecipeProvider(output));
 		server_provider(new RtBiomeTagProvider(output, provider, existing_file_helper));
+		server_provider(new EnchantTransmutationsProvider(output));
 	}
 
 	private static <T extends DataProvider> T server_provider(T provider) {

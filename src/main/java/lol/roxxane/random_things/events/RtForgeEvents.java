@@ -3,6 +3,7 @@ package lol.roxxane.random_things.events;
 import lol.roxxane.random_things.CrumblyStone;
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.config.RtClientConfig;
+import lol.roxxane.random_things.data.EnchantTransmutationsManager;
 import lol.roxxane.random_things.tags.RtBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -150,5 +152,10 @@ public class RtForgeEvents {
 			tooltip.add(Component.translatable("tooltip.random_things.nbt_header"));
 			tooltip.add(Component.literal("§2 " + stack.serializeNBT().toString()));
 		}
+	}
+
+	@SubscribeEvent
+	public static void reload(AddReloadListenerEvent event) {
+		event.addListener(new EnchantTransmutationsManager());
 	}
 }

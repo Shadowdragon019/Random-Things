@@ -8,6 +8,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RtRecipeSerializers {
 	public static TransmutationRecipe.Serializer TRANSMUTATION =
 		register("transmutation", new TransmutationRecipe.Serializer());
+	public static EnchantTransmutationRecipe.Serializer ENCHANT_TRANSMUTATION =
+		register("enchant_transmutation", new EnchantTransmutationRecipe.Serializer());
 
 	@SuppressWarnings("unchecked")
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String key, S serializer) {

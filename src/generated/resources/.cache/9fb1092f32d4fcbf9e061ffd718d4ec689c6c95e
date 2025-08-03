@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-02T02:55:39.733537476	Recipes
+// 1.20.1	2025-08-02T13:50:46.461029589	Recipes
 b57f7ead5fd6a71ca77c96eb29bcec94b8f9e865 data/random_things/advancements/recipes/misc/blasting/mass_ore/minecraft_coal.json
 096a350b1cb616dab260d02c11e3b9202fc86973 data/random_things/advancements/recipes/misc/blasting/mass_ore/minecraft_copper.json
 8afb4f25dd4bb10c5cc1a6fb50eef7a3e4de1472 data/random_things/advancements/recipes/misc/blasting/mass_ore/minecraft_diamond.json
@@ -23,6 +23,7 @@ fbc4a808b2d76e2974e2fbfc462ab60f7ed59fe8 data/random_things/advancements/recipes
 8908c1db0143c892f18929c87973a5e9057ee481 data/random_things/recipes/blasting/mass_ore/minecraft_iron.json
 c1e7ae7b7351de381d38c51dc3a8b6974c7884ed data/random_things/recipes/blasting/mass_ore/minecraft_lapis.json
 f6c5e5731befbb5e78006fafa1e797b1b0c04f98 data/random_things/recipes/blasting/mass_ore/minecraft_redstone.json
+1a850b316546f2071b2fcfed62685c601c9829ed data/random_things/recipes/enchant_transmutation.json
 69d585857368fbca31473399de044cdba53f5d2f data/random_things/recipes/smelting/mass_ore/minecraft_coal.json
 a149a8a537c18e57d59aa91949da79898c5af3c7 data/random_things/recipes/smelting/mass_ore/minecraft_copper.json
 890cc85fe39f591b577d12e8e4ab993c413d86a5 data/random_things/recipes/smelting/mass_ore/minecraft_diamond.json

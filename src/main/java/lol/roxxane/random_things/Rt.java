@@ -7,6 +7,7 @@ import lol.roxxane.random_things.config.RtClientConfig;
 import lol.roxxane.random_things.config.RtServerConfig;
 import lol.roxxane.random_things.items.RtItems;
 import lol.roxxane.random_things.recipes.RtRecipeSerializers;
+import lol.roxxane.random_things.util.StringUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -18,7 +19,7 @@ import org.slf4j.Logger;
 // effect give Dev minecraft:night_vision infinite 255 true
 // What if crumbly stone blob had a lava blob in them?
 
-// TODO: Transmute enchants
+// TODO: Transmute enchants (so make a custom JEI category hehehhe)
 @Mod(Rt.ID)
 public class Rt {
 	public static final String ID = "random_things";
@@ -40,8 +41,7 @@ public class Rt {
 
 	@SuppressWarnings("unused")
 	public static void log(Object object) {
-		if (object == null) LOGGER.info("null");
-		else LOGGER.info(object.toString());
+		LOGGER.info(StringUtils.stringify(object));
 	}
 
 	@SuppressWarnings("unused")

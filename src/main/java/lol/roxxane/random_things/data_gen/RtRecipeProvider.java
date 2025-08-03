@@ -2,6 +2,7 @@ package lol.roxxane.random_things.data_gen;
 
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.blocks.mass_ores.MassOre;
+import lol.roxxane.random_things.recipes.EnchantTransmutationRecipe;
 import lol.roxxane.random_things.recipes.TransmutationRecipe;
 import lol.roxxane.random_things.tags.RtItemTags;
 import net.minecraft.data.PackOutput;
@@ -60,6 +61,8 @@ public class RtRecipeProvider extends RecipeProvider {
 		)) {
 			recipe.save(writer);
 		}
+
+		new EnchantTransmutationRecipe(Rt.location("transmutation/enchants")).save(writer);
 	}
 
 	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer,

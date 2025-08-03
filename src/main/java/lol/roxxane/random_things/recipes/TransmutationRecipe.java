@@ -5,6 +5,7 @@ import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.items.RtItems;
 import lol.roxxane.random_things.util.BufferUtils;
 import lol.roxxane.random_things.util.JsonUtils;
+import lol.roxxane.random_things.util.ListUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.network.FriendlyByteBuf;
@@ -141,17 +142,8 @@ public class TransmutationRecipe extends CustomRecipe {
 					target = stack.getItem();
 			}
 
-		var i = 1;
-		for (var item : finalized_items()) {
-			if (target == item)
-				break;
-			i++;
-		}
-
-		if (i >= finalized_items().size())
-			i = 0;
-
-		return new ItemStack(finalized_items.get(i), (target_count / input_amount) * output_amount);
+		return new ItemStack(ListUtil.next_element(finalized_items, target),
+			(target_count / input_amount) * output_amount);
 	}
 
 	@Override
@@ -171,11 +163,6 @@ public class TransmutationRecipe extends CustomRecipe {
 	public static class Serializer implements RecipeSerializer<TransmutationRecipe> {
 		@Override
 		public @NotNull TransmutationRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
-			/*return new TransmutationRecipe(id
-				GsonHelper.getAsInt(json, "input_amount"),
-				GsonHelper.getAsInt(json, "output_amount"),
-				Ingredient.fromJson(GsonHelper.getNonNull(json, "input")),
-				Ingredient.fromJson(GsonHelper.getNonNull(json, "exclude")));*/
 			return new TransmutationRecipe(id)
 				.input_amount(json.has("input_amount") ? json.get("input_amount").getAsInt() : 1)
 				.output_amount(json.has("output_amount") ? json.get("output_amount").getAsInt() : 1)
@@ -189,9 +176,6 @@ public class TransmutationRecipe extends CustomRecipe {
 		public @Nullable TransmutationRecipe fromNetwork(@NotNull ResourceLocation id,
 			@NotNull FriendlyByteBuf buffer)
 		{
-			/*return new TransmutationRecipe(id,
-				buffer.readInt(), buffer.readInt(),
-				Ingredient.fromNetwork(buffer), Ingredient.fromNetwork(buffer));*/
 			return new TransmutationRecipe(id)
 				.input_amount(buffer.readInt())
 				.output_amount(buffer.readInt())
@@ -203,10 +187,6 @@ public class TransmutationRecipe extends CustomRecipe {
 
 		@Override
 		public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull TransmutationRecipe recipe) {
-			/*buffer.writeInt(recipe.input_amount);
-			buffer.writeInt(recipe.output_amount);
-			recipe.input.toNetwork(buffer);
-			recipe.exclude.toNetwork(buffer);*/
 			buffer.writeInt(recipe.input_amount);
 			buffer.writeInt(recipe.output_amount);
 			BufferUtils.write_items(buffer, recipe.items);
@@ -221,11 +201,6 @@ public class TransmutationRecipe extends CustomRecipe {
 	{
 		@Override
 		public void serializeRecipeData(@NotNull JsonObject json) {
-			/*json.addProperty("input_amount", input_amount);
-			json.addProperty("output_amount", output_amount);
-			json.add("input", input.toJson());
-			if (!exclude.isEmpty())
-				json.add("exclude", exclude.toJson());*/
 			if (recipe.input_amount != 1)
 				json.addProperty("input_amount", recipe.input_amount);
 			if (recipe.output_amount != 1)
