@@ -7,6 +7,7 @@
 	},
 	"refmap": "mixins.random_things.refmap.json",
 	"mixins": [
+		"indestructible_items.ItemStackMixin",
 		"minecraft.crumbly_stone.EntityMixin",
 		"minecraft.crumbly_stone.ExplosionMixin"
 	]
