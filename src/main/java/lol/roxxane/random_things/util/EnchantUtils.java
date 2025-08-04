@@ -8,8 +8,10 @@ public class EnchantUtils {
 	public static Enchantment get_enchant(String string) {
 		return ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.parse(string));
 	}
-
 	public static ResourceLocation get_id(Enchantment enchant) {
 		return ForgeRegistries.ENCHANTMENTS.getKey(enchant);
+	}
+	public static boolean is_enchant(String string) {
+		return ForgeRegistries.ENCHANTMENTS.containsKey(ResourceLocation.parse(string));
 	}
 }

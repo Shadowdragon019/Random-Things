@@ -13,12 +13,15 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
+
+import static lol.roxxane.random_things.data.EnchantTransmutationsManager.transmute;
+import static net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantments;
+import static net.minecraft.world.item.enchantment.EnchantmentHelper.setEnchantments;
 
 public class EnchantTransmutationRecipe extends CustomRecipe {
 	public EnchantTransmutationRecipe(ResourceLocation id) {
@@ -29,11 +32,10 @@ public class EnchantTransmutationRecipe extends CustomRecipe {
 	public boolean matches(@NotNull CraftingContainer container, @NotNull Level $) {
 		var stones = 0;
 		var enchanteds = 0;
-
 		for (var stack : container.getItems())
 			if (stack.is(RtItems.PHILOSOPHERS_STONE.get()))
 				stones++;
-			else if (EnchantTransmutationsManager.can_transmute(EnchantmentHelper.getEnchantments(stack)))
+			else if (EnchantTransmutationsManager.can_transmute(getEnchantments(stack)))
 				enchanteds++;
 		return stones == 1 && enchanteds == 1;
 	}
@@ -41,19 +43,13 @@ public class EnchantTransmutationRecipe extends CustomRecipe {
 	@Override
 	public @NotNull ItemStack assemble(@NotNull CraftingContainer container, @NotNull RegistryAccess $) {
 		for (var stack : container.getItems())
-			if (!stack.isEmpty() && stack.getItem() != RtItems.PHILOSOPHERS_STONE.get() &&
-				EnchantTransmutationsManager.can_transmute(EnchantmentHelper.getEnchantments(stack))
-			) {
-				var enchants =
-					EnchantTransmutationsManager.transmute(EnchantmentHelper.getEnchantments(stack));
+			if (!stack.isEmpty() && stack.getItem() != RtItems.PHILOSOPHERS_STONE.get()) {
+				var enchants = transmute(getEnchantments(stack));
 				var stack_copy = stack.copy();
-
-				if (stack.is(Items.ENCHANTED_BOOK)) {
-					assert stack_copy.getTag() != null;
+				assert stack_copy.getTag() != null;
+				if (stack.is(Items.ENCHANTED_BOOK))
 					stack_copy.getTag().getList("StoredEnchantments", 10).clear();
-				}
-
-				EnchantmentHelper.setEnchantments(enchants, stack_copy);
+				setEnchantments(enchants, stack_copy);
 				return stack_copy;
 			}
 		throw new IllegalStateException("Couldn't find item to enchant");
