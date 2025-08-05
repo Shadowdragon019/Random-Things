@@ -1,0 +1,9 @@
+{
+  "type": "random_things:enchant_crafting",
+  "enchant": "minecraft:swift_sneak",
+  "ingredients": [
+    {
+      "item": "minecraft:echo_shard"
+    }
+  ]
+}

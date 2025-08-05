@@ -1,0 +1,30 @@
+{
+  "type": "random_things:enchant_crafting",
+  "enchant": "minecraft:vanishing_curse",
+  "ingredients": [
+    {
+      "tag": "forge:glass"
+    },
+    {
+      "tag": "forge:glass"
+    },
+    {
+      "tag": "forge:glass"
+    },
+    {
+      "tag": "forge:glass"
+    },
+    {
+      "tag": "forge:glass"
+    },
+    {
+      "tag": "forge:glass"
+    },
+    {
+      "tag": "forge:glass"
+    },
+    {
+      "tag": "forge:glass"
+    }
+  ]
+}

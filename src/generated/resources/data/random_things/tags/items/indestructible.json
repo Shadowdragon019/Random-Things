@@ -18,6 +18,10 @@
     "minecraft:netherite_chestplate",
     "minecraft:netherite_leggings",
     "minecraft:netherite_boots",
-    "minecraft:turtle_helmet"
+    "minecraft:turtle_helmet",
+    "minecraft:elytra",
+    "#forge:tools/tridents",
+    "#forge:tools/bows",
+    "#forge:tools/crossbows"
   ]
 }

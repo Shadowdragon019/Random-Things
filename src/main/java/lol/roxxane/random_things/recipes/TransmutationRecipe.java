@@ -196,9 +196,7 @@ public class TransmutationRecipe extends CustomRecipe {
 		}
 	}
 
-	private record Finished(ResourceLocation id, TransmutationRecipe recipe)
-		implements FinishedRecipe
-	{
+	private record Finished(ResourceLocation id, TransmutationRecipe recipe) implements FinishedRecipe {
 		@Override
 		public void serializeRecipeData(@NotNull JsonObject json) {
 			if (recipe.input_amount != 1)

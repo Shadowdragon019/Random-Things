@@ -7,12 +7,13 @@ import lol.roxxane.random_things.config.RtClientConfig;
 import lol.roxxane.random_things.config.RtServerConfig;
 import lol.roxxane.random_things.items.RtItems;
 import lol.roxxane.random_things.recipes.RtRecipeSerializers;
-import lol.roxxane.random_things.util.StringUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+
+import static lol.roxxane.random_things.util.StringUtils.stringify;
 
 // fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 // execute as @a at @a run fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
@@ -20,6 +21,7 @@ import org.slf4j.Logger;
 // What if crumbly stone blob had a lava blob in them?
 
 // TODO: Transmute enchants (so make a custom JEI category hehehhe)
+// TODO: JEI category for enchant crafting~
 @Mod(Rt.ID)
 public class Rt {
 	public static final String ID = "random_things";
@@ -41,7 +43,7 @@ public class Rt {
 
 	@SuppressWarnings("unused")
 	public static void log(Object object) {
-		LOGGER.info(StringUtils.stringify(object));
+		LOGGER.info(stringify(object));
 	}
 
 	@SuppressWarnings("unused")

@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 @SuppressWarnings("unused")
@@ -59,7 +59,7 @@ public class StringUtils {
 		else if (object instanceof Enchantment enchant)
 			return ForgeRegistries.ENCHANTMENTS.getKey(enchant).toString();
 		else if (object == null) return "null";
-		else if (object instanceof List<?> list) {
+		else if (object instanceof Collection<?> list) {
 			StringBuilder string = new StringBuilder("[");
 			var i = 0;
 			for (var element : list) {

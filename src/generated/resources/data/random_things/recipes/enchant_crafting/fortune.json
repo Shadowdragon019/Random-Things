@@ -1,0 +1,12 @@
+{
+  "type": "random_things:enchant_crafting",
+  "enchant": "minecraft:fortune",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    {
+      "item": "minecraft:diamond_pickaxe"
+    }
+  ]
+}

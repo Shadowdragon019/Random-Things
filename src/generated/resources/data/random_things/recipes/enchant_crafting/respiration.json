@@ -1,0 +1,18 @@
+{
+  "type": "random_things:enchant_crafting",
+  "enchant": "minecraft:respiration",
+  "ingredients": [
+    {
+      "item": "minecraft:sponge"
+    },
+    {
+      "item": "minecraft:sponge"
+    },
+    {
+      "item": "minecraft:sponge"
+    },
+    {
+      "item": "minecraft:sponge"
+    }
+  ]
+}

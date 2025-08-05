@@ -1,0 +1,30 @@
+{
+  "type": "random_things:enchant_crafting",
+  "enchant": "minecraft:punch",
+  "ingredients": [
+    {
+      "tag": "minecraft:arrows"
+    },
+    {
+      "tag": "minecraft:arrows"
+    },
+    {
+      "tag": "minecraft:arrows"
+    },
+    {
+      "tag": "minecraft:arrows"
+    },
+    {
+      "item": "minecraft:shield"
+    },
+    {
+      "item": "minecraft:shield"
+    },
+    {
+      "item": "minecraft:shield"
+    },
+    {
+      "item": "minecraft:shield"
+    }
+  ]
+}
