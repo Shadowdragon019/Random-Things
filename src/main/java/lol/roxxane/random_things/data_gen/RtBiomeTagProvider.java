@@ -22,5 +22,6 @@ public class RtBiomeTagProvider extends BiomeTagsProvider {
 	@Override
 	protected void addTags(@NotNull Provider provider) {
 		tag(RtBiomeTags.HAS_DUNGEON).addTag(BiomeTags.IS_OVERWORLD);
+		tag(RtBiomeTags.HAS_ORE_TREE).addTag(BiomeTags.IS_OVERWORLD);
 	}
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "random_things:block/dead_philosophers_stone_ore_leaves"
+  }
+}

@@ -1,0 +1,15 @@
+{
+	"structures": [
+		{
+			"structure": "random_things:ore_tree_philosophers_stone",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"type": "minecraft:random_spread",
+		"spacing": 2,
+		"separation": 1,
+		"spread_type": "triangular",
+		"salt": 1515323367
+	}
+}

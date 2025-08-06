@@ -9,6 +9,7 @@
     "minecraft:stripped_mangrove_wood",
     "minecraft:stripped_cherry_wood",
     "minecraft:stripped_crimson_hyphae",
-    "minecraft:stripped_warped_hyphae"
+    "minecraft:stripped_warped_hyphae",
+    "random_things:stripped_dead_ore_wood"
   ]
 }

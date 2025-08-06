@@ -9,6 +9,7 @@
     "minecraft:mangrove_log",
     "minecraft:cherry_log",
     "minecraft:crimson_stem",
-    "minecraft:warped_stem"
+    "minecraft:warped_stem",
+    "random_things:dead_ore_log"
   ]
 }

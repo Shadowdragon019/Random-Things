@@ -15,7 +15,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 
 import java.util.function.Supplier;
 
-import static lol.roxxane.random_things.Rt.location;
+import static lol.roxxane.random_things.Rt.id;
 
 @SuppressWarnings("SameParameterValue")
 public class MassStone {
@@ -62,9 +62,9 @@ public class MassStone {
 			provider.getVariantBuilder(context.get()).forAllStates(state ->
 				ConfiguredModel.builder().modelFile(
 					provider.models().withExistingParent("block/" + context.getName(),
-							location("block/mass_ore"))
+							id("block/mass_ore"))
 						.texture("base", stone_texture_namespace + ":block/" + stone_texture_path)
-						.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path)))
+						.texture("ore", id("block/mass_ore/" + ore_namespace + "/" + ore_path)))
 					.build());
 		};
 
@@ -90,12 +90,12 @@ public class MassStone {
 			provider.getVariantBuilder(context.get()).forAllStates(state ->
 				ConfiguredModel.builder().modelFile(
 					provider.models().withExistingParent("block/" + context.getName(),
-							location("block/mass_ore_sandstone"))
+							id("block/mass_ore_sandstone"))
 						.texture("top", stone_texture_namespace + ":block/" + stone_texture_path + "_top")
 						.texture("side", stone_texture_namespace + ":block/" + stone_texture_path)
 						.texture("bottom",
 							stone_texture_namespace + ":block/" + stone_texture_path + "_bottom")
-						.texture("ore", location("block/mass_ore/" + ore_namespace + "/" + ore_path)))
+						.texture("ore", id("block/mass_ore/" + ore_namespace + "/" + ore_path)))
 					.build());
 		};
 		return this;

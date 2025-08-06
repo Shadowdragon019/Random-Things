@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "random_things:block/dead_ore_log_side",
+    "side": "random_things:block/dead_ore_log_side"
+  }
+}

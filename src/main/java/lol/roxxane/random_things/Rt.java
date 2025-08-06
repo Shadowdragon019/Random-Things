@@ -52,7 +52,7 @@ public class Rt {
 		else LOGGER.warn(object.toString());
 	}
 
-	public static ResourceLocation location(String path) {
+	public static ResourceLocation id(String path) {
 		return ResourceLocation.fromNamespaceAndPath(ID, path);
 	}
 

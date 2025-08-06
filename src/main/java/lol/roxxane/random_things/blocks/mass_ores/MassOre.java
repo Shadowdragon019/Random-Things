@@ -32,7 +32,6 @@ import java.util.function.Supplier;
 
 import static lol.roxxane.random_things.blocks.RtBlocks.HAS_SILK_TOUCH;
 
-// TODO: Make this & MassStone more general
 @SuppressWarnings("unused")
 public class MassOre {
 	public static final MassOre[] ORES = new MassOre[]{
@@ -111,8 +110,6 @@ public class MassOre {
 	public @NotNull ArrayList<TagKey<Block>> block_tags = new ArrayList<>();
 	public @NotNull ArrayList<TagKey<Item>> item_tags = new ArrayList<>();
 	public @NotNull TagKey<Item> item_ore_tag;
-	public int min_drop = 1;
-	public int max_drop = 1;
 	public @NotNull ArrayList<FeatureConfigReplacer> configs_to_replace = new ArrayList<>();
 	public float recipe_xp = 0;
 	public String cooking_group;

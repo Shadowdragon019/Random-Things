@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class TransmutationRecipe extends CustomRecipe {
 	public int input_amount = 1;
 	public int output_amount = 1;
@@ -40,11 +41,11 @@ public class TransmutationRecipe extends CustomRecipe {
 		super(location, CraftingBookCategory.MISC);
 	}
 	public TransmutationRecipe(String path) {
-		this(Rt.location("transmutation/" + path));
+		this(Rt.id("transmutation/" + path));
 	}
 
 	public TransmutationRecipe(TagKey<Item> tag) {
-		this(Rt.location("transmutation/" + tag.location().getPath()));
+		this(Rt.id("transmutation/" + tag.location().getPath()));
 		tags(tag);
 	}
 

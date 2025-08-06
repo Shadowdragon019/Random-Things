@@ -19,6 +19,13 @@ public class RtModEvents {
 			event.accept(RtBlocks.CRUMBLY_DEEPSLATE);
 			event.accept(RtBlocks.LAVA_FILLED_STONE);
 			event.accept(RtBlocks.LAVA_FILLED_DEEPSLATE);
+			event.accept(RtBlocks.DEAD_PHILOSOPHERS_STONE_ORE_LOG);
+			event.accept(RtBlocks.DEAD_PHILOSOPHERS_STONE_ORE_LEAVES);
+			event.accept(RtBlocks.DEAD_ORE_LOG);
+			event.accept(RtBlocks.STRIPPED_DEAD_ORE_LOG);
+			event.accept(RtBlocks.DEAD_ORE_WOOD);
+			event.accept(RtBlocks.STRIPPED_DEAD_ORE_WOOD);
+			event.accept(RtBlocks.DEAD_ORE_LEAVES);
 		}
 	}
 }

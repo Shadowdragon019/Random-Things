@@ -15,9 +15,10 @@ public class RtItemTags {
 	public static final TagKey<Item> BARKED = forge("timber/barked");
 	public static final TagKey<Item> TIMBER = forge("timber");
 	public static final TagKey<Item> INDESTRUCTIBLE = rt("indestructible");
+	public static final TagKey<Item> DEAD_ORE_LOGS = rt("dead_ore_logs");
 
 	private static TagKey<Item> rt(String path) {
-		return ItemTags.create(Rt.location(path));
+		return ItemTags.create(Rt.id(path));
 	}
 	private static TagKey<Item> forge(String path) {
 		return ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", path));

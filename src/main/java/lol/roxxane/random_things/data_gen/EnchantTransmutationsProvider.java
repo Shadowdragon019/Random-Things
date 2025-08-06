@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("unused")
 public class EnchantTransmutationsProvider implements DataProvider {
 	private final PackOutput.PathProvider path_provider;
 	private final HashMap<ResourceLocation, Transmutation> transmutations = new HashMap<>();
@@ -68,10 +69,10 @@ public class EnchantTransmutationsProvider implements DataProvider {
 		transmutations.put(location, new Transmutation(enchants, cost));
 	}
 	private void add_transmutation(String path, int cost, Enchantment... enchants) {
-		transmutations.put(Rt.location(path), new Transmutation(Arrays.stream(enchants).toList(), cost));
+		transmutations.put(Rt.id(path), new Transmutation(Arrays.stream(enchants).toList(), cost));
 	}
 	private void add_transmutation(String path, int cost, List<Enchantment> enchants) {
-		transmutations.put(Rt.location(path), new Transmutation(enchants, cost));
+		transmutations.put(Rt.id(path), new Transmutation(enchants, cost));
 	}
 
 	private record Transmutation(List<Enchantment> enchants, int cost) {}

@@ -1,6 +1,11 @@
 {
   "block.random_things.crumbly_deepslate": "Crumbly Deepslate",
   "block.random_things.crumbly_stone": "Crumbly Stone",
+  "block.random_things.dead_ore_leaves": "Dead Ore Leaves",
+  "block.random_things.dead_ore_log": "Dead Ore Log",
+  "block.random_things.dead_ore_wood": "Dead Ore Wood",
+  "block.random_things.dead_philosophers_stone_ore_leaves": "Dead Philosophers Stone Ore Leaves",
+  "block.random_things.dead_philosophers_stone_ore_log": "Dead Philosophers Stone Ore Log",
   "block.random_things.lava_filled_deepslate": "Lava Filled Deepslate",
   "block.random_things.lava_filled_stone": "Lava Filled Stone",
   "block.random_things.mass_ore.minecraft.andesite.minecraft.coal": "Andesite Coal Ore",
@@ -91,7 +96,10 @@
   "block.random_things.mass_ore.minecraft.tuff.minecraft.iron": "Tuff Iron Ore",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.lapis": "Tuff Lapis Lazuli Ore",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.redstone": "Tuff Redstone Ore",
+  "block.random_things.stripped_dead_ore_log": "Stripped Dead Ore Log",
+  "block.random_things.stripped_dead_ore_wood": "Stripped Dead Ore Wood",
   "item.random_things.philosophers_stone": "Philosopher's Stone",
+  "item.random_things.philosophers_stone_shard": "Philosopher's Stone Shard",
   "tooltip.random_things.block_tags_header": "§7Block Tags:",
   "tooltip.random_things.item_tags_header": "§7Item Tags:",
   "tooltip.random_things.nbt_header": "§7NBT:"

@@ -1,6 +1,11 @@
 {
   "block.random_things.crumbly_deepslate": "ǝʇɐןsdǝǝᗡ ʎןqɯnɹƆ",
   "block.random_things.crumbly_stone": "ǝuoʇS ʎןqɯnɹƆ",
+  "block.random_things.dead_ore_leaves": "sǝʌɐǝꞀ ǝɹO pɐǝᗡ",
+  "block.random_things.dead_ore_log": "boꞀ ǝɹO pɐǝᗡ",
+  "block.random_things.dead_ore_wood": "pooM ǝɹO pɐǝᗡ",
+  "block.random_things.dead_philosophers_stone_ore_leaves": "sǝʌɐǝꞀ ǝɹO ǝuoʇS sɹǝɥdosoןıɥԀ pɐǝᗡ",
+  "block.random_things.dead_philosophers_stone_ore_log": "boꞀ ǝɹO ǝuoʇS sɹǝɥdosoןıɥԀ pɐǝᗡ",
   "block.random_things.lava_filled_deepslate": "ǝʇɐןsdǝǝᗡ pǝןןıℲ ɐʌɐꞀ",
   "block.random_things.lava_filled_stone": "ǝuoʇS pǝןןıℲ ɐʌɐꞀ",
   "block.random_things.mass_ore.minecraft.andesite.minecraft.coal": "ǝɹO ןɐoƆ ǝʇısǝpuⱯ",
@@ -91,7 +96,10 @@
   "block.random_things.mass_ore.minecraft.tuff.minecraft.iron": "ǝɹO uoɹI ɟɟn⟘",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.lapis": "ǝɹO ıןnzɐꞀ sıdɐꞀ ɟɟn⟘",
   "block.random_things.mass_ore.minecraft.tuff.minecraft.redstone": "ǝɹO ǝuoʇspǝᴚ ɟɟn⟘",
+  "block.random_things.stripped_dead_ore_log": "boꞀ ǝɹO pɐǝᗡ pǝddıɹʇS",
+  "block.random_things.stripped_dead_ore_wood": "pooM ǝɹO pɐǝᗡ pǝddıɹʇS",
   "item.random_things.philosophers_stone": "ǝuoʇS s,ɹǝɥdosoןıɥԀ",
+  "item.random_things.philosophers_stone_shard": "pɹɐɥS ǝuoʇS s,ɹǝɥdosoןıɥԀ",
   "tooltip.random_things.block_tags_header": ":sbɐ⟘ ʞɔoןᗺㄥ§",
   "tooltip.random_things.item_tags_header": ":sbɐ⟘ ɯǝʇIㄥ§",
   "tooltip.random_things.nbt_header": ":⟘ᗺNㄥ§"

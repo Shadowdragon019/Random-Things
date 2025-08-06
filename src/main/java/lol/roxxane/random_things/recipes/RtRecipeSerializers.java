@@ -15,8 +15,8 @@ public class RtRecipeSerializers {
 
 	@SuppressWarnings("unchecked")
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String key, S serializer) {
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Rt.location(key), serializer);
-		return (S) ForgeRegistries.RECIPE_SERIALIZERS.getValue(Rt.location(key));
+		ForgeRegistries.RECIPE_SERIALIZERS.register(Rt.id(key), serializer);
+		return (S) ForgeRegistries.RECIPE_SERIALIZERS.getValue(Rt.id(key));
 	}
 
 	public static void register() {}

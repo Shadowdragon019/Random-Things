@@ -30,7 +30,7 @@ import java.util.List;
 public class RtJeiPlugin implements IModPlugin {
 	@Override
 	public @NotNull ResourceLocation getPluginUid() {
-		return Rt.location("random_things");
+		return Rt.id("random_things");
 	}
 
 	@Override

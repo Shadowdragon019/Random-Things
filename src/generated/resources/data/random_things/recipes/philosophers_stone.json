@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "random_things:philosophers_stone_shard"
+    },
+    {
+      "item": "random_things:philosophers_stone_shard"
+    },
+    {
+      "item": "random_things:philosophers_stone_shard"
+    },
+    {
+      "item": "random_things:philosophers_stone_shard"
+    },
+    {
+      "item": "random_things:philosophers_stone_shard"
+    },
+    {
+      "item": "random_things:philosophers_stone_shard"
+    },
+    {
+      "item": "random_things:philosophers_stone_shard"
+    },
+    {
+      "item": "random_things:philosophers_stone_shard"
+    },
+    {
+      "item": "random_things:philosophers_stone_shard"
+    }
+  ],
+  "result": {
+    "item": "random_things:philosophers_stone"
+  }
+}

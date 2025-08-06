@@ -9,6 +9,7 @@
     "minecraft:mangrove_wood",
     "minecraft:cherry_wood",
     "minecraft:crimson_hyphae",
-    "minecraft:warped_hyphae"
+    "minecraft:warped_hyphae",
+    "random_things:dead_ore_wood"
   ]
 }

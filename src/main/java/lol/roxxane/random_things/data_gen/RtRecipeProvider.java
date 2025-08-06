@@ -73,7 +73,7 @@ public class RtRecipeProvider extends RecipeProvider {
 			recipe.save(writer);
 		}
 
-		new EnchantTransmutationRecipe(Rt.location("transmutation/enchants")).save(writer);
+		new EnchantTransmutationRecipe(Rt.id("transmutation/enchants")).save(writer);
 
 		for (var entry : Map.<Enchantment, Map<Object, Integer>>ofEntries(
 			entry(Enchantments.ALL_DAMAGE_PROTECTION, Map.of(Tags.Items.INGOTS_IRON, 8)),
@@ -143,7 +143,7 @@ public class RtRecipeProvider extends RecipeProvider {
 				}
 			}
 
-			new EnchantCraftingRecipe(Rt.location("enchant_crafting/" + get_id(entry.getKey()).getPath()),
+			new EnchantCraftingRecipe(Rt.id("enchant_crafting/" + get_id(entry.getKey()).getPath()),
 				entry.getKey(), 1, ingredients)
 				.save(writer);
 		}
@@ -160,7 +160,7 @@ public class RtRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_" + ore.id.getNamespace() + "_" + ore.id.getPath() + "_ore",
 				has(ore.material.get()))
 			.save(writer,
-				Rt.location(type + "/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath()));
+				Rt.id(type + "/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath()));
 	}
 	private void smelt(MassOre ore) {
 		cook(ore, "smelting", RecipeSerializer.SMELTING_RECIPE, 200);

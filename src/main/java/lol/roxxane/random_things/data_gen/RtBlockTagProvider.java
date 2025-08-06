@@ -29,6 +29,8 @@ public class RtBlockTagProvider extends BlockTagsProvider {
 		tag(RtBlockTags.CRUMBLY_STONES).add(RtBlocks.CRUMBLY_STONE.get(), RtBlocks.CRUMBLY_DEEPSLATE.get());
 		tag(RtBlockTags.CRUMBLE_DESTROYS).addTags(Tags.Blocks.COBBLESTONE, Tags.Blocks.STONE,
 			BlockTags.DIRT, Tags.Blocks.ORES);
+		tag(BlockTags.LOGS).addTags(RtBlockTags.DEAD_ORE_LOGS);
+		tag(BlockTags.SWORD_EFFICIENT).remove(RtBlocks.DEAD_ORE_LEAVES.get());
 
 		for (var stone : MassStone.STONES) {
 			tag(stone.replace_tag).add(stone.base_block.get());

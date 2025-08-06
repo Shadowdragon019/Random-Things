@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "random_things:block/stripped_dead_ore_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "random_things:block/stripped_dead_ore_log"
+    },
+    "axis=z": {
+      "model": "random_things:block/stripped_dead_ore_log_horizontal",
+      "x": 90
+    }
+  }
+}

@@ -64,7 +64,7 @@ public class RtConfiguredFeatures {
 
 	@SuppressWarnings("SameParameterValue")
 	private static ResourceKey<ConfiguredFeature<?, ?>> register(String path) {
-		return ResourceKey.create(Registries.CONFIGURED_FEATURE, Rt.location(path));
+		return ResourceKey.create(Registries.CONFIGURED_FEATURE, Rt.id(path));
 	}
 
 	@SuppressWarnings("SameParameterValue")

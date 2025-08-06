@@ -34,6 +34,6 @@ public class RtBiomeModifiers {
 
 	@SuppressWarnings("SameParameterValue")
 	private static ResourceKey<BiomeModifier> register(String path) {
-		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, Rt.location(path));
+		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, Rt.id(path));
 	}
 }
