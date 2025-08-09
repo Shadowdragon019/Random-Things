@@ -3,18 +3,6 @@
   "enchant": "minecraft:flame",
   "ingredients": [
     {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
-    },
-    {
       "item": "minecraft:blaze_powder"
     },
     {
@@ -25,6 +13,18 @@
     },
     {
       "item": "minecraft:blaze_powder"
+    },
+    {
+      "tag": "minecraft:arrows"
+    },
+    {
+      "tag": "minecraft:arrows"
+    },
+    {
+      "tag": "minecraft:arrows"
+    },
+    {
+      "tag": "minecraft:arrows"
     }
   ]
 }

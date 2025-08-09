@@ -7,11 +7,14 @@ import lol.roxxane.random_things.config.RtClientConfig;
 import lol.roxxane.random_things.config.RtServerConfig;
 import lol.roxxane.random_things.items.RtItems;
 import lol.roxxane.random_things.recipes.RtRecipeSerializers;
+import lol.roxxane.random_things.util.StringUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+
+import java.util.Arrays;
 
 import static lol.roxxane.random_things.util.StringUtils.stringify;
 
@@ -22,40 +25,40 @@ import static lol.roxxane.random_things.util.StringUtils.stringify;
 
 // TODO: Transmute enchants (so make a custom JEI category hehehhe)
 // TODO: JEI category for enchant crafting~
+@SuppressWarnings("unused")
 @Mod(Rt.ID)
 public class Rt {
 	public static final String ID = "random_things";
 	public static final Logger LOGGER = LogUtils.getLogger();
 	public static final Registrate REGISTRATE = Registrate.create(ID).skipErrors(false);
-
 	public Rt(FMLJavaModLoadingContext context) {
 		context.registerConfig(ModConfig.Type.SERVER, RtServerConfig.SPEC);
 		context.registerConfig(ModConfig.Type.CLIENT, RtClientConfig.SPEC);
-
 		REGISTRATE.addRawLang("tooltip.random_things.item_tags_header", "§7Item Tags:");
 		REGISTRATE.addRawLang("tooltip.random_things.block_tags_header", "§7Block Tags:");
 		REGISTRATE.addRawLang("tooltip.random_things.nbt_header", "§7NBT:");
-
 		RtBlocks.register();
 		RtItems.register();
 		RtRecipeSerializers.register();
 	}
-
-	@SuppressWarnings("unused")
-	public static void log(Object object) {
-		LOGGER.info(stringify(object));
+	public static void log(Object... objects) {
+		var string_builder = new StringBuilder();
+		var i = 0;
+		for (var object : objects) {
+			i++;
+			string_builder.append(stringify(object)).append(i == objects.length ? "" : "\n");
+		}
+		LOGGER.info(string_builder.toString());
 	}
-
-	@SuppressWarnings("unused")
-	public static void warn(Object object) {
-		if (object == null) LOGGER.info("null");
-		else LOGGER.warn(object.toString());
+	// Apparently this is because performance. This will not decimate performance lmao.
+	@SuppressWarnings("StringConcatenationArgumentToLogCall")
+	public static void log_formated(String string, Object... objects) {
+		LOGGER.info((string + "%n").formatted(
+			Arrays.stream(objects).map(StringUtils::stringify).toArray(Object[]::new)));
 	}
-
 	public static ResourceLocation id(String path) {
 		return ResourceLocation.fromNamespaceAndPath(ID, path);
 	}
-
 	public static ResourceLocation block_location(String path) {
 		return ResourceLocation.fromNamespaceAndPath(ID, "block/" + path);
 	}

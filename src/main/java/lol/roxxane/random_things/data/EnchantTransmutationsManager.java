@@ -1,6 +1,11 @@
 package lol.roxxane.random_things.data;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import lol.roxxane.random_things.util.ComparableEnchant;
+import lol.roxxane.random_things.util.ComparablePair;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -8,107 +13,76 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.enchantment.Enchantment;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static lol.roxxane.random_things.util.EnchantUtils.get_enchant;
-import static lol.roxxane.random_things.util.EnchantUtils.is_enchant;
-import static lol.roxxane.random_things.util.ListUtil.next_element;
+import static java.lang.Math.min;
 
 public class EnchantTransmutationsManager extends SimpleJsonResourceReloadListener {
 	private static final Gson GSON = new GsonBuilder().create();
-	private static Map<List<Enchantment>, Integer> transmutations = new HashMap<>();
-
+	private static Map<ComparablePair<ComparableEnchant, ComparableEnchant>, Integer> transmutations = Map.of();
 	public EnchantTransmutationsManager() {
 		super(GSON, "enchant_transmutations");
 	}
-
 	@Override
 	protected void apply(@NotNull Map<ResourceLocation, JsonElement> object,
 		@NotNull ResourceManager resource_manager, @NotNull ProfilerFiller profiler)
 	{
-		var transmutations = new HashMap<List<Enchantment>, Integer>();
+		var transmutations = new LinkedHashMap<ComparablePair<ComparableEnchant, ComparableEnchant>, Integer>();
 		object.forEach((location, json) -> {
 			if (json instanceof JsonObject obj) {
-				var enchants_json = obj.get("enchants");
-				var cost = obj.get("cost");
-				if (!obj.has("enchants"))
-					throw new IllegalStateException("Error parsing element transmutation recipe " + location +
-						". Key 'enchants' was not found");
-				if (!enchants_json.isJsonArray())
-					throw new IllegalStateException("Error parsing element transmutation recipe " + location +
-						". Key 'enchants' was not an array");
-				if (enchants_json.getAsJsonArray().size() < 2)
-					throw new IllegalStateException("Error parsing element transmutation recipe " + location +
-						". Enchants array must contain 2 or more elements");
-				if (!obj.has("cost"))
-					throw new IllegalStateException("Error parsing element transmutation recipe " + location +
-						". Key 'cost' was not found");
-				if (!(cost instanceof JsonPrimitive primitive) || !primitive.isNumber())
-					throw new IllegalStateException("Error parsing element transmutation recipe " + location +
-						". Key 'cost' must be an int");
-				if (cost.getAsInt() < 1)
-					throw new IllegalStateException("Error parsing element transmutation recipe " + location +
-						". Key 'cost' must be 1 or bigger");
-				transmutations.put(enchants_json.getAsJsonArray().asList().stream().map(element -> {
-					if (!(element instanceof JsonPrimitive primitive1) || !primitive1.isString() ||
-						!is_enchant(primitive1.getAsString())
-					)
-						throw new IllegalStateException("Error parsing element transmutation recipe " + location +
-							". Element " + element + " in enchant array was not an enchant");
-					return get_enchant(element.getAsString());
-				}).toList(), cost.getAsInt());
+				var cost = obj.has("cost") ? obj.get("cost").getAsInt() : 1;
+				var enchant_input = obj.get("input").getAsString();
+				var enchant_output = obj.get("output").getAsString();
+				transmutations.put(ComparablePair.of(ComparableEnchant.of(enchant_input),
+					ComparableEnchant.of(enchant_output)), cost);
 			}
 		});
 		EnchantTransmutationsManager.transmutations = Map.copyOf(transmutations);
 	}
-
-	public static Map<List<Enchantment>, Integer> transmutations() {
+	public static Map<ComparablePair<ComparableEnchant, ComparableEnchant>, Integer> transmutations() {
 		return transmutations;
 	}
-
 	//I think
 	//It caches the result if the item is the same (not the data like enchants)
 	//So I just have to invalidate it!
 	//I tried to fix it with no luck. Oh well, I'll ask for help later.
 	public static boolean can_transmute(Map<Enchantment, Integer> enchants) {
 		for (var transmutation : transmutations().entrySet()) {
-			var transmute_enchants = transmutation.getKey();
+			var enchant_input = transmutation.getKey().a;
 			var cost = transmutation.getValue();
-			for (var transmute_enchant : transmute_enchants)
-				for (var entry : enchants.entrySet()) {
-					var enchant = entry.getKey();
-					var level = entry.getValue();
-					if (transmute_enchant == enchant && level >= cost) {
-						return true;
-					}
-				}
+			for (var entry : enchants.entrySet()) {
+				var enchant = entry.getKey();
+				var level = entry.getValue();
+				if (enchant_input.enchant == enchant && level >= cost)
+					return true;
+			}
 		}
 		return false;
 	}
-
-	//TODO: Limit enchants to their maximum level
-	//TODO: Check if an enchant doesn't already have smth (like smth gets converted to sharpness, what if it's already enchanted with sharpness?)
 	public static Map<Enchantment, Integer> transmute(Map<Enchantment, Integer> enchants) {
-		var result = new HashMap<Enchantment, Integer>();
-		for (var transmutation : transmutations().entrySet()) {
-			var transmutation_enchants = transmutation.getKey();
-			var cost = transmutation.getValue();
-			for (var transmute_enchant : transmutation_enchants)
-				for (var entry : enchants.entrySet()) {
-					var enchant = entry.getKey();
-					var level = entry.getValue();
-					if (enchant == transmute_enchant)
-						if (level >= cost) {
-							result.put(next_element(transmutation_enchants, transmute_enchant),
-								level / cost);
-							var remaining = level % cost;
-							if (remaining > 0)
-								result.put(enchant, remaining);
-						} else result.put(enchant, level);
+		var result_enchants = new LinkedHashMap<>(enchants);
+		for (var pair : transmutations().keySet().stream().sorted().toList()) {
+			var input_enchant = pair.a;
+			var output_enchant = pair.b;
+			var cost = transmutations().get(pair);
+			for (var enchant : enchants.keySet().stream().map(ComparableEnchant::new).sorted().toList()) {
+				var level = result_enchants.get(enchant.enchant);
+				if (input_enchant.equals(enchant) && level >= cost) {
+					var transmute_levels = level / cost;
+					transmute_levels = min(transmute_levels, output_enchant.max_level() -
+						result_enchants.getOrDefault(output_enchant.enchant, 0));
+					if (transmute_levels > 0) {
+						result_enchants.put(input_enchant.enchant, result_enchants.get(input_enchant.enchant) -
+							transmute_levels * cost);
+						result_enchants.put(output_enchant.enchant,
+							result_enchants.getOrDefault(output_enchant.enchant, 0) + transmute_levels);
+						if (result_enchants.get(input_enchant.enchant) == 0)
+							result_enchants.remove(input_enchant.enchant);
+					}
 				}
+			}
 		}
-		return result;
+		return result_enchants;
 	}
 }

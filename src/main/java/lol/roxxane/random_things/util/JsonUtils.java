@@ -33,29 +33,22 @@ public class JsonUtils {
 			tags.add(get_item_tag(primitive.getAsString()));
 		return tags;
 	}
-
 	// json from X
 	@SuppressWarnings("DataFlowIssue")
 	public static JsonElement json_from_items(List<Item> items) {
 		var array = new JsonArray();
-
 		for (var item : items)
 			array.add(ForgeRegistries.ITEMS.getKey(item).toString());
-
 		if (array.size() == 1)
 			return array.get(0);
-
 		return array;
 	}
 	public static JsonElement json_from_tags(List<TagKey<Item>> tags) {
 		var array = new JsonArray();
-
 		for (var tag : tags)
 			array.add(tag.location().toString());
-
 		if (array.size() == 1)
 			return array.get(0);
-
 		return array;
 	}
 }

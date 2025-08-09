@@ -191,7 +191,7 @@ public class RtBlocks {
 				new StrippableLogBlock(p.mapColor((state ->
 						state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ?
 							MapColor.COLOR_LIGHT_GRAY : MapColor.SNOW))
-					.strength(2.0f).sound(SoundType.WOOD)
+					.strength(5).sound(SoundType.WOOD)
 					.requiresCorrectToolForDrops()
 				))
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
@@ -205,7 +205,7 @@ public class RtBlocks {
 				new RotatedPillarBlock(p.mapColor((state ->
 						state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ?
 							MapColor.COLOR_LIGHT_GRAY : MapColor.SNOW))
-					.strength(2.0f).sound(SoundType.WOOD)
+					.strength(5).sound(SoundType.WOOD)
 					.requiresCorrectToolForDrops()
 				))
 			.blockstate((context, provider) -> provider.axisBlock(context.get()))
@@ -217,7 +217,7 @@ public class RtBlocks {
 	public static final RegistryEntry<StrippableLogBlock> DEAD_ORE_WOOD =
 		REGISTRATE.block("dead_ore_wood", p ->
 				new StrippableLogBlock(p.mapColor(MapColor.COLOR_LIGHT_GRAY)
-					.strength(2.0f).sound(SoundType.WOOD).requiresCorrectToolForDrops()
+					.strength(5).sound(SoundType.WOOD).requiresCorrectToolForDrops()
 				))
 			.blockstate((context, provider) ->
 				provider.axisBlock(context.get(), Rt.id("block/dead_ore_log_side"),
@@ -230,7 +230,7 @@ public class RtBlocks {
 	public static final RegistryEntry<RotatedPillarBlock> STRIPPED_DEAD_ORE_WOOD =
 		REGISTRATE.block("stripped_dead_ore_wood", p ->
 				new RotatedPillarBlock(p.mapColor(MapColor.SNOW)
-					.strength(2.0f).sound(SoundType.WOOD).requiresCorrectToolForDrops()
+					.strength(5).sound(SoundType.WOOD).requiresCorrectToolForDrops()
 				))
 			.blockstate((context, provider) ->
 				provider.axisBlock(context.get(),Rt.id("block/stripped_dead_ore_log_side"),
@@ -243,7 +243,7 @@ public class RtBlocks {
 	public static final RegistryEntry<LeavesBlock> DEAD_ORE_LEAVES =
 		REGISTRATE.block("dead_ore_leaves", p ->
 				new LeavesBlock(p.mapColor(MapColor.PLANT)
-					.strength(.2f).sound(SoundType.GRASS).requiresCorrectToolForDrops()
+					.strength(5).sound(SoundType.GRASS).requiresCorrectToolForDrops()
 					.randomTicks().noOcclusion().isValidSpawn(RtBlocks::ocelot_or_parrot)
 					.isSuffocating(RtBlocks::never).isValidSpawn(RtBlocks::never)
 					.isRedstoneConductor(RtBlocks::never)

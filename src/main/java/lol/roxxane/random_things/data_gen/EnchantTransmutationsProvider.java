@@ -1,79 +1,68 @@
 package lol.roxxane.random_things.data_gen;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import lol.roxxane.random_things.Rt;
+import lol.roxxane.random_things.util.EnchantUtils;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.concurrent.CompletableFuture;
+
+import static lol.roxxane.random_things.util.StringUtils.underscore;
 
 @SuppressWarnings("unused")
 public class EnchantTransmutationsProvider implements DataProvider {
 	private final PackOutput.PathProvider path_provider;
-	private final HashMap<ResourceLocation, Transmutation> transmutations = new HashMap<>();
-
-	public EnchantTransmutationsProvider(PackOutput output) {
+	private final LinkedHashMap<ResourceLocation, Transmutation> transmutations = new LinkedHashMap<>();
+	public final String mod_id;
+	public EnchantTransmutationsProvider(PackOutput output, String mod_id) {
 		this.path_provider = output.createPathProvider(PackOutput.Target.DATA_PACK, getName());
+		this.mod_id = mod_id;
 	}
-
-	@SuppressWarnings("DataFlowIssue")
 	@Override
 	public @NotNull CompletableFuture<?> run(@NotNull CachedOutput output) {
 		add_transmutations();
 		var futures = new ArrayList<CompletableFuture<?>>();
-
 		transmutations.forEach((location, transmutation) -> {
 			var object = new JsonObject();
-			var enchants = new JsonArray();
-
-			for (var enchant : transmutation.enchants)
-				enchants.add(ForgeRegistries.ENCHANTMENTS.getKey(enchant).toString());
-
-			object.add("enchants", enchants);
-			object.addProperty("cost", transmutation.cost);
-
+			object.addProperty("input", EnchantUtils.get_id(transmutation.input).toString());
+			object.addProperty("output", EnchantUtils.get_id(transmutation.output).toString());
+			if (transmutation.cost != 1)
+				object.addProperty("cost", transmutation.cost);
 			futures.add(DataProvider.saveStable(output, object, path_provider.json(location)));
 		});
-
 		return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
 	}
-
 	/// Mods can override this to add their own transmutations
 	public void add_transmutations() {
-		add_transmutation("test", 2,
-			Enchantments.ALL_DAMAGE_PROTECTION, Enchantments.AQUA_AFFINITY);
-		add_transmutation("balls", 1,
-			Enchantments.SHARPNESS, Enchantments.PIERCING);
+		transmute(Enchantments.ALL_DAMAGE_PROTECTION, Enchantments.UNBREAKING, 2);
+		transmute(Enchantments.UNBREAKING, Enchantments.ALL_DAMAGE_PROTECTION, 2);
+		transmute(Enchantments.PIERCING, Enchantments.SHARPNESS);
+		transmute(Enchantments.SHARPNESS, Enchantments.PIERCING);
 	}
-
 	@Override
 	public @NotNull String getName() {
 		return "enchant_transmutations";
 	}
-
-	public void add_transmutation(ResourceLocation location, int cost, Enchantment... enchants) {
-		transmutations.put(location, new Transmutation(Arrays.stream(enchants).toList(), cost));
+	public void transmute(Enchantment input, Enchantment output) {
+		transmute(mod_id, input, output, 1);
 	}
-	public void add_transmutation(ResourceLocation location, int cost, List<Enchantment> enchants) {
-		transmutations.put(location, new Transmutation(enchants, cost));
+	public void transmute(Enchantment input, Enchantment output, int cost) {
+		transmute(mod_id, input, output, cost);
 	}
-	private void add_transmutation(String path, int cost, Enchantment... enchants) {
-		transmutations.put(Rt.id(path), new Transmutation(Arrays.stream(enchants).toList(), cost));
+	public void transmute(String namespace, Enchantment input, Enchantment output) {
+		transmute(namespace, input, output, 1);
 	}
-	private void add_transmutation(String path, int cost, List<Enchantment> enchants) {
-		transmutations.put(Rt.id(path), new Transmutation(enchants, cost));
+	public void transmute(String namespace, Enchantment input, Enchantment output, int cost) {
+		transmutations.put(ResourceLocation.fromNamespaceAndPath(namespace,
+				underscore(input) + "_to_" + underscore(output)),
+			new Transmutation(input, output, cost));
 	}
-
-	private record Transmutation(List<Enchantment> enchants, int cost) {}
+	private record Transmutation(Enchantment input, Enchantment output, int cost) {}
 }

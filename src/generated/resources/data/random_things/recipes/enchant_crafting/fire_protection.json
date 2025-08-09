@@ -3,18 +3,6 @@
   "enchant": "minecraft:fire_protection",
   "ingredients": [
     {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
       "item": "minecraft:blaze_powder"
     },
     {
@@ -25,6 +13,18 @@
     },
     {
       "item": "minecraft:blaze_powder"
+    },
+    {
+      "tag": "forge:ingots/iron"
+    },
+    {
+      "tag": "forge:ingots/iron"
+    },
+    {
+      "tag": "forge:ingots/iron"
+    },
+    {
+      "tag": "forge:ingots/iron"
     }
   ]
 }

@@ -20,7 +20,6 @@ public class RtDataGen {
 	private static PackOutput output;
 	private static ExistingFileHelper existing_file_helper;
 	private static CompletableFuture<HolderLookup.Provider> provider;
-
 	@SubscribeEvent
 	public static void gather_data(GatherDataEvent event) {
 		RtDataGen.event = event;
@@ -28,7 +27,7 @@ public class RtDataGen {
 		output = generator.getPackOutput();
 		existing_file_helper = event.getExistingFileHelper();
 		provider = event.getLookupProvider();
-
+		event.getModContainer().getModInfo().getModId();
 		// 100% overengineered hehehe
 		server_provider(new RtWorldGenProvider(output, provider));
 		server_provider(new RtItemTagProvider(output, provider,
@@ -36,9 +35,9 @@ public class RtDataGen {
 			existing_file_helper));
 		server_provider(new RtRecipeProvider(output));
 		server_provider(new RtBiomeTagProvider(output, provider, existing_file_helper));
-		server_provider(new EnchantTransmutationsProvider(output));
+		server_provider(new EnchantTransmutationsProvider(output,
+			event.getModContainer().getModInfo().getModId()));
 	}
-
 	private static <T extends DataProvider> T server_provider(T provider) {
 		generator.addProvider(event.includeServer(), provider);
 		return provider;

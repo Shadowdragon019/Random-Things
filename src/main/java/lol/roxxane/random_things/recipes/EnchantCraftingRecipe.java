@@ -31,7 +31,6 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 	public final NonNullList<Ingredient> ingredients;
 	public final Enchantment enchant;
 	public final int level;
-
 	public EnchantCraftingRecipe(ResourceLocation id, Enchantment enchant, int level,
 		NonNullList<Ingredient> ingredients
 	) {
@@ -40,7 +39,6 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 		this.enchant = enchant;
 		this.ingredients = ingredients;
 	}
-
 	@Override
 	public boolean matches(@NotNull CraftingContainer container, @NotNull Level $) {
 		@SuppressWarnings("unchecked")

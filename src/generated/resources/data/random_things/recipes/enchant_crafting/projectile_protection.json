@@ -3,18 +3,6 @@
   "enchant": "minecraft:projectile_protection",
   "ingredients": [
     {
-      "item": "minecraft:bow"
-    },
-    {
-      "item": "minecraft:bow"
-    },
-    {
-      "item": "minecraft:bow"
-    },
-    {
-      "item": "minecraft:bow"
-    },
-    {
       "tag": "forge:ingots/iron"
     },
     {
@@ -25,6 +13,18 @@
     },
     {
       "tag": "forge:ingots/iron"
+    },
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "item": "minecraft:bow"
     }
   ]
 }

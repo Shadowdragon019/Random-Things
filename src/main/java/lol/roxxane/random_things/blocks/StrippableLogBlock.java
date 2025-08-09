@@ -32,7 +32,7 @@ public class StrippableLogBlock extends RotatedPillarBlock {
 					))
 						Block.popResourceFromFace(server_level, context.getClickedPos(),
 							context.getClickedFace(), stack);
-				return RtBlocks.DEAD_ORE_WOOD.get().defaultBlockState()
+				return RtBlocks.DEAD_ORE_LOG.get().defaultBlockState()
 					.setValue(AXIS, state.getValue(AXIS));
 			}
 		return super.getToolModifiedState(state, context, action, simulate);

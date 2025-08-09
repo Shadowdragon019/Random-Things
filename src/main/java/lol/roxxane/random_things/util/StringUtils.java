@@ -49,6 +49,9 @@ public class StringUtils {
 	public static String underscore(Block block) {
 		return underscore(ForgeRegistries.BLOCKS, block);
 	}
+	public static String underscore(Enchantment enchant) {
+		return underscore(ForgeRegistries.ENCHANTMENTS, enchant);
+	}
 
 	@SuppressWarnings("DataFlowIssue")
 	public static String stringify(Object object) {
