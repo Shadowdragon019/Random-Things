@@ -13,21 +13,26 @@ import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
-import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
 import static lol.roxxane.random_things.util.EnchantUtils.get_enchant;
-public class EnchantCraftingRecipe extends CustomRecipe {
+
+public class EnchantCraftingRecipe extends JeiOutputCraftingRecipe {
+	private static Map<Enchantment, List<ItemStack>> enchantable_items = null;
+	private List<ItemStack> jei_outputs = null;
 	public final NonNullList<Ingredient> ingredients;
 	public final Enchantment enchant;
 	public final int level;
@@ -39,12 +44,27 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 		this.enchant = enchant;
 		this.ingredients = ingredients;
 	}
+	public void save(Consumer<FinishedRecipe> writer) {
+		writer.accept(new Finished(getId(), this));
+	}
+	// This probably causes a lag spike, hope it isn't TOO massive!
+	public List<ItemStack> enchantable_items() {
+		if (enchantable_items == null) {
+			enchantable_items = new HashMap<>();
+			for (var _enchant : ForgeRegistries.ENCHANTMENTS.getValues())
+				enchantable_items.put(_enchant, new ArrayList<>());
+			for (var item : ForgeRegistries.ITEMS.getValues())
+				for (var _enchant : ForgeRegistries.ENCHANTMENTS.getValues())
+					if (_enchant.canEnchant(item.getDefaultInstance()))
+						enchantable_items.get(_enchant).add(item.getDefaultInstance());
+		}
+		return enchantable_items.get(enchant);
+	}
 	@Override
 	public boolean matches(@NotNull CraftingContainer container, @NotNull Level $) {
 		@SuppressWarnings("unchecked")
 		HashMap<Ingredient, Boolean> map = new HashMap<>(Map.ofEntries(ingredients.stream()
 			.map(ingredient -> Map.entry(ingredient, false)).toArray(Map.Entry[]::new)));
-
 		var is_first = true;
 		for (var stack : container.getItems()) {
 			if (is_first) {
@@ -64,7 +84,6 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 			for (var entry : map.entrySet()) {
 				var ingredient = entry.getKey();
 				var passed = entry.getValue();
-
 				if (!passed && ingredient.test(stack)) {
 					entry.setValue(true);
 					break;
@@ -73,40 +92,47 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 					return false;
 			}
 		}
-
 		for (var entry : map.entrySet())
 			if (!entry.getValue())
 				return false;
-
 		return true;
 	}
-
 	@Override
 	public @NotNull ItemStack assemble(@NotNull CraftingContainer container, @NotNull RegistryAccess $) {
 		var stack = container.getItems().get(0).copyWithCount(1);
 		if (stack.getItem() == Items.BOOK)
 			stack = new ItemStack(Items.ENCHANTED_BOOK);
-
 		var enchants = EnchantmentHelper.getEnchantments(stack);
 		enchants.put(enchant, enchants.getOrDefault(enchant, 0) + level);
 		EnchantmentHelper.setEnchantments(enchants, stack);
 		return stack;
 	}
-
 	@Override
 	public boolean canCraftInDimensions(int width, int height) {
 		return width * height >= 1 + ingredients.size();
 	}
-
 	@Override
 	public @NotNull RecipeSerializer<?> getSerializer() {
 		return RtRecipeSerializers.ENCHANT_CRAFTING;
 	}
-
-	public void save(Consumer<FinishedRecipe> writer) {
-		writer.accept(new Finished(getId(), this));
+	@Override
+	public List<ItemStack> jei_output() {
+		if (jei_outputs == null) {
+			jei_outputs = enchantable_items().stream().map(stack -> {
+				var new_stack = stack.copy();
+				new_stack.enchant(enchant, level);
+				return new_stack;
+			}).toList();
+		}
+		return jei_outputs;
 	}
-
+	@Override
+	public @NotNull NonNullList<Ingredient> getIngredients() {
+		var ingredients = NonNullList.<Ingredient>create();
+		ingredients.add(Ingredient.of(enchantable_items().stream()));
+		ingredients.addAll(this.ingredients);
+		return ingredients;
+	}
 	public static class Serializer implements RecipeSerializer<EnchantCraftingRecipe> {
 		@Override
 		public @NotNull EnchantCraftingRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
@@ -116,7 +142,6 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 				items_from_json(GsonHelper.getAsJsonArray(json, "ingredients"))
 			);
 		}
-
 		@SuppressWarnings("PointlessBooleanExpression")
 		/// Taken from {@link net.minecraft.world.item.crafting.ShapelessRecipe.Serializer}
 		public static NonNullList<Ingredient> items_from_json(JsonArray pIngredientArray) {
@@ -128,10 +153,8 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 					nonnulllist.add(ingredient);
 				}
 			}
-
 			return nonnulllist;
 		}
-
 		@Override
 		public @Nullable EnchantCraftingRecipe fromNetwork(@NotNull ResourceLocation id,
 			@NotNull FriendlyByteBuf buffer)
@@ -143,7 +166,6 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 					i -> NonNullList.create(), Ingredient::fromNetwork)
 				);
 		}
-
 		@Override
 		public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull EnchantCraftingRecipe recipe) {
 			buffer.writeResourceLocation(EnchantUtils.get_id(recipe.enchant));
@@ -152,7 +174,6 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 				($, ingredient) -> ingredient.toNetwork(buffer));
 		}
 	}
-
 	private record Finished(ResourceLocation id, EnchantCraftingRecipe recipe) implements FinishedRecipe {
 		@Override
 		public void serializeRecipeData(@NotNull JsonObject json) {
@@ -164,22 +185,18 @@ public class EnchantCraftingRecipe extends CustomRecipe {
 				array.add(ingredient.toJson());
 			json.add("ingredients", array);
 		}
-
 		@Override
 		public @NotNull ResourceLocation getId() {
 			return id;
 		}
-
 		@Override
 		public @NotNull RecipeSerializer<?> getType() {
 			return RtRecipeSerializers.ENCHANT_CRAFTING;
 		}
-
 		@Override
 		public @Nullable JsonObject serializeAdvancement() {
 			return null;
 		}
-
 		@Override
 		public @Nullable ResourceLocation getAdvancementId() {
 			return null;

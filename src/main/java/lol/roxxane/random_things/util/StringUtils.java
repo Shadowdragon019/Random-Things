@@ -55,13 +55,13 @@ public class StringUtils {
 
 	@SuppressWarnings("DataFlowIssue")
 	public static String stringify(Object object) {
-		if (object instanceof Item item)
+		if (object == null) return "null";
+		else if (object instanceof Item item)
 			return ForgeRegistries.ITEMS.getKey(item).toString();
 		else if (object instanceof Block block)
 			return ForgeRegistries.BLOCKS.getKey(block).toString();
 		else if (object instanceof Enchantment enchant)
 			return ForgeRegistries.ENCHANTMENTS.getKey(enchant).toString();
-		else if (object == null) return "null";
 		else if (object instanceof Collection<?> list) {
 			StringBuilder string = new StringBuilder("[");
 			var i = 0;

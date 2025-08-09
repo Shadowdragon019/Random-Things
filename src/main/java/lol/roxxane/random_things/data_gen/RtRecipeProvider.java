@@ -35,9 +35,7 @@ public class RtRecipeProvider extends RecipeProvider {
 	public RtRecipeProvider(PackOutput output) {
 		super(output);
 	}
-
 	Consumer<FinishedRecipe> writer;
-
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@Override
 	protected void buildRecipes(@NotNull Consumer<FinishedRecipe> writer) {
@@ -46,35 +44,31 @@ public class RtRecipeProvider extends RecipeProvider {
 			smelt(ore);
 			blast(ore);
 		}
-
 		for (var tag : List.of(ItemTags.PLANKS, ItemTags.WOODEN_STAIRS, ItemTags.WOODEN_SLABS, ItemTags.WOODEN_DOORS,
 			ItemTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_BUTTONS, ItemTags.SAPLINGS)
 		)
-			new TransmutationRecipe(tag).save(writer);
-
-		for (var recipe : List.of(
-			new TransmutationRecipe("wooden_fences").tags(Tags.Items.FENCES_WOODEN),
-			new TransmutationRecipe("wooden_fence_gates").tags(Tags.Items.FENCE_GATES_WOODEN),
-			new TransmutationRecipe("iron_gold_nuggets")
-				.input_amount(2).items(Items.IRON_NUGGET, Items.GOLD_NUGGET),
-			new TransmutationRecipe("iron_gold_ingots").input_amount(2).items(Items.IRON_INGOT, Items.GOLD_INGOT),
-			new TransmutationRecipe("iron_gold_blocks").input_amount(2).items(Items.IRON_BLOCK, Items.GOLD_BLOCK),
-			new TransmutationRecipe("diamond_emerald").input_amount(8).items(Items.DIAMOND, Items.EMERALD),
-			new TransmutationRecipe("diamond_emerald_blocks")
-				.input_amount(8).items(Items.DIAMOND_BLOCK, Items.EMERALD_BLOCK),
-			new TransmutationRecipe("redstone_lapis").input_amount(2).items(Items.REDSTONE, Items.LAPIS_LAZULI),
-			new TransmutationRecipe("redstone_lapis_blocks")
-				.input_amount(2).items(Items.REDSTONE_BLOCK, Items.LAPIS_BLOCK),
-			new TransmutationRecipe("barked_log").tags(RtItemTags.BARKED_LOGS),
-			new TransmutationRecipe("stripped_logs").tags(RtItemTags.STRIPPED_LOGS),
-			new TransmutationRecipe("barked_woods").tags(RtItemTags.BARKED_WOODS),
-			new TransmutationRecipe("stripped_woods").tags(RtItemTags.STRIPPED_WOODS)
-		)) {
-			recipe.save(writer);
+			TransmutationRecipe.builder(Rt.id("transmutation/" + tag.location().getPath())).tags(tag)
+				.save(writer);
+		for (var entry : Map.<String, Consumer<TransmutationRecipe.Builder>>ofEntries(
+			entry("wooden_fences", b -> b.tags(Tags.Items.FENCES_WOODEN)),
+			entry("wooden_fence_gates", b -> b.tags(Tags.Items.FENCE_GATES_WOODEN)),
+			entry("iron_gold_nuggets", b -> b.input_amount(2).items(Items.IRON_NUGGET, Items.GOLD_NUGGET)),
+			entry("iron_gold_ingots", b -> b.input_amount(2).items(Items.IRON_INGOT, Items.GOLD_INGOT)),
+			entry("iron_gold_blocks", b -> b.input_amount(2).items(Items.IRON_BLOCK, Items.GOLD_BLOCK)),
+			entry("diamond_emerald", b -> b.input_amount(8).items(Items.DIAMOND, Items.EMERALD)),
+			entry("diamond_emerald_blocks", b -> b.input_amount(8).items(Items.DIAMOND_BLOCK, Items.EMERALD_BLOCK)),
+			entry("redstone_lapis", b -> b.input_amount(2).items(Items.REDSTONE, Items.LAPIS_LAZULI)),
+			entry("redstone_lapis_blocks", b -> b.input_amount(2).items(Items.REDSTONE_BLOCK, Items.LAPIS_BLOCK)),
+			entry("barked_log", b -> b.tags(RtItemTags.BARKED_LOGS)),
+			entry("stripped_logs", b -> b.tags(RtItemTags.STRIPPED_LOGS)),
+			entry("barked_woods", b -> b.tags(RtItemTags.BARKED_WOODS)),
+			entry("stripped_woods", b -> b.tags(RtItemTags.STRIPPED_WOODS))
+		).entrySet()) {
+			var builder = TransmutationRecipe.builder(Rt.id("transmutation/" + entry.getKey()));
+			entry.getValue().accept(builder);
+			builder.save(writer);
 		}
-
 		new EnchantTransmutationRecipe(Rt.id("transmutation/enchants")).save(writer);
-
 		for (var entry : Map.<Enchantment, Map<Object, Integer>>ofEntries(
 			entry(Enchantments.ALL_DAMAGE_PROTECTION, Map.of(Tags.Items.INGOTS_IRON, 8)),
 			entry(Enchantments.FIRE_PROTECTION,
@@ -142,13 +136,11 @@ public class RtRecipeProvider extends RecipeProvider {
 					i++;
 				}
 			}
-
 			new EnchantCraftingRecipe(Rt.id("enchant_crafting/" + get_id(entry.getKey()).getPath()),
 				entry.getKey(), 1, ingredients)
 				.save(writer);
 		}
 	}
-
 	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer,
 		int cook_time)
 	{

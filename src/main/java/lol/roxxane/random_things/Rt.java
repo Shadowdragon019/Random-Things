@@ -23,8 +23,6 @@ import static lol.roxxane.random_things.util.StringUtils.stringify;
 // effect give Dev minecraft:night_vision infinite 255 true
 // What if crumbly stone blob had a lava blob in them?
 
-// TODO: Transmute enchants (so make a custom JEI category hehehhe)
-// TODO: JEI category for enchant crafting~
 @SuppressWarnings("unused")
 @Mod(Rt.ID)
 public class Rt {
@@ -51,6 +49,7 @@ public class Rt {
 		LOGGER.info(string_builder.toString());
 	}
 	// Apparently this is because performance. This will not decimate performance lmao.
+	// (I do wanna switch to the info(String format, Object... arguments) call tho)
 	@SuppressWarnings("StringConcatenationArgumentToLogCall")
 	public static void log_formated(String string, Object... objects) {
 		LOGGER.info((string + "%n").formatted(
