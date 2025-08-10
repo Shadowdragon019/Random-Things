@@ -55,7 +55,9 @@ public class EnchantCraftingRecipe extends JeiOutputCraftingRecipe {
 				enchantable_items.put(_enchant, new ArrayList<>());
 			for (var item : ForgeRegistries.ITEMS.getValues())
 				for (var _enchant : ForgeRegistries.ENCHANTMENTS.getValues())
-					if (_enchant.canEnchant(item.getDefaultInstance()))
+					if (_enchant.canEnchant(item.getDefaultInstance()) ||
+						((item == Items.BOOK || item == Items.ENCHANTED_BOOK) && _enchant.isAllowedOnBooks())
+					)
 						enchantable_items.get(_enchant).add(item.getDefaultInstance());
 		}
 		return enchantable_items.get(enchant);
@@ -118,11 +120,13 @@ public class EnchantCraftingRecipe extends JeiOutputCraftingRecipe {
 	@Override
 	public List<ItemStack> jei_output() {
 		if (jei_outputs == null) {
-			jei_outputs = enchantable_items().stream().map(stack -> {
-				var new_stack = stack.copy();
-				new_stack.enchant(enchant, level);
-				return new_stack;
-			}).toList();
+			jei_outputs = enchantable_items().stream()
+				.filter(stack -> !stack.is(Items.BOOK))
+				.map(stack -> {
+					var new_stack = stack.copy();
+					new_stack.enchant(enchant, level);
+					return new_stack;
+				}).toList();
 		}
 		return jei_outputs;
 	}

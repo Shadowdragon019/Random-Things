@@ -67,7 +67,6 @@ public class TransmutationRecipe extends JeiOutputCraftingRecipe {
 		}
 		return transmute_items;
 	}
-	// Inited late to make sure the required tags exist
 	public List<ItemStack> transmute_stacks() {
 		if (transmute_stacks == null)
 			transmute_stacks = transmute_items().stream().map(Item::getDefaultInstance).toList();
