@@ -18,10 +18,10 @@ import java.util.Map;
 
 import static java.lang.Math.min;
 
-public class EnchantTransmutationsManager extends SimpleJsonResourceReloadListener {
+public class EnchantTransmutationManager extends SimpleJsonResourceReloadListener {
 	private static final Gson GSON = new GsonBuilder().create();
 	private static Map<ComparablePair<ComparableEnchant, ComparableEnchant>, Integer> transmutations = Map.of();
-	public EnchantTransmutationsManager() {
+	public EnchantTransmutationManager() {
 		super(GSON, "enchant_transmutations");
 	}
 	@Override
@@ -38,7 +38,7 @@ public class EnchantTransmutationsManager extends SimpleJsonResourceReloadListen
 					ComparableEnchant.of(enchant_output)), cost);
 			}
 		});
-		EnchantTransmutationsManager.transmutations = Map.copyOf(transmutations);
+		EnchantTransmutationManager.transmutations = Map.copyOf(transmutations);
 	}
 	public static Map<ComparablePair<ComparableEnchant, ComparableEnchant>, Integer> transmutations() {
 		return transmutations;

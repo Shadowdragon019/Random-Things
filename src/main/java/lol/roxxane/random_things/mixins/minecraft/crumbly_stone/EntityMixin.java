@@ -1,6 +1,6 @@
 package lol.roxxane.random_things.mixins.minecraft.crumbly_stone;
 
-import lol.roxxane.random_things.CrumblyStone;
+import lol.roxxane.random_things.util.CrumblyStone;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;

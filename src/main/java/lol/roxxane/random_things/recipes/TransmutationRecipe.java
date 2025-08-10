@@ -15,6 +15,7 @@ import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
@@ -27,7 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class TransmutationRecipe extends JeiOutputCraftingRecipe {
+public class TransmutationRecipe extends CustomRecipe implements JeiOutputOverride {
 	public final int input_amount;
 	public final int output_amount;
 	public final List<Item> items;
@@ -71,6 +72,10 @@ public class TransmutationRecipe extends JeiOutputCraftingRecipe {
 		if (transmute_stacks == null)
 			transmute_stacks = transmute_items().stream().map(Item::getDefaultInstance).toList();
 		return transmute_stacks;
+	}
+	@Override
+	public boolean shapeless() {
+		return true;
 	}
 	@Override
 	public boolean matches(@NotNull CraftingContainer container, @NotNull Level $) {

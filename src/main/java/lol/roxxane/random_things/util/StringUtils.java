@@ -52,6 +52,9 @@ public class StringUtils {
 	public static String underscore(Enchantment enchant) {
 		return underscore(ForgeRegistries.ENCHANTMENTS, enchant);
 	}
+	public static String underscore(ComparableEnchant enchant) {
+		return underscore(ForgeRegistries.ENCHANTMENTS, enchant.enchant);
+	}
 
 	@SuppressWarnings("DataFlowIssue")
 	public static String stringify(Object object) {

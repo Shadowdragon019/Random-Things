@@ -22,7 +22,6 @@ import static lol.roxxane.random_things.util.StringUtils.stringify;
 // execute as @a at @a run fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 // effect give Dev minecraft:night_vision infinite 255 true
 // What if crumbly stone blob had a lava blob in them?
-// TODO: Add enchant transmutation recipes to JEI <---
 // TODO: Add enchant transmutation recipes
 // TODO: Fix transmutations passing when it shouldn't (put in a p-stone & any invalid item & it passes anyways)
 @SuppressWarnings("unused")

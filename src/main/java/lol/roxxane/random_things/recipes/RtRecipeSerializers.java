@@ -12,12 +12,10 @@ public class RtRecipeSerializers {
 		register("enchant_transmutation", new EnchantTransmutationRecipe.Serializer());
 	public static EnchantCraftingRecipe.Serializer ENCHANT_CRAFTING =
 		register("enchant_crafting", new EnchantCraftingRecipe.Serializer());
-
 	@SuppressWarnings("unchecked")
-	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String key, S serializer) {
+	private static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String key, S serializer) {
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Rt.id(key), serializer);
 		return (S) ForgeRegistries.RECIPE_SERIALIZERS.getValue(Rt.id(key));
 	}
-
 	public static void register() {}
 }

@@ -1,7 +1,7 @@
 package lol.roxxane.random_things.mixins.minecraft.crumbly_stone;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import lol.roxxane.random_things.CrumblyStone;
+import lol.roxxane.random_things.util.CrumblyStone;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;

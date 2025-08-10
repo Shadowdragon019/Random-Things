@@ -1,4 +1,4 @@
-package lol.roxxane.random_things;
+package lol.roxxane.random_things.util;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -37,26 +37,21 @@ public class CrumblyStone {
 		new BlockPos(0, -1, -1),
 		new BlockPos(0, -1, 1)
 	);
-
 	public static void gather_crumble(Level level, BlockPos pos, int iteration, Set<BlockPos> poses) {
 		if (iteration >= CRUMBLY_STONE_MAX_CRUMBLE_SIZE.get())
 			return;
-
 		for (var offset : SHATTER_POSITIONS) {
 			var collapse_pos = pos.offset(offset);
 			var state = level.getBlockState(collapse_pos);
-
 			if (CRUMBLY_STONE_CRUMBLE_SPREAD_CHANCE.get() >= level.random.nextFloat() &&
 				(state.is(CRUMBLY_STONES) || state.is(CRUMBLE_DESTROYS))
 			) {
 				poses.add(collapse_pos);
-
 				if (state.is(CRUMBLY_STONES))
 					gather_crumble(level, collapse_pos, iteration + 1, poses);
 			}
 		}
 	}
-
 	public static void try_crumble(Level level, BlockPos pos, @Nullable Entity entity) {
 		if (level.isClientSide || entity instanceof ItemEntity)
 			return;
@@ -64,14 +59,11 @@ public class CrumblyStone {
 			return;
 		if (!level.getBlockState(pos).is(CRUMBLY_STONES))
 			return;
-
 		var poses = new HashSet<BlockPos>();
 		poses.add(pos);
 		gather_crumble(level, pos, 1, poses);
-
 		crumble(level, poses);
 	}
-
 	public static void crumble(Level level, Set<BlockPos> poses) {
 		for (var break_pos : poses)
 			level.destroyBlock(break_pos, true);

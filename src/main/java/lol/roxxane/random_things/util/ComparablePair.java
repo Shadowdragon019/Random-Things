@@ -6,8 +6,8 @@ import static lol.roxxane.random_things.util.StringUtils.stringify;
 public class ComparablePair<A extends Comparable<A>, B extends Comparable<B>> implements
 	Comparable<ComparablePair<A, B>>
 {
-	public A a;
-	public B b;
+	public final A a;
+	public final B b;
 	public ComparablePair(A a, B b) {
 		this.a = a;
 		this.b = b;

@@ -13,16 +13,15 @@ import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +29,7 @@ import java.util.function.Consumer;
 
 import static lol.roxxane.random_things.util.EnchantUtils.get_enchant;
 
-public class EnchantCraftingRecipe extends JeiOutputCraftingRecipe {
-	private static Map<Enchantment, List<ItemStack>> enchantable_items = null;
+public class EnchantCraftingRecipe extends CustomRecipe implements JeiOutputOverride {
 	private List<ItemStack> jei_outputs = null;
 	public final NonNullList<Ingredient> ingredients;
 	public final Enchantment enchant;
@@ -47,20 +45,9 @@ public class EnchantCraftingRecipe extends JeiOutputCraftingRecipe {
 	public void save(Consumer<FinishedRecipe> writer) {
 		writer.accept(new Finished(getId(), this));
 	}
-	// This probably causes a lag spike, hope it isn't TOO massive!
-	public List<ItemStack> enchantable_items() {
-		if (enchantable_items == null) {
-			enchantable_items = new HashMap<>();
-			for (var _enchant : ForgeRegistries.ENCHANTMENTS.getValues())
-				enchantable_items.put(_enchant, new ArrayList<>());
-			for (var item : ForgeRegistries.ITEMS.getValues())
-				for (var _enchant : ForgeRegistries.ENCHANTMENTS.getValues())
-					if (_enchant.canEnchant(item.getDefaultInstance()) ||
-						((item == Items.BOOK || item == Items.ENCHANTED_BOOK) && _enchant.isAllowedOnBooks())
-					)
-						enchantable_items.get(_enchant).add(item.getDefaultInstance());
-		}
-		return enchantable_items.get(enchant);
+	@Override
+	public boolean shapeless() {
+		return false;
 	}
 	@Override
 	public boolean matches(@NotNull CraftingContainer container, @NotNull Level $) {
@@ -120,7 +107,7 @@ public class EnchantCraftingRecipe extends JeiOutputCraftingRecipe {
 	@Override
 	public List<ItemStack> jei_output() {
 		if (jei_outputs == null) {
-			jei_outputs = enchantable_items().stream()
+			jei_outputs = EnchantUtils.enchantable_items(enchant).stream()
 				.filter(stack -> !stack.is(Items.BOOK))
 				.map(stack -> {
 					var new_stack = stack.copy();
@@ -133,7 +120,7 @@ public class EnchantCraftingRecipe extends JeiOutputCraftingRecipe {
 	@Override
 	public @NotNull NonNullList<Ingredient> getIngredients() {
 		var ingredients = NonNullList.<Ingredient>create();
-		ingredients.add(Ingredient.of(enchantable_items().stream()));
+		ingredients.add(Ingredient.of(EnchantUtils.enchantable_items(enchant).stream()));
 		ingredients.addAll(this.ingredients);
 		return ingredients;
 	}
