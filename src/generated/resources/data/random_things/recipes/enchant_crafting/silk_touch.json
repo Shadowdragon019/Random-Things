@@ -3,28 +3,10 @@
   "enchant": "minecraft:silk_touch",
   "ingredients": [
     {
-      "item": "minecraft:golden_pickaxe"
+      "tag": "forge:storage_blocks/gold"
     },
     {
-      "item": "minecraft:golden_pickaxe"
-    },
-    {
-      "item": "minecraft:golden_pickaxe"
-    },
-    {
-      "item": "minecraft:golden_pickaxe"
-    },
-    {
-      "item": "minecraft:golden_pickaxe"
-    },
-    {
-      "item": "minecraft:golden_pickaxe"
-    },
-    {
-      "item": "minecraft:golden_pickaxe"
-    },
-    {
-      "item": "minecraft:golden_pickaxe"
+      "tag": "forge:storage_blocks/gold"
     }
   ]
 }

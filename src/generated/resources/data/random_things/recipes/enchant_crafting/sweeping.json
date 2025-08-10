@@ -3,28 +3,22 @@
   "enchant": "minecraft:sweeping",
   "ingredients": [
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:ingots/iron"
     },
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:ingots/iron"
     },
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:ingots/iron"
     },
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:ingots/iron"
     },
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:ingots/iron"
     },
     {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:sugar"
+      "tag": "forge:ingots/iron"
     }
   ]
 }

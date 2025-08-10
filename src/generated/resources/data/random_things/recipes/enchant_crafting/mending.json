@@ -3,28 +3,16 @@
   "enchant": "minecraft:mending",
   "ingredients": [
     {
-      "tag": "forge:gems/diamond"
+      "tag": "forge:ingots/gold"
     },
     {
-      "tag": "forge:gems/diamond"
+      "tag": "forge:ingots/gold"
     },
     {
-      "tag": "forge:gems/diamond"
+      "tag": "forge:ingots/gold"
     },
     {
-      "tag": "forge:gems/diamond"
-    },
-    {
-      "tag": "forge:gems/diamond"
-    },
-    {
-      "tag": "forge:gems/diamond"
-    },
-    {
-      "tag": "forge:gems/diamond"
-    },
-    {
-      "tag": "forge:gems/diamond"
+      "tag": "forge:ingots/gold"
     }
   ]
 }

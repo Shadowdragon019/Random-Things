@@ -3,7 +3,7 @@
   "enchant": "minecraft:unbreaking",
   "ingredients": [
     {
-      "tag": "forge:gems/diamond"
+      "tag": "forge:ingots/iron"
     }
   ]
 }

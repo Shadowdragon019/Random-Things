@@ -2,74 +2,6 @@
   "type": "random_things:enchant_crafting",
   "enchant": "minecraft:aqua_affinity",
   "ingredients": [
-    [
-      {
-        "item": "minecraft:tube_coral_block"
-      },
-      {
-        "item": "minecraft:brain_coral_block"
-      },
-      {
-        "item": "minecraft:bubble_coral_block"
-      },
-      {
-        "item": "minecraft:fire_coral_block"
-      },
-      {
-        "item": "minecraft:horn_coral_block"
-      }
-    ],
-    [
-      {
-        "item": "minecraft:tube_coral_block"
-      },
-      {
-        "item": "minecraft:brain_coral_block"
-      },
-      {
-        "item": "minecraft:bubble_coral_block"
-      },
-      {
-        "item": "minecraft:fire_coral_block"
-      },
-      {
-        "item": "minecraft:horn_coral_block"
-      }
-    ],
-    [
-      {
-        "item": "minecraft:tube_coral_block"
-      },
-      {
-        "item": "minecraft:brain_coral_block"
-      },
-      {
-        "item": "minecraft:bubble_coral_block"
-      },
-      {
-        "item": "minecraft:fire_coral_block"
-      },
-      {
-        "item": "minecraft:horn_coral_block"
-      }
-    ],
-    [
-      {
-        "item": "minecraft:tube_coral_block"
-      },
-      {
-        "item": "minecraft:brain_coral_block"
-      },
-      {
-        "item": "minecraft:bubble_coral_block"
-      },
-      {
-        "item": "minecraft:fire_coral_block"
-      },
-      {
-        "item": "minecraft:horn_coral_block"
-      }
-    ],
     {
       "item": "minecraft:magma_block"
     },
@@ -81,6 +13,74 @@
     },
     {
       "item": "minecraft:magma_block"
-    }
+    },
+    [
+      {
+        "item": "minecraft:tube_coral_block"
+      },
+      {
+        "item": "minecraft:brain_coral_block"
+      },
+      {
+        "item": "minecraft:bubble_coral_block"
+      },
+      {
+        "item": "minecraft:fire_coral_block"
+      },
+      {
+        "item": "minecraft:horn_coral_block"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:tube_coral_block"
+      },
+      {
+        "item": "minecraft:brain_coral_block"
+      },
+      {
+        "item": "minecraft:bubble_coral_block"
+      },
+      {
+        "item": "minecraft:fire_coral_block"
+      },
+      {
+        "item": "minecraft:horn_coral_block"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:tube_coral_block"
+      },
+      {
+        "item": "minecraft:brain_coral_block"
+      },
+      {
+        "item": "minecraft:bubble_coral_block"
+      },
+      {
+        "item": "minecraft:fire_coral_block"
+      },
+      {
+        "item": "minecraft:horn_coral_block"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:tube_coral_block"
+      },
+      {
+        "item": "minecraft:brain_coral_block"
+      },
+      {
+        "item": "minecraft:bubble_coral_block"
+      },
+      {
+        "item": "minecraft:fire_coral_block"
+      },
+      {
+        "item": "minecraft:horn_coral_block"
+      }
+    ]
   ]
 }

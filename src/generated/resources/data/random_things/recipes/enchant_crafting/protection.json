@@ -3,28 +3,7 @@
   "enchant": "minecraft:protection",
   "ingredients": [
     {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
-    },
-    {
-      "tag": "forge:ingots/iron"
+      "tag": "forge:storage_blocks/iron"
     }
   ]
 }

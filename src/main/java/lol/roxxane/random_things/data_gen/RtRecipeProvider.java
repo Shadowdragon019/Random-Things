@@ -20,7 +20,6 @@ import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +29,8 @@ import java.util.function.Consumer;
 
 import static java.util.Map.entry;
 import static lol.roxxane.random_things.util.EnchantUtils.get_id;
+import static net.minecraft.world.item.enchantment.Enchantments.*;
+import static net.minecraftforge.common.Tags.Items.*;
 
 public class RtRecipeProvider extends RecipeProvider {
 	public RtRecipeProvider(PackOutput output) {
@@ -56,9 +57,11 @@ public class RtRecipeProvider extends RecipeProvider {
 			entry("iron_gold_ingots", b -> b.input_amount(2).items(Items.IRON_INGOT, Items.GOLD_INGOT)),
 			entry("iron_gold_blocks", b -> b.input_amount(2).items(Items.IRON_BLOCK, Items.GOLD_BLOCK)),
 			entry("diamond_emerald", b -> b.input_amount(8).items(Items.DIAMOND, Items.EMERALD)),
-			entry("diamond_emerald_blocks", b -> b.input_amount(8).items(Items.DIAMOND_BLOCK, Items.EMERALD_BLOCK)),
+			entry("diamond_emerald_blocks", b ->
+				b.input_amount(8).items(Items.DIAMOND_BLOCK, Items.EMERALD_BLOCK)),
 			entry("redstone_lapis", b -> b.input_amount(2).items(Items.REDSTONE, Items.LAPIS_LAZULI)),
-			entry("redstone_lapis_blocks", b -> b.input_amount(2).items(Items.REDSTONE_BLOCK, Items.LAPIS_BLOCK)),
+			entry("redstone_lapis_blocks", b ->
+				b.input_amount(2).items(Items.REDSTONE_BLOCK, Items.LAPIS_BLOCK)),
 			entry("barked_log", b -> b.tags(RtItemTags.BARKED_LOGS)),
 			entry("stripped_logs", b -> b.tags(RtItemTags.STRIPPED_LOGS)),
 			entry("barked_woods", b -> b.tags(RtItemTags.BARKED_WOODS)),
@@ -70,51 +73,48 @@ public class RtRecipeProvider extends RecipeProvider {
 		}
 		new EnchantTransmutationRecipe(Rt.id("transmutation/enchants")).save(writer);
 		for (var entry : Map.<Enchantment, Map<Object, Integer>>ofEntries(
-			entry(Enchantments.ALL_DAMAGE_PROTECTION, Map.of(Tags.Items.INGOTS_IRON, 8)),
-			entry(Enchantments.FIRE_PROTECTION,
-				Map.of(Items.BLAZE_POWDER, 4, Tags.Items.INGOTS_IRON, 4)),
-			entry(Enchantments.FALL_PROTECTION, Map.of(Tags.Items.FEATHERS, 8)),
-			entry(Enchantments.BLAST_PROTECTION, Map.of(Tags.Items.OBSIDIAN, 8)),
-			entry(Enchantments.PROJECTILE_PROTECTION,
-				Map.of(Tags.Items.INGOTS_IRON, 4, Items.BOW, 4)),
-			entry(Enchantments.RESPIRATION, Map.of(Items.SPONGE, 4)),
-			entry(Enchantments.AQUA_AFFINITY, Map.of(Items.MAGMA_BLOCK, 4,
+			entry(ALL_DAMAGE_PROTECTION, Map.of(Tags.Items.STORAGE_BLOCKS_IRON, 1)),
+			entry(FIRE_PROTECTION, Map.of(Items.BLAZE_POWDER, 4, INGOTS_IRON, 4)),
+			entry(FALL_PROTECTION, Map.of(Tags.Items.FEATHERS, 8)),
+			entry(BLAST_PROTECTION, Map.of(Tags.Items.OBSIDIAN, 8)),
+			entry(PROJECTILE_PROTECTION, Map.of(INGOTS_IRON, 4, Items.BOW, 4)),
+			entry(RESPIRATION, Map.of(Items.SPONGE, 4)),
+			entry(AQUA_AFFINITY, Map.of(Items.MAGMA_BLOCK, 4,
 				List.of(Items.TUBE_CORAL_BLOCK, Items.BRAIN_CORAL_BLOCK, Items.BUBBLE_CORAL_BLOCK,
 					Items.FIRE_CORAL_BLOCK, Items.HORN_CORAL_BLOCK), 4)),
-			entry(Enchantments.THORNS, Map.of(Items.CACTUS, 8)),
-			entry(Enchantments.DEPTH_STRIDER,
+			entry(THORNS, Map.of(Items.CACTUS, 8)),
+			entry(DEPTH_STRIDER,
 				Map.of(List.of(Tags.Items.DUSTS_PRISMARINE, Tags.Items.GEMS_PRISMARINE), 8)),
-			entry(Enchantments.FROST_WALKER, Map.of(Items.BLUE_ICE, 8)),
-			entry(Enchantments.BINDING_CURSE, Map.of(Items.CHAIN, 8)),
-			entry(Enchantments.SOUL_SPEED, Map.of(List.of(Items.SOUL_SAND, Items.SOUL_SOIL), 8)),
-			entry(Enchantments.SWIFT_SNEAK, Map.of(Items.ECHO_SHARD, 1)),
-			entry(Enchantments.SHARPNESS, Map.of(Items.IRON_SWORD, 8)),
-			entry(Enchantments.SMITE, Map.of(Items.GOLDEN_SWORD, 8)),
-			entry(Enchantments.BANE_OF_ARTHROPODS, Map.of(Items.SPIDER_EYE, 8)),
-			entry(Enchantments.KNOCKBACK, Map.of(Items.SHIELD, 8)),
-			entry(Enchantments.FIRE_ASPECT, Map.of(Items.BLAZE_POWDER, 8)),
-			entry(Enchantments.MOB_LOOTING, Map.of(Items.GOLD_INGOT, 8)),
-			entry(Enchantments.SWEEPING_EDGE, Map.of(Items.SUGAR, 8)),
-			entry(Enchantments.BLOCK_EFFICIENCY, Map.of(Items.DIAMOND_PICKAXE, 1)),
-			entry(Enchantments.SILK_TOUCH, Map.of(Items.GOLDEN_PICKAXE, 8)),
-			entry(Enchantments.UNBREAKING, Map.of(Tags.Items.GEMS_DIAMOND, 1)),
-			entry(Enchantments.BLOCK_FORTUNE, Map.of(Items.DIAMOND_PICKAXE, 2)),
-			entry(Enchantments.POWER_ARROWS,
-				Map.of(Tags.Items.INGOTS_IRON, 4, ItemTags.ARROWS, 4)),
-			entry(Enchantments.PUNCH_ARROWS, Map.of(Items.SHIELD, 4, ItemTags.ARROWS, 4)),
-			entry(Enchantments.FLAMING_ARROWS, Map.of(Items.BLAZE_POWDER, 4, ItemTags.ARROWS, 4)),
-			entry(Enchantments.INFINITY_ARROWS, Map.of(Items.SPECTRAL_ARROW, 8)),
-			entry(Enchantments.FISHING_LUCK, Map.of(Items.GLOWSTONE_DUST, 8)),
-			entry(Enchantments.FISHING_SPEED, Map.of(Items.SUGAR, 8)),
-			entry(Enchantments.LOYALTY, Map.of(Items.GLOWSTONE, 8)),
-			entry(Enchantments.IMPALING, Map.of(Items.IRON_INGOT, 8)),
-			entry(Enchantments.RIPTIDE, Map.of(Items.HEART_OF_THE_SEA, 1)),
-			entry(Enchantments.CHANNELING, Map.of(Items.LIGHTNING_ROD, 8)),
-			entry(Enchantments.MULTISHOT, Map.of(ItemTags.ARROWS, 8)),
-			entry(Enchantments.QUICK_CHARGE, Map.of(Tags.Items.TOOLS_CROSSBOWS, 8)),
-			entry(Enchantments.PIERCING, Map.of(Tags.Items.INGOTS_IRON, 8)),
-			entry(Enchantments.MENDING, Map.of(Tags.Items.GEMS_DIAMOND, 8)),
-			entry(Enchantments.VANISHING_CURSE, Map.of(Tags.Items.GLASS, 8))
+			entry(FROST_WALKER, Map.of(Items.BLUE_ICE, 8)),
+			entry(BINDING_CURSE, Map.of(Items.CHAIN, 8)),
+			entry(SOUL_SPEED, Map.of(List.of(Items.SOUL_SAND, Items.SOUL_SOIL), 8)),
+			entry(SWIFT_SNEAK, Map.of(Items.ECHO_SHARD, 1)),
+			entry(SHARPNESS, Map.of(INGOTS_IRON, 4)),
+			entry(SMITE, Map.of(INGOTS_GOLD, 8)),
+			entry(BANE_OF_ARTHROPODS, Map.of(Items.SPIDER_EYE, 8)),
+			entry(KNOCKBACK, Map.of(Items.SHIELD, 8)),
+			entry(FIRE_ASPECT, Map.of(Items.BLAZE_POWDER, 8)),
+			entry(MOB_LOOTING, Map.of(Tags.Items.STORAGE_BLOCKS_GOLD, 1)),
+			entry(SWEEPING_EDGE, Map.of(INGOTS_IRON, 6)),
+			entry(BLOCK_EFFICIENCY, Map.of(GEMS_DIAMOND, 8)),
+			entry(SILK_TOUCH, Map.of(Tags.Items.STORAGE_BLOCKS_GOLD, 2)),
+			entry(UNBREAKING, Map.of(INGOTS_IRON, 1)),
+			entry(BLOCK_FORTUNE, Map.of(Tags.Items.STORAGE_BLOCKS_DIAMOND, 1)),
+			entry(POWER_ARROWS, Map.of(INGOTS_IRON, 4, ItemTags.ARROWS, 4)),
+			entry(PUNCH_ARROWS, Map.of(Items.SHIELD, 4, ItemTags.ARROWS, 4)),
+			entry(FLAMING_ARROWS, Map.of(Items.BLAZE_POWDER, 4, ItemTags.ARROWS, 4)),
+			entry(INFINITY_ARROWS, Map.of(Items.SPECTRAL_ARROW, 8)),
+			entry(FISHING_LUCK, Map.of(INGOTS_GOLD, 2)),
+			entry(FISHING_SPEED, Map.of(Items.SUGAR, 4)),
+			entry(LOYALTY, Map.of(Items.GLOWSTONE, 8)),
+			entry(IMPALING, Map.of(INGOTS_IRON, 3)),
+			entry(RIPTIDE, Map.of(Items.HEART_OF_THE_SEA, 1)),
+			entry(CHANNELING, Map.of(Items.LIGHTNING_ROD, 8)),
+			entry(MULTISHOT, Map.of(ItemTags.ARROWS, 8)),
+			entry(QUICK_CHARGE, Map.of(Tags.Items.TOOLS_CROSSBOWS, 8)),
+			entry(PIERCING, Map.of(INGOTS_IRON, 5)),
+			entry(MENDING, Map.of(INGOTS_GOLD, 4)),
+			entry(VANISHING_CURSE, Map.of(Tags.Items.GLASS, 8))
 		).entrySet()) {
 			var ingredients = NonNullList.<Ingredient>create();
 			for (var entry1 : entry.getValue().entrySet()) {

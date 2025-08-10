@@ -3,28 +3,28 @@
   "enchant": "minecraft:smite",
   "ingredients": [
     {
-      "item": "minecraft:golden_sword"
+      "tag": "forge:ingots/gold"
     },
     {
-      "item": "minecraft:golden_sword"
+      "tag": "forge:ingots/gold"
     },
     {
-      "item": "minecraft:golden_sword"
+      "tag": "forge:ingots/gold"
     },
     {
-      "item": "minecraft:golden_sword"
+      "tag": "forge:ingots/gold"
     },
     {
-      "item": "minecraft:golden_sword"
+      "tag": "forge:ingots/gold"
     },
     {
-      "item": "minecraft:golden_sword"
+      "tag": "forge:ingots/gold"
     },
     {
-      "item": "minecraft:golden_sword"
+      "tag": "forge:ingots/gold"
     },
     {
-      "item": "minecraft:golden_sword"
+      "tag": "forge:ingots/gold"
     }
   ]
 }

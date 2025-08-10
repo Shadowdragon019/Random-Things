@@ -3,10 +3,7 @@
   "enchant": "minecraft:fortune",
   "ingredients": [
     {
-      "item": "minecraft:diamond_pickaxe"
-    },
-    {
-      "item": "minecraft:diamond_pickaxe"
+      "tag": "forge:storage_blocks/diamond"
     }
   ]
 }
