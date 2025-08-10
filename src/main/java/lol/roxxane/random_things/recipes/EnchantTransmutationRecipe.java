@@ -1,7 +1,7 @@
 package lol.roxxane.random_things.recipes;
 
 import com.google.gson.JsonObject;
-import lol.roxxane.random_things.data.EnchantTransmutationManager;
+import lol.roxxane.random_things.data_gen.EnchantTransmutationManager;
 import lol.roxxane.random_things.items.RtItems;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
-import static lol.roxxane.random_things.data.EnchantTransmutationManager.transmute;
+import static lol.roxxane.random_things.data_gen.EnchantTransmutationManager.transmute;
 import static net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantments;
 import static net.minecraft.world.item.enchantment.EnchantmentHelper.setEnchantments;
 
@@ -34,7 +34,7 @@ public class EnchantTransmutationRecipe extends CustomRecipe {
 		for (var stack : container.getItems())
 			if (stack.is(RtItems.PHILOSOPHERS_STONE.get()))
 				stones++;
-			else if (EnchantTransmutationManager.can_transmute(getEnchantments(stack)))
+			else if (EnchantTransmutationManager.can_transmute(getEnchantments(stack), stack))
 				enchanteds++;
 		return stones == 1 && enchanteds == 1;
 	}

@@ -3,7 +3,7 @@ package lol.roxxane.random_things.events;
 import lol.roxxane.random_things.util.CrumblyStone;
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.config.RtClientConfig;
-import lol.roxxane.random_things.data.EnchantTransmutationManager;
+import lol.roxxane.random_things.data_gen.EnchantTransmutationManager;
 import lol.roxxane.random_things.tags.RtBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

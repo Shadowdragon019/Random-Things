@@ -1,4 +1,4 @@
-package lol.roxxane.random_things.data;
+package lol.roxxane.random_things.data_gen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,6 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static java.lang.Math.min;
+import static lol.roxxane.random_things.util.EnchantUtils.can_enchant;
 
 public class EnchantTransmutationManager extends SimpleJsonResourceReloadListener {
 	private static final Gson GSON = new GsonBuilder().create();
@@ -47,14 +49,15 @@ public class EnchantTransmutationManager extends SimpleJsonResourceReloadListene
 	//It caches the result if the item is the same (not the data like enchants)
 	//So I just have to invalidate it!
 	//I tried to fix it with no luck. Oh well, I'll ask for help later.
-	public static boolean can_transmute(Map<Enchantment, Integer> enchants) {
+	public static boolean can_transmute(Map<Enchantment, Integer> enchants, ItemStack stack) {
 		for (var transmutation : transmutations().entrySet()) {
-			var enchant_input = transmutation.getKey().a;
+			var input = transmutation.getKey().a;
+			var output = transmutation.getKey().b;
 			var cost = transmutation.getValue();
 			for (var entry : enchants.entrySet()) {
 				var enchant = entry.getKey();
 				var level = entry.getValue();
-				if (enchant_input.enchant == enchant && level >= cost)
+				if (input.enchant == enchant && level >= cost && can_enchant(output.enchant, stack))
 					return true;
 			}
 		}
