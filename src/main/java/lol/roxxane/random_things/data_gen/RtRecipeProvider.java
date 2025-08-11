@@ -72,6 +72,7 @@ public class RtRecipeProvider extends RecipeProvider {
 			builder.save(writer);
 		}
 		new EnchantTransmutationRecipe(Rt.id("transmutation/enchants")).save(writer);
+
 		for (var entry : Map.<Enchantment, Map<Object, Integer>>ofEntries(
 			entry(ALL_DAMAGE_PROTECTION, Map.of(Tags.Items.STORAGE_BLOCKS_IRON, 1)),
 			entry(FIRE_PROTECTION, Map.of(Items.BLAZE_POWDER, 4, INGOTS_IRON, 4)),

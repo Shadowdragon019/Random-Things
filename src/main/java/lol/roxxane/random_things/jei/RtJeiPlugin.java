@@ -44,10 +44,11 @@ public class RtJeiPlugin implements IModPlugin {
 			EnchantTransmutationManager.transmutations().entrySet().stream().map(entry -> {
 				var input = entry.getKey().a;
 				var output = entry.getKey().b;
-				var cost = entry.getValue();
+				var input_amount = entry.getValue().a;
+				var output_amount = entry.getValue().b;
 				return (CraftingRecipe) new IndividualEnchantTransmutationRecipe(
 					Rt.id(underscore(input) + "_to_" + underscore(output)),
-					input.enchant, output.enchant, cost);
+					input.enchant, output.enchant, input_amount, output_amount);
 			}).toList());
 	}
 }

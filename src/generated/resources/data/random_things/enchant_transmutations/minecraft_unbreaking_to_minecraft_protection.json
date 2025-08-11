@@ -1,5 +1,5 @@
 {
-  "cost": 2,
   "input": "minecraft:unbreaking",
+  "input_amount": 2,
   "output": "minecraft:protection"
 }

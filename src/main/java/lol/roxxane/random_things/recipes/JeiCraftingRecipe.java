@@ -34,7 +34,7 @@ public abstract class JeiCraftingRecipe extends CustomRecipe implements JeiOutpu
 		throw new NotImplementedException();
 	}
 	@Override
-	public boolean canCraftInDimensions(int pWidth, int pHeight) {
+	public boolean canCraftInDimensions(int $, int $1) {
 		throw new NotImplementedException();
 	}
 	@Override
