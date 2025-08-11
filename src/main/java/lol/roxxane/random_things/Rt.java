@@ -25,7 +25,6 @@ import static lol.roxxane.random_things.util.StringUtils.stringify;
 // TODO: Add output level amount for enchant transmutation <---
 // TODO: Refactor enchant crafting recipes based on enchant transmutation
 // TODO: Add enchant transmutation recipes
-// TODO: Fix transmutations passing when it shouldn't (put in a p-stone & any invalid item & it passes anyways)
 @SuppressWarnings("unused")
 @Mod(Rt.ID)
 public class Rt {

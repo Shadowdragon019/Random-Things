@@ -79,25 +79,22 @@ public class TransmutationRecipe extends CustomRecipe implements JeiOutputOverri
 	}
 	@Override
 	public boolean matches(@NotNull CraftingContainer container, @NotNull Level $) {
-		if (transmute_items().size() < 2)
-			return false;
-		var has_stone = false;
-		Item target = null;
+		if (!container.getItems().get(0).is(RtItems.PHILOSOPHERS_STONE.get())) return false;
 		var targets_found = 0;
-		for (var stack : container.getItems())
-			if (stack.is(RtItems.PHILOSOPHERS_STONE.get()))
-				if (has_stone)
-					return false;
-				else has_stone = true;
-			else if (target != null && stack.is(target))
-				targets_found++;
-			else if (transmute_items().contains(stack.getItem()))
-				if (target == null) {
-					target = stack.getItem();
+		Item target = null;
+		var first = true;
+		for (var stack : container.getItems()) {
+			if (!stack.isEmpty() && !first)
+				if (transmute_items().contains(stack.getItem())) {
+					if (target == null)
+						target = stack.getItem();
+					else if (!stack.is(target))
+						return false;
 					targets_found++;
-				} else return false;
-			else if (!stack.isEmpty()) return false;
-		return has_stone && targets_found % input_amount == 0;
+				}
+			first = false;
+		}
+		return targets_found % input_amount == 0 && targets_found > 0;
 	}
 	@Override
 	public @NotNull ItemStack assemble(@NotNull CraftingContainer container, @NotNull RegistryAccess $) {
@@ -132,7 +129,6 @@ public class TransmutationRecipe extends CustomRecipe implements JeiOutputOverri
 			ingredients.add(Ingredient.of(transmute_stacks().stream()));
 		return ingredients;
 	}
-
 	public static class Serializer implements RecipeSerializer<TransmutationRecipe> {
 		@Override
 		public @NotNull TransmutationRecipe fromJson(@NotNull ResourceLocation id, @NotNull JsonObject json) {
@@ -146,9 +142,7 @@ public class TransmutationRecipe extends CustomRecipe implements JeiOutputOverri
 				.build();
 		}
 		@Override
-		public @Nullable TransmutationRecipe fromNetwork(@NotNull ResourceLocation id,
-			@NotNull FriendlyByteBuf buffer)
-		{
+		public @Nullable TransmutationRecipe fromNetwork(@NotNull ResourceLocation id, @NotNull FriendlyByteBuf buffer) {
 			return new TransmutationRecipe.Builder(id)
 				.input_amount(buffer.readInt())
 				.output_amount(buffer.readInt())
@@ -256,8 +250,7 @@ public class TransmutationRecipe extends CustomRecipe implements JeiOutputOverri
 			return this;
 		}
 		public TransmutationRecipe build() {
-			return new TransmutationRecipe(id, input_amount, output_amount,
-				items, exclude_items, tags, exclude_tags);
+			return new TransmutationRecipe(id, input_amount, output_amount, items, exclude_items, tags, exclude_tags);
 		}
 		public void save(Consumer<FinishedRecipe> writer) {
 			build().save(writer);
