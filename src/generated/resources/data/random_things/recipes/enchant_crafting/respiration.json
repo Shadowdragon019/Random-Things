@@ -3,16 +3,28 @@
   "enchant": "minecraft:respiration",
   "ingredients": [
     {
-      "item": "minecraft:sponge"
+      "tag": "minecraft:fishes"
     },
     {
-      "item": "minecraft:sponge"
+      "tag": "minecraft:fishes"
     },
     {
-      "item": "minecraft:sponge"
+      "tag": "minecraft:fishes"
     },
     {
-      "item": "minecraft:sponge"
+      "tag": "minecraft:fishes"
+    },
+    {
+      "tag": "minecraft:fishes"
+    },
+    {
+      "tag": "minecraft:fishes"
+    },
+    {
+      "tag": "minecraft:fishes"
+    },
+    {
+      "tag": "minecraft:fishes"
     }
   ]
 }

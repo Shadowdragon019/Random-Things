@@ -3,7 +3,7 @@
   "enchant": "minecraft:riptide",
   "ingredients": [
     {
-      "item": "minecraft:heart_of_the_sea"
+      "item": "minecraft:nautilus_shell"
     }
   ]
 }

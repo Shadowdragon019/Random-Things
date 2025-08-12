@@ -1,9 +1,0 @@
-{
-  "type": "random_things:enchant_crafting",
-  "enchant": "minecraft:fortune",
-  "ingredients": [
-    {
-      "tag": "forge:storage_blocks/diamond"
-    }
-  ]
-}

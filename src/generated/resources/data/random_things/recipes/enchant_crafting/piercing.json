@@ -3,19 +3,28 @@
   "enchant": "minecraft:piercing",
   "ingredients": [
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:pointed_dripstone"
     },
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:pointed_dripstone"
     },
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:pointed_dripstone"
     },
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:pointed_dripstone"
     },
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:pointed_dripstone"
+    },
+    {
+      "item": "minecraft:pointed_dripstone"
+    },
+    {
+      "item": "minecraft:pointed_dripstone"
+    },
+    {
+      "item": "minecraft:pointed_dripstone"
     }
   ]
 }

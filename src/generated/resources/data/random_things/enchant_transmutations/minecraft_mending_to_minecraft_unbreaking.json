@@ -1,0 +1,5 @@
+{
+  "input": "minecraft:mending",
+  "output": "minecraft:unbreaking",
+  "output_amount": 3
+}

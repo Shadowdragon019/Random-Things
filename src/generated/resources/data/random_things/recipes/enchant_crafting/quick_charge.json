@@ -3,28 +3,28 @@
   "enchant": "minecraft:quick_charge",
   "ingredients": [
     {
-      "tag": "forge:tools/crossbows"
+      "item": "minecraft:sugar"
     },
     {
-      "tag": "forge:tools/crossbows"
+      "item": "minecraft:sugar"
     },
     {
-      "tag": "forge:tools/crossbows"
+      "item": "minecraft:sugar"
     },
     {
-      "tag": "forge:tools/crossbows"
+      "item": "minecraft:sugar"
     },
     {
-      "tag": "forge:tools/crossbows"
+      "item": "minecraft:sugar"
     },
     {
-      "tag": "forge:tools/crossbows"
+      "item": "minecraft:sugar"
     },
     {
-      "tag": "forge:tools/crossbows"
+      "item": "minecraft:sugar"
     },
     {
-      "tag": "forge:tools/crossbows"
+      "item": "minecraft:sugar"
     }
   ]
 }

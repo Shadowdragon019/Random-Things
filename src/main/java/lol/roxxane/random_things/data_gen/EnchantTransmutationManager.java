@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import lol.roxxane.random_things.util.ComparableEnchant;
 import lol.roxxane.random_things.util.ComparablePair;
 import lol.roxxane.random_things.util.Pair;
+import lol.roxxane.random_things.util.StackUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -17,9 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import static java.lang.Math.min;
-import static lol.roxxane.random_things.util.EnchantUtils.can_enchant;
 
 public class EnchantTransmutationManager extends SimpleJsonResourceReloadListener {
 	private static final Gson GSON = new GsonBuilder().create();
@@ -54,39 +52,36 @@ public class EnchantTransmutationManager extends SimpleJsonResourceReloadListene
 	//So I just have to invalidate it!
 	//I tried to fix it with no luck. Oh well, I'll ask for help later.
 	public static boolean can_transmute(Map<Enchantment, Integer> enchants, ItemStack stack) {
-		for (var transmutation : transmutations().entrySet()) {
-			var input = transmutation.getKey().a;
-			var output = transmutation.getKey().b;
-			var input_amount = transmutation.getValue().a;
-			var output_amount = transmutation.getValue().b; //TODO: Check
-			for (var entry : enchants.entrySet()) {
-				var enchant = entry.getKey();
-				var level = entry.getValue();
-				if (input.enchant == enchant && level >= input_amount && can_enchant(output.enchant, stack)) {
-					return true;
-				}
-			}
-		}
-		return false;
+		var new_enchants = transmute(enchants);
+		if (enchants.equals(new_enchants))
+			return false;
+		var unenchanted_stack = StackUtil.replace_enchants(Map.of(), stack.copy());
+		return new_enchants.entrySet().stream().allMatch(entry ->
+			StackUtil.can_enchant_ignoring_level(new_enchants, unenchanted_stack));
 	}
 	public static Map<Enchantment, Integer> transmute(Map<Enchantment, Integer> enchants) {
 		var result_enchants = new LinkedHashMap<>(enchants);
 		for (var pair : transmutations().keySet().stream().sorted().toList()) {
-			var input_enchant = pair.a;
-			var output_enchant = pair.b;
-			var input_amount = transmutations().get(pair).a;
-			var output_amount = transmutations().get(pair).b; //TODO: Do stuff with
+			final var input_enchant = pair.a;
+			final var output_enchant = pair.b;
+			final var cost_per_transmuted_level = transmutations().get(pair).a;
+			final var levels_per_transmuted_level = transmutations().get(pair).b;
 			for (var enchant : enchants.keySet().stream().map(ComparableEnchant::new).sorted().toList()) {
-				var level = result_enchants.get(enchant.enchant);
-				if (input_enchant.equals(enchant) && level >= input_amount) {
-					var transmute_levels = level / input_amount;
-					transmute_levels = min(transmute_levels, output_enchant.max_level() -
-						result_enchants.getOrDefault(output_enchant.enchant, 0));
+				var input_enchant_level = result_enchants.get(enchant.enchant);
+				if (input_enchant.equals(enchant) && input_enchant_level >= cost_per_transmuted_level) {
+					var max_transmute_levels_by_input_enchant = input_enchant_level / cost_per_transmuted_level;
+					var pre_existing_output_levels =
+						result_enchants.getOrDefault(output_enchant.enchant, 0);
+					var max_transmute_levels_by_output_enchant = (output_enchant.max_level() - pre_existing_output_levels) /
+						levels_per_transmuted_level;
+					var transmute_levels = Math.min(max_transmute_levels_by_input_enchant,
+						max_transmute_levels_by_output_enchant);
 					if (transmute_levels > 0) {
 						result_enchants.put(input_enchant.enchant, result_enchants.get(input_enchant.enchant) -
-							transmute_levels * input_amount);
+							transmute_levels * cost_per_transmuted_level);
 						result_enchants.put(output_enchant.enchant,
-							result_enchants.getOrDefault(output_enchant.enchant, 0) + transmute_levels);
+							result_enchants.getOrDefault(output_enchant.enchant, 0) +
+								transmute_levels * levels_per_transmuted_level);
 						if (result_enchants.get(input_enchant.enchant) == 0)
 							result_enchants.remove(input_enchant.enchant);
 					}

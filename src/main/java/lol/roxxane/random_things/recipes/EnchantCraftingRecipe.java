@@ -111,7 +111,7 @@ public class EnchantCraftingRecipe extends CustomRecipe implements JeiOutputOver
 				.filter(stack -> !stack.is(Items.BOOK))
 				.map(stack -> {
 					var new_stack = stack.copy();
-					new_stack.enchant(enchant, level);
+					EnchantmentHelper.setEnchantments(Map.of(enchant, level), new_stack);
 					return new_stack;
 				}).toList();
 		}

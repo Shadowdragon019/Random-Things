@@ -1,0 +1,5 @@
+{
+  "input": "minecraft:aqua_affinity",
+  "output": "minecraft:respiration",
+  "output_amount": 3
+}

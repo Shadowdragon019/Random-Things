@@ -2,6 +2,7 @@ package lol.roxxane.random_things.recipes;
 
 import lol.roxxane.random_things.items.RtItems;
 import lol.roxxane.random_things.util.EnchantUtils;
+import lol.roxxane.random_things.util.StackUtil;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -11,8 +12,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-
-import static lol.roxxane.random_things.util.StackUtil.enchant;
 
 public class IndividualEnchantTransmutationRecipe extends JeiCraftingRecipe {
 	public final Enchantment input;
@@ -32,7 +31,7 @@ public class IndividualEnchantTransmutationRecipe extends JeiCraftingRecipe {
 	public List<ItemStack> jei_output() {
 		return EnchantUtils.enchantable_items(output).stream()
 			.filter(stack -> !stack.is(Items.BOOK))
-			.map(stack -> enchant(stack, output, output_amount)).toList();
+			.map(stack -> StackUtil.enchant(stack, output, output_amount)).toList();
 	}
 	@Override
 	public @NotNull NonNullList<Ingredient> getIngredients() {
@@ -40,7 +39,7 @@ public class IndividualEnchantTransmutationRecipe extends JeiCraftingRecipe {
 			Ingredient.of(RtItems.PHILOSOPHERS_STONE.get()),
 			Ingredient.of(EnchantUtils.enchantable_items(input).stream()
 				.filter(stack -> !stack.is(Items.BOOK))
-				.map(stack -> enchant(stack, input, input_amount))));
+				.map(stack -> StackUtil.enchant(stack, input, input_amount))));
 	}
 	@Override
 	public boolean shapeless() {

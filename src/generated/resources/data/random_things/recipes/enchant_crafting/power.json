@@ -3,28 +3,28 @@
   "enchant": "minecraft:power",
   "ingredients": [
     {
-      "tag": "minecraft:arrows"
+      "item": "minecraft:bow"
     },
     {
-      "tag": "minecraft:arrows"
+      "item": "minecraft:bow"
     },
     {
-      "tag": "minecraft:arrows"
+      "item": "minecraft:bow"
     },
     {
-      "tag": "minecraft:arrows"
+      "item": "minecraft:bow"
     },
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:bow"
     },
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:bow"
     },
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:bow"
     },
     {
-      "tag": "forge:ingots/iron"
+      "item": "minecraft:bow"
     }
   ]
 }

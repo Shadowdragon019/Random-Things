@@ -3,28 +3,10 @@
   "enchant": "minecraft:multishot",
   "ingredients": [
     {
-      "tag": "minecraft:arrows"
+      "item": "minecraft:crossbow"
     },
     {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
-    },
-    {
-      "tag": "minecraft:arrows"
+      "item": "minecraft:crossbow"
     }
   ]
 }

@@ -43,10 +43,23 @@ public class EnchantTransmutationsProvider implements DataProvider {
 	}
 	/// Mods can override this to add their own transmutations
 	public void add_transmutations() {
-		transmute(ALL_DAMAGE_PROTECTION, UNBREAKING, 2, 1);
-		transmute(UNBREAKING, ALL_DAMAGE_PROTECTION, 2, 1);
-		transmute(PIERCING, SHARPNESS);
-		transmute(SHARPNESS, PIERCING);
+		transmutes(ALL_DAMAGE_PROTECTION, PROJECTILE_PROTECTION, BLAST_PROTECTION, FIRE_PROTECTION);
+
+		transmute(AQUA_AFFINITY, RESPIRATION, 1, 3);
+		transmute(RESPIRATION, AQUA_AFFINITY, 3, 1);
+
+		transmutes(POWER_ARROWS, PUNCH_ARROWS, FLAMING_ARROWS);
+
+		transmute(MENDING, UNBREAKING, 1, 3);
+		transmute(UNBREAKING, MENDING, 3, 1);
+
+		transmute(BLOCK_EFFICIENCY, BLOCK_FORTUNE, 2, 1);
+		transmute(BLOCK_FORTUNE, BLOCK_EFFICIENCY, 1, 2);
+
+		transmutes(FISHING_LUCK, FISHING_SPEED);
+
+		transmutes(SHARPNESS, BANE_OF_ARTHROPODS, SMITE, SWEEPING_EDGE, KNOCKBACK, FIRE_ASPECT, MOB_LOOTING);
+
 	}
 	@Override
 	public @NotNull String getName() {
@@ -65,6 +78,24 @@ public class EnchantTransmutationsProvider implements DataProvider {
 		transmutations.put(ResourceLocation.fromNamespaceAndPath(namespace,
 				underscore(input) + "_to_" + underscore(output)),
 			new Transmutation(input, output, input_amount, output_amount));
+	}
+	public void transmutes(String namespace, Enchantment... enchants) {
+		var i = 0;
+		for (var enchant : enchants) {
+			i++;
+			if (i == enchants.length)
+				i = 0;
+			transmute(namespace, enchant, enchants[i]);
+		}
+	}
+	public void transmutes(Enchantment... enchants) {
+		var i = 0;
+		for (var enchant : enchants) {
+			i++;
+			if (i == enchants.length)
+				i = 0;
+			transmute(enchant, enchants[i]);
+		}
 	}
 	private record Transmutation(Enchantment input, Enchantment output, int input_amount, int output_amount) {}
 }

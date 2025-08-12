@@ -1,0 +1,5 @@
+{
+  "input": "minecraft:efficiency",
+  "input_amount": 2,
+  "output": "minecraft:fortune"
+}

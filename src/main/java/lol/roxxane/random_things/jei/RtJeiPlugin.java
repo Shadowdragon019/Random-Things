@@ -2,11 +2,14 @@ package lol.roxxane.random_things.jei;
 
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.data_gen.EnchantTransmutationManager;
+import lol.roxxane.random_things.recipes.EnchantCraftingRecipe;
 import lol.roxxane.random_things.recipes.IndividualEnchantTransmutationRecipe;
 import lol.roxxane.random_things.recipes.JeiOutputOverride;
+import lol.roxxane.random_things.util.StackUtil;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import net.minecraft.resources.ResourceLocation;
@@ -36,6 +39,23 @@ public class RtJeiPlugin implements IModPlugin {
 					recipe.getIngredients().stream().map(ingredient ->
 						Arrays.stream(ingredient.getItems()).toList()).toList(), 3, 3);
 				grid_helper.createAndSetOutputs(layout_builder, ((JeiOutputOverride)recipe).jei_output());
+				if (recipe instanceof EnchantCraftingRecipe enchant_crafting) {
+					for (int level = 1; level <= enchant_crafting.enchant.getMaxLevel(); level++) {
+						layout_builder.addInvisibleIngredients(RecipeIngredientRole.INPUT)
+							.addItemStack(StackUtil.enchanted_book(enchant_crafting.enchant, level));
+						layout_builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT)
+							.addItemStack(StackUtil.enchanted_book(enchant_crafting.enchant, level));
+					}
+				} else if (recipe instanceof IndividualEnchantTransmutationRecipe individual_enchant_transmutation) {
+					for (int level = 1; level <= individual_enchant_transmutation.input.getMaxLevel(); level++) {
+						layout_builder.addInvisibleIngredients(RecipeIngredientRole.INPUT)
+							.addItemStack(StackUtil.enchanted_book(individual_enchant_transmutation.input, level));
+					}
+					for (int level = 1; level <= individual_enchant_transmutation.output.getMaxLevel(); level++) {
+						layout_builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT)
+							.addItemStack(StackUtil.enchanted_book(individual_enchant_transmutation.output, level));
+					}
+				}
 			});
 	}
 	@Override

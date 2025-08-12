@@ -3,13 +3,28 @@
   "enchant": "minecraft:impaling",
   "ingredients": [
     {
-      "tag": "forge:ingots/iron"
+      "tag": "forge:gems/amethyst"
     },
     {
-      "tag": "forge:ingots/iron"
+      "tag": "forge:gems/amethyst"
     },
     {
-      "tag": "forge:ingots/iron"
+      "tag": "forge:gems/amethyst"
+    },
+    {
+      "tag": "forge:gems/amethyst"
+    },
+    {
+      "tag": "forge:gems/amethyst"
+    },
+    {
+      "tag": "forge:gems/amethyst"
+    },
+    {
+      "tag": "forge:gems/amethyst"
+    },
+    {
+      "tag": "forge:gems/amethyst"
     }
   ]
 }
