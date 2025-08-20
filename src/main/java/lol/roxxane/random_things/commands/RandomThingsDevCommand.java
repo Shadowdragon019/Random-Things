@@ -24,8 +24,7 @@ public class RandomThingsDevCommand {
 		for (var category : EnchantmentCategory.values())
 			max_enchanted_books.then(
 				Commands.literal(category.toString().toLowerCase())
-					.executes(context -> give_enchants(context, category))
-			);
+					.executes(context -> give_enchants(context, category)));
 		random_things_dev.then(max_enchanted_books);
 		dispatcher.register(random_things_dev);
 	}

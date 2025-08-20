@@ -139,7 +139,6 @@ public class RtForgeEvents {
 	public static void reload(AddReloadListenerEvent event) {
 		event.addListener(new EnchantTransmutationManager());
 	}
-
 	@SubscribeEvent
 	public static void register_commands(RegisterCommandsEvent event) {
 		var dispatcher = event.getDispatcher();

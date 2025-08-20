@@ -77,7 +77,7 @@ public class RtRecipeProvider extends RecipeProvider {
 			entry(POWER_ARROWS, Map.of(Items.BOW, 8)), //MMmmh, not like this one much
 			entry(UNBREAKING, Map.of(Tags.Items.INGOTS_IRON, 1)),
 			entry(MENDING, Map.of(Tags.Items.STORAGE_BLOCKS_IRON, 1)),
-			entry(BLOCK_EFFICIENCY, Map.of(Tags.Items.GEMS_DIAMOND, 1)),
+			entry(BLOCK_EFFICIENCY, Map.of(Tags.Items.INGOTS_GOLD, 1)),
 			entry(FISHING_LUCK, Map.of(List.of(Items.TUBE_CORAL_BLOCK, Items.BRAIN_CORAL_BLOCK,
 				Items.BUBBLE_CORAL_BLOCK, Items.FIRE_CORAL_BLOCK, Items.HORN_CORAL_BLOCK), 8)),
 			entry(SHARPNESS, Map.of(Tags.Items.INGOTS_IRON, 5)),

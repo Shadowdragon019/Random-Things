@@ -28,7 +28,7 @@ public class EnchantTransmutationManager extends SimpleJsonResourceReloadListene
 	}
 	@Override
 	protected void apply(@NotNull Map<ResourceLocation, JsonElement> object,
-		@NotNull ResourceManager resource_manager, @NotNull ProfilerFiller profiler)
+		@NotNull ResourceManager $, @NotNull ProfilerFiller $1)
 	{
 		var transmutations =
 			new LinkedHashMap<ComparablePair<ComparableEnchant, ComparableEnchant>, Pair<Integer, Integer>>();

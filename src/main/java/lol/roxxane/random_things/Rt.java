@@ -24,6 +24,7 @@ import static lol.roxxane.random_things.util.StringUtils.stringify;
 // What if crumbly stone blob had a lava blob in them?
 @SuppressWarnings("unused")
 @Mod(Rt.ID)
+// TODO: Fix explosions activating crumbly stone when it shouldnt (actually it's kind cool. keep?)
 public class Rt {
 	public static final String ID = "random_things";
 	public static final Logger LOGGER = LogUtils.getLogger();

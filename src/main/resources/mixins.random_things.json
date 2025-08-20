@@ -10,5 +10,8 @@
 		"indestructible_items.ItemStackMixin",
 		"minecraft.crumbly_stone.EntityMixin",
 		"minecraft.crumbly_stone.ExplosionMixin"
+	],
+	"client": [
+		"mining_cooldown.MultiPlayerGameModeMixin"
 	]
 }

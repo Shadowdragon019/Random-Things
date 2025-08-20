@@ -3,7 +3,7 @@
   "enchant": "minecraft:efficiency",
   "ingredients": [
     {
-      "tag": "forge:gems/diamond"
+      "tag": "forge:ingots/gold"
     }
   ]
 }

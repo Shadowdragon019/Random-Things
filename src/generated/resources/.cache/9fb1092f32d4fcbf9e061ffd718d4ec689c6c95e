@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-12T00:36:55.978622208	Recipes
+// 1.20.1	2025-08-12T01:41:16.06045543	Recipes
 b57f7ead5fd6a71ca77c96eb29bcec94b8f9e865 data/random_things/advancements/recipes/misc/blasting/mass_ore/minecraft_coal.json
 096a350b1cb616dab260d02c11e3b9202fc86973 data/random_things/advancements/recipes/misc/blasting/mass_ore/minecraft_copper.json
 8afb4f25dd4bb10c5cc1a6fb50eef7a3e4de1472 data/random_things/advancements/recipes/misc/blasting/mass_ore/minecraft_diamond.json
@@ -25,7 +25,7 @@ c1e7ae7b7351de381d38c51dc3a8b6974c7884ed data/random_things/recipes/blasting/mas
 f6c5e5731befbb5e78006fafa1e797b1b0c04f98 data/random_things/recipes/blasting/mass_ore/minecraft_redstone.json
 2875e8b6af24db49112c8094a0d43b9917680151 data/random_things/recipes/enchant_crafting/binding_curse.json
 a971244e56164738fbb367e4e500e522ee7d8f86 data/random_things/recipes/enchant_crafting/channeling.json
-082d63c541922e23d9d4c4a1b2449ab353d3cbab data/random_things/recipes/enchant_crafting/efficiency.json
+22ae78bffa4058a243b6f154d9dcaab585f01bf1 data/random_things/recipes/enchant_crafting/efficiency.json
 82785ab5b31c63cfe29d667e391c0f80b046b3ec data/random_things/recipes/enchant_crafting/frost_walker.json
 22f06c131d1c6a2ee42cf74e257d536fbf1e5669 data/random_things/recipes/enchant_crafting/impaling.json
 f2b046e19aacbb58ba08df0bd23a2b5fd5068dec data/random_things/recipes/enchant_crafting/infinity.json

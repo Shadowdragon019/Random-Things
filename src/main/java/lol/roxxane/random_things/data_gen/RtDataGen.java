@@ -27,7 +27,6 @@ public class RtDataGen {
 		output = generator.getPackOutput();
 		existing_file_helper = event.getExistingFileHelper();
 		provider = event.getLookupProvider();
-		event.getModContainer().getModInfo().getModId();
 		// 100% overengineered hehehe
 		server_provider(new RtWorldGenProvider(output, provider));
 		server_provider(new RtItemTagProvider(output, provider,
