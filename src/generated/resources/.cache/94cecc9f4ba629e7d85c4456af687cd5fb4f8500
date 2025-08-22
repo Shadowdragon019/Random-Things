@@ -1,4 +1,5 @@
-// 1.20.1	2025-08-06T06:11:06.573967817	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-08-21T23:51:20.157835742	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+215edd0511ab73f38dd1ad41b98d559b2ea5c04d assets/random_things/blockstates/cable.json
 32f4fbf8f1a160aeb0abbe9e82827e9bc38d1cca assets/random_things/blockstates/crumbly_deepslate.json
 8b2493e9a6d52c4a619c600f6162284f0c31861f assets/random_things/blockstates/crumbly_stone.json
 341bbd4c98c0190763f9f1a9c592f25446621b2c assets/random_things/blockstates/dead_ore_leaves.json
@@ -98,8 +99,10 @@ cd5f5c66d0fda04f3b858ad8b7dae6a82659d822 assets/random_things/blockstates/mass_o
 3977b13fa745fa1dc20dbb0e11165f9c6cef46b4 assets/random_things/blockstates/mass_ore/minecraft/tuff/minecraft/redstone.json
 b722084812d4b9cc66dcc26a371293b3d6961964 assets/random_things/blockstates/stripped_dead_ore_log.json
 ea2226ce27eb39da8d563c53299ad59039e21e97 assets/random_things/blockstates/stripped_dead_ore_wood.json
-e7fdfcf12f97d22b289b928c7cc65871900c39a2 assets/random_things/lang/en_ud.json
-b80f58f9540e01fd3ee59151dfeb62b86564b670 assets/random_things/lang/en_us.json
+13affd9e7d466ade413ca0b357fc23134c2eef8d assets/random_things/lang/en_ud.json
+769f6428423ccaa12f5d35d58827e08e40824680 assets/random_things/lang/en_us.json
+d3bfe6d488a504277898069e5dd50cde6864d662 assets/random_things/models/block/cable_active.json
+220aebffd21f726c74de0966aef2f842348c8c44 assets/random_things/models/block/cable_inactive.json
 278b40274af78b2933ffed4dde3484019f564136 assets/random_things/models/block/crumbly_deepslate.json
 17b626b654670a0dd96c5b412ff6602320db6a92 assets/random_things/models/block/crumbly_deepslate_horizontal.json
 0b80f949ecd3aefe30583d46fd72d53a62c8ed46 assets/random_things/models/block/crumbly_stone.json
@@ -206,6 +209,7 @@ e5bdb314bc2267d460033b6eeab5f76dde741245 assets/random_things/models/block/strip
 50bdb5ebbe41a8adeb1d40abfd961090f495a7a7 assets/random_things/models/block/stripped_dead_ore_log_horizontal.json
 33198a20244e976fec082a3e66d0bd7204d4e2d0 assets/random_things/models/block/stripped_dead_ore_wood.json
 daad89ef21ae86d7cc7d2a9ed1bb417aeedebbe9 assets/random_things/models/block/stripped_dead_ore_wood_horizontal.json
+1f27630881ad2fb9f95b1c7c2d605c528b210eb1 assets/random_things/models/item/cable.json
 7c1af76ec6829465170b750a31adb26018f5955b assets/random_things/models/item/crumbly_deepslate.json
 900386426dde1f0028fb2135e6666251032982fd assets/random_things/models/item/crumbly_stone.json
 9b3b2f7ff3a35500b8eb8bec8d7e06654035c343 assets/random_things/models/item/dead_ore_leaves.json
@@ -343,6 +347,7 @@ dcab185a1a84ab02681e77ab1dd6977f4d954345 data/random_things/advancements/recipes
 7c5cea343d9243fb8c9391cf264e957e4bf65c63 data/random_things/advancements/recipes/misc/lava_filled_deepslate.json
 47c4b0630ca06013a026688e8f73df548f40a964 data/random_things/advancements/recipes/misc/lava_filled_stone.json
 f2cfced14c7a4cc1e32cd2ef5ae00453dcf85bdf data/random_things/advancements/recipes/misc/philosophers_stone.json
+ce6d856a68dbc394fb3590086e951859c30fb222 data/random_things/loot_tables/blocks/cable.json
 21e35034ba159d57839f66a1951a87e81bbe82c0 data/random_things/loot_tables/blocks/crumbly_deepslate.json
 f23f9eb6465856f63bf51b128952af8daab37d05 data/random_things/loot_tables/blocks/crumbly_stone.json
 9cd1b5d41f56f49663bb59db322e51af75f04c76 data/random_things/loot_tables/blocks/dead_ore_leaves.json

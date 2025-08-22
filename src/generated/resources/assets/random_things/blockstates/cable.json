@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "active=false,facing=down": {
+      "model": "random_things:block/cable_inactive",
+      "x": 90
+    },
+    "active=false,facing=east": {
+      "model": "random_things:block/cable_inactive",
+      "y": 90
+    },
+    "active=false,facing=north": {
+      "model": "random_things:block/cable_inactive"
+    },
+    "active=false,facing=south": {
+      "model": "random_things:block/cable_inactive",
+      "y": 180
+    },
+    "active=false,facing=up": {
+      "model": "random_things:block/cable_inactive",
+      "x": 270
+    },
+    "active=false,facing=west": {
+      "model": "random_things:block/cable_inactive",
+      "y": 270
+    },
+    "active=true,facing=down": {
+      "model": "random_things:block/cable_active",
+      "x": 90
+    },
+    "active=true,facing=east": {
+      "model": "random_things:block/cable_active",
+      "y": 90
+    },
+    "active=true,facing=north": {
+      "model": "random_things:block/cable_active"
+    },
+    "active=true,facing=south": {
+      "model": "random_things:block/cable_active",
+      "y": 180
+    },
+    "active=true,facing=up": {
+      "model": "random_things:block/cable_active",
+      "x": 270
+    },
+    "active=true,facing=west": {
+      "model": "random_things:block/cable_active",
+      "y": 270
+    }
+  }
+}

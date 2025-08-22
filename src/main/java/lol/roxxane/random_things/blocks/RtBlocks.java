@@ -3,6 +3,7 @@ package lol.roxxane.random_things.blocks;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import lol.roxxane.random_things.Rt;
+import lol.roxxane.random_things.blocks.entities.CableBlockEntity;
 import lol.roxxane.random_things.blocks.mass_ores.*;
 import lol.roxxane.random_things.items.RtItems;
 import lol.roxxane.random_things.tags.RtBlockTags;
@@ -28,6 +29,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -49,14 +51,12 @@ import static net.minecraft.advancements.critereon.InventoryChangeTrigger.Trigge
 public class RtBlocks {
 	public static final Hashtable<MassStone, Hashtable<MassOre, RegistryEntry<Block>>> MASS_ORE_MAP;
 	public static final ArrayList<RegistryEntry<Block>> MASS_ORES = new ArrayList<>();
-
 	public static final LootItemCondition.Builder HAS_SILK_TOUCH =
 		MatchTool.toolMatches(ItemPredicate.Builder.item()
 			.hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH,
 				MinMaxBounds.Ints.atLeast(1))));
 	@SuppressWarnings("unused")
 	public static final LootItemCondition.Builder HAS_NO_SILK_TOUCH = HAS_SILK_TOUCH.invert();
-
 	public static final RegistryEntry<Block> CRUMBLY_STONE =
 		REGISTRATE.block("crumbly_stone",
 				p -> new Block(Properties.copy(Blocks.STONE)
@@ -113,12 +113,12 @@ public class RtBlocks {
 					.save(provider))
 			.blockstate((context, provider) -> {
 				provider.models().cubeColumn(context.getName(),
-					block_location(context.getName()),
-					block_location(context.getName() + "_end"));
+					block_id(context.getName()),
+					block_id(context.getName() + "_end"));
 				// I have no clue how to just make it point to the normal model without doing all this
 				provider.getVariantBuilder(context.get()).forAllStates($ ->
 					ConfiguredModel.builder()
-						.modelFile(provider.models().getExistingFile(block_location(context.getName())))
+						.modelFile(provider.models().getExistingFile(block_id(context.getName())))
 						.build());
 			})
 			.simpleItem()
@@ -253,29 +253,52 @@ public class RtBlocks {
 			.tag(ItemTags.LEAVES)
 			.build()
 			.register();
-
+	public static final RegistryEntry<CableBlock> CABLE =
+		REGISTRATE.block("cable", CableBlock::new)
+			.blockEntity(CableBlockEntity::new).build()
+			.blockstate((context, provider) ->
+				provider.getVariantBuilder(context.get()).forAllStates(state -> {
+					var is_active = state.getValue(RtStateProperties.ACTIVE);
+					var id = is_active ? "cable_active" : "cable_inactive";
+					var model = provider.models()
+						.withExistingParent(id, block_id("cable_base"))
+						.texture("side", block_id(id + "_side"))
+						.texture("end", block_id(id + "_end"));
+					var configured_model = ConfiguredModel.builder().modelFile(model);
+					if (state.getValue(BlockStateProperties.FACING) == Direction.SOUTH)
+						configured_model.rotationY(180);
+					else if (state.getValue(BlockStateProperties.FACING) == Direction.EAST)
+						configured_model.rotationY(90);
+					else if (state.getValue(BlockStateProperties.FACING) == Direction.WEST)
+						configured_model.rotationY(270);
+					else if (state.getValue(BlockStateProperties.FACING) == Direction.UP)
+						configured_model.rotationX(270);
+					else if (state.getValue(BlockStateProperties.FACING) == Direction.DOWN)
+						configured_model.rotationX(90);
+					return configured_model.build();
+				})
+			)
+			.item().model((context, provider) ->
+				provider.withExistingParent("cable", block_id("cable_active"))).build()
+			.register();
 	static {
 		MASS_ORE_MAP = new Hashtable<>(MassStone.STONES.length - 1);
 		for (var stone : MassStone.STONES)
 			MASS_ORE_MAP.put(stone, new Hashtable<>());
 	}
-
 	public static RegistryEntry<Block> get_mass_ore(MassStone stone, MassOre ore) {
 		return MASS_ORE_MAP.get(stone).get(ore);
 	}
-
 	@SuppressWarnings("unused")
 	public static void for_each_mass_ore(TriConsumer<MassStone, MassOre, Block> consumer) {
 		for (var stone_entry : MASS_ORE_MAP.entrySet())
 			for (var ore_entry : stone_entry.getValue().entrySet())
 				consumer.accept(stone_entry.getKey(), ore_entry.getKey(), ore_entry.getValue().get());
 	}
-
 	public static <T extends Block> void requires_silk_touch(RegistrateBlockLootTables loot, T block) {
 		loot.add(block, LootTable.lootTable().withPool(LootPool.lootPool()
 			.add(LootItem.lootTableItem(block).when(HAS_SILK_TOUCH))));
 	}
-
 	public static void register() {
 		for (var stone : MassStone.STONES) {
 			for (var ore : MassOre.ORES) {
@@ -283,16 +306,13 @@ public class RtBlocks {
 				var stone_path = stone.id.getPath();
 				var ore_namespace = ore.id.getNamespace();
 				var ore_path = ore.id.getPath();
-
 				final BiFunction<Properties, IntProvider, Block> block_factory;
-
 				if (ore.is_redstone())
 					if (stone.falls()) block_factory = FallingRedstoneMassOreBlock::new;
 					else block_factory = RedstoneMassOreBlock::new;
 				else
 					if (stone.falls()) block_factory = FallingMassOreBlock::new;
 					else block_factory = MassOreBlock::new;
-
 				@SuppressWarnings({"RedundantCast", "unchecked"})
 				var builder = REGISTRATE.block(
 					"mass_ore/" + stone_namespace + "/" + stone_path + "/" + ore_namespace + "/" + ore_path,
@@ -318,7 +338,6 @@ public class RtBlocks {
 			}
 		}
 	}
-
 	public static Boolean ocelot_or_parrot(BlockState $, BlockGetter $1, BlockPos $2,
 		EntityType<?> entity_type
 	) {

@@ -1,0 +1,7 @@
+{
+  "parent": "random_things:block/cable_base",
+  "textures": {
+    "end": "random_things:block/cable_active_end",
+    "side": "random_things:block/cable_active_side"
+  }
+}

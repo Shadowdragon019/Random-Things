@@ -58,7 +58,7 @@ public class Rt {
 	public static ResourceLocation id(String path) {
 		return ResourceLocation.fromNamespaceAndPath(ID, path);
 	}
-	public static ResourceLocation block_location(String path) {
+	public static ResourceLocation block_id(String path) {
 		return ResourceLocation.fromNamespaceAndPath(ID, "block/" + path);
 	}
 }

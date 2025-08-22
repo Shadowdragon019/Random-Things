@@ -13,7 +13,6 @@ public class StrippableLogBlock extends RotatedPillarBlock {
 	public StrippableLogBlock(Properties properties) {
 		super(properties);
 	}
-
 	@Override
 	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction action,
 		boolean simulate
