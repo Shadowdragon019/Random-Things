@@ -19,11 +19,9 @@ public class StrippableLogBlock extends RotatedPillarBlock {
 	) {
 		if (action == ToolActions.AXE_STRIP)
 			if (state.is(RtBlocks.DEAD_ORE_LOG.get()))
-				return RtBlocks.STRIPPED_DEAD_ORE_LOG.get().defaultBlockState()
-					.setValue(AXIS, state.getValue(AXIS));
+				return RtBlocks.STRIPPED_DEAD_ORE_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
 			else if (state.is(RtBlocks.DEAD_ORE_WOOD.get()))
-				return RtBlocks.STRIPPED_DEAD_ORE_WOOD.get().defaultBlockState()
-					.setValue(AXIS, state.getValue(AXIS));
+				return RtBlocks.STRIPPED_DEAD_ORE_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
 			else if (state.is(RtBlocks.DEAD_PHILOSOPHERS_STONE_ORE_LOG.get())) {
 				if (context.getLevel() instanceof ServerLevel server_level)
 					for (var stack : Block.getDrops(state, server_level, context.getClickedPos(),
@@ -31,9 +29,30 @@ public class StrippableLogBlock extends RotatedPillarBlock {
 					))
 						Block.popResourceFromFace(server_level, context.getClickedPos(),
 							context.getClickedFace(), stack);
-				return RtBlocks.DEAD_ORE_LOG.get().defaultBlockState()
-					.setValue(AXIS, state.getValue(AXIS));
+				return RtBlocks.DEAD_ORE_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
 			}
 		return super.getToolModifiedState(state, context, action, simulate);
 	}
 }
+/*
+class StrippableLogBlock RotatedPillarBlock
+	this()
+		super(properties)
+	getToolModifiedState()
+		if action == ToolActions.AXE_STRIP
+			if state.is(RtBlocks.DEAD_ORE_LOG.get)
+				return () -> RtBlocks.STRIPPED_DEAD_ORE_LOG.get.defaultBlockState
+					.setValue(AXIS state.getValue(AXIS))
+			else if state.is(RtBlocks.DEAD_ORE_WOOD.get)
+				return () -> RtBlocks.STRIPPED_DEAD_ORE_WOOD.get.defaultBlockState
+					.setValue(AXIS state.getValue(AXIS))
+			else if state.is(RtBlocks.DEAD_PHILOSOPHERS_STONE_ORE_LOG.get)
+				if context.level instanceof ServerLevel server_level
+					for stack Block.getDrops(state server_level context.clickedPos
+						null context.player context.itemInHand
+					)
+						Block.popResourceFromFace(server_level context.clickedPos context.clickedFace stack)
+				return () -> RtBlocks.DEAD_ORE_LOG.get.defaultBlockState
+					.setValue(AXIS state.getValue(AXIS))
+		return super.getToolModifiedState(state context action simulate) # write "super" to just do this instead?
+ */

@@ -28,7 +28,9 @@ public class RandomThingsDevCommand {
 		random_things_dev.then(max_enchanted_books);
 		dispatcher.register(random_things_dev);
 	}
-	public static int give_enchants(CommandContext<CommandSourceStack> context, @Nullable EnchantmentCategory category) {
+	public static int give_enchants(CommandContext<CommandSourceStack> context,
+		@Nullable EnchantmentCategory category
+	) {
 		var source = context.getSource();
 		var pos = source.getPosition();
 		var level = source.getLevel();

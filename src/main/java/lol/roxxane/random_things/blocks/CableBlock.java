@@ -2,8 +2,13 @@ package lol.roxxane.random_things.blocks;
 
 import lol.roxxane.random_things.blocks.entities.CableBlockEntity;
 import lol.roxxane.random_things.blocks.entities.RtBlockEntities;
+import lol.roxxane.random_things.util.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 import static lol.roxxane.random_things.blocks.RtStateProperties.ACTIVE;
@@ -33,10 +39,10 @@ public class CableBlock extends Block implements EntityBlock {
 		return RtBlockEntities.CABLE.create(pos, state);
 	}
 	@Override
-	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-		BlockEntityType<T> type
+	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level $, BlockState $1,
+		BlockEntityType<T> $3
 	) {
-		return level.isClientSide ? null : ($, $1, $2, entity) -> ((CableBlockEntity) entity).tick();
+		return ($4, $5, $6, entity) -> ((CableBlockEntity) entity).tick();
 	}
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -52,20 +58,16 @@ public class CableBlock extends Block implements EntityBlock {
 	}
 	@Override
 	public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-		return defaultBlockState()
-			.setValue(FACING, context.getNearestLookingDirection().getOpposite());
+		return defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite());
 	}
-	/*@SuppressWarnings("deprecation")
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player,
-		InteractionHand hand, BlockHitResult hit
+	public InteractionResult use(BlockState $, Level level, BlockPos pos, Player player,
+		InteractionHand hand, BlockHitResult $1
 	) {
-		BlockEntityUtil.checked(level, pos, hand, CableBlockEntity.class, entity -> {
-			entity.click_count++;
+		BlockUtil.entity(level, pos, CableBlockEntity.class, entity ->
 			player.sendSystemMessage(Component.literal(
-				String.format("click_count: %s", entity.click_count)));
-			entity.setChanged();
-		});
+				String.format("%s energy: %s", level.isClientSide ? "client" : "server",
+					entity.energy.getEnergyStored()))));
 		return InteractionResult.SUCCESS;
-	}*/
+	}
 }

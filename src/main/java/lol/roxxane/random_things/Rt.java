@@ -22,9 +22,9 @@ import static lol.roxxane.random_things.util.StringUtils.stringify;
 // execute as @a at @a run fill ~15 ~15 ~15 ~-15 ~-15 ~-15 glass replace #random_things:all_replaceables
 // effect give Dev minecraft:night_vision infinite 255 true
 // What if crumbly stone blob had a lava blob in them?
+// TODO: Fix explosions activating crumbly stone when it shouldnt (actually it's kind cool. keep?)
 @SuppressWarnings("unused")
 @Mod(Rt.ID)
-// TODO: Fix explosions activating crumbly stone when it shouldnt (actually it's kind cool. keep?)
 public class Rt {
 	public static final String ID = "random_things";
 	public static final Logger LOGGER = LogUtils.getLogger();
