@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import static lol.roxxane.random_things.Rt.REGISTRATE;
 import static net.minecraft.advancements.critereon.InventoryChangeTrigger.TriggerInstance.hasItems;
 
+//TODO: Shrinkify!!
 public class RtItems {
 	public static final RegistryEntry<Item> PHILOSOPHERS_STONE_SHARD =
 		REGISTRATE.item("philosophers_stone_shard", Item::new)
@@ -29,6 +30,5 @@ public class RtItems {
 						hasItems(PHILOSOPHERS_STONE_SHARD.get()))
 					.save(provider))
 			.register();
-
 	public static void register() {}
 }

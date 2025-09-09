@@ -35,6 +35,7 @@ public class Rt {
 		REGISTRATE.addRawLang("tooltip.random_things.item_tags_header", "§7Item Tags:");
 		REGISTRATE.addRawLang("tooltip.random_things.block_tags_header", "§7Block Tags:");
 		REGISTRATE.addRawLang("tooltip.random_things.nbt_header", "§7NBT:");
+		REGISTRATE.addRawLang("death.attack.random_things.spikes", "%s was spiked");
 		RtBlocks.register();
 		RtItems.register();
 		RtRecipeSerializers.register();

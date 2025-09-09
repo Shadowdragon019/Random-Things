@@ -99,6 +99,8 @@
   "block.random_things.mass_ore.minecraft.tuff.minecraft.redstone": "Tuff Redstone Ore",
   "block.random_things.stripped_dead_ore_log": "Stripped Dead Ore Log",
   "block.random_things.stripped_dead_ore_wood": "Stripped Dead Ore Wood",
+  "block.random_things.wooden_barricade": "Wooden Barricade",
+  "death.attack.random_things.spikes": "%s was spiked",
   "item.random_things.philosophers_stone": "Philosopher's Stone",
   "item.random_things.philosophers_stone_shard": "Philosopher's Stone Shard",
   "tooltip.random_things.block_tags_header": "§7Block Tags:",

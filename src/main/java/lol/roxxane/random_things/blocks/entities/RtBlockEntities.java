@@ -7,4 +7,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RtBlockEntities {
 	public static final BlockEntityEntry<CableBlockEntity> CABLE =
 		BlockEntityEntry.cast(RtBlocks.CABLE.getSibling(ForgeRegistries.BLOCK_ENTITY_TYPES));
+	public static final BlockEntityEntry<WoodenBarricadeBlockEntity> WOODEN_SPIKES =
+		BlockEntityEntry.cast(RtBlocks.WOODEN_SPIKES.getSibling(ForgeRegistries.BLOCK_ENTITY_TYPES));
 }

@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-21T23:51:20.157835742	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2025-09-09T17:55:51.612900719	Registrate Provider for random_things [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 215edd0511ab73f38dd1ad41b98d559b2ea5c04d assets/random_things/blockstates/cable.json
 32f4fbf8f1a160aeb0abbe9e82827e9bc38d1cca assets/random_things/blockstates/crumbly_deepslate.json
 8b2493e9a6d52c4a619c600f6162284f0c31861f assets/random_things/blockstates/crumbly_stone.json
@@ -99,8 +99,9 @@ cd5f5c66d0fda04f3b858ad8b7dae6a82659d822 assets/random_things/blockstates/mass_o
 3977b13fa745fa1dc20dbb0e11165f9c6cef46b4 assets/random_things/blockstates/mass_ore/minecraft/tuff/minecraft/redstone.json
 b722084812d4b9cc66dcc26a371293b3d6961964 assets/random_things/blockstates/stripped_dead_ore_log.json
 ea2226ce27eb39da8d563c53299ad59039e21e97 assets/random_things/blockstates/stripped_dead_ore_wood.json
-13affd9e7d466ade413ca0b357fc23134c2eef8d assets/random_things/lang/en_ud.json
-769f6428423ccaa12f5d35d58827e08e40824680 assets/random_things/lang/en_us.json
+db27a4878786fdbf8e86da638941f49333282ec3 assets/random_things/blockstates/wooden_barricade.json
+8eba4d0fb61981669d0308bf22564709632f4d73 assets/random_things/lang/en_ud.json
+1aa91d8d599ec094fe37f3fa2e0634f763f4735b assets/random_things/lang/en_us.json
 d3bfe6d488a504277898069e5dd50cde6864d662 assets/random_things/models/block/cable_active.json
 220aebffd21f726c74de0966aef2f842348c8c44 assets/random_things/models/block/cable_inactive.json
 278b40274af78b2933ffed4dde3484019f564136 assets/random_things/models/block/crumbly_deepslate.json
@@ -311,6 +312,7 @@ d1217d25daf67e3c18471c2846bc2cac817ea12d assets/random_things/models/item/philos
 e0a6a8d87d4185a8101a1af5307ea305214b217a assets/random_things/models/item/philosophers_stone_shard.json
 d853a061303bd114706cb1b9aeec7abdeb940789 assets/random_things/models/item/stripped_dead_ore_log.json
 16f57b5e935651fab2becc51832411fd2323ee53 assets/random_things/models/item/stripped_dead_ore_wood.json
+4257970d3f66a1eab8e020697cc2266ce8fa6d74 assets/random_things/models/item/wooden_barricade.json
 758f2affe58326f92cd286bb18895109a792b9f6 data/forge/tags/blocks/ore_rates/dense.json
 33c083e9d617795dc0d076a019a57abf2b722311 data/forge/tags/blocks/ore_rates/singular.json
 758f2affe58326f92cd286bb18895109a792b9f6 data/forge/tags/items/ore_rates/dense.json
@@ -323,12 +325,6 @@ b86486c22cf64ae01d6944be068ed9c3c3192784 data/minecraft/tags/blocks/gold_ores.js
 b86486c22cf64ae01d6944be068ed9c3c3192784 data/minecraft/tags/blocks/guarded_by_piglins.json
 8ec579893e2758ff9a84d61006a2f48d737b3413 data/minecraft/tags/blocks/iron_ores.json
 99d7b45a51b1db73a0ba56c2b5e420e9b312566b data/minecraft/tags/blocks/lapis_ores.json
-bc86965c9046c9c19daca74d696987364e45d54f data/minecraft/tags/blocks/leaves.json
-52c1952e34ad7eccaa3b5ab5b92ba09d07b2a68b data/minecraft/tags/blocks/logs.json
-ddb9127177734c15023f7a6f28c71163e819d0bc data/minecraft/tags/blocks/mineable/axe.json
-7b86d2847e8d6cc8d9a1bb1161afe362b1ed927f data/minecraft/tags/blocks/mineable/pickaxe.json
-e4c58a762d3b5a096805e8513cb957a267b1fa1a data/minecraft/tags/blocks/mineable/shovel.json
-58c88cb4baa8e4df74ae1cbf04bcaa958d9f6f7f data/minecraft/tags/blocks/needs_diamond_tool.json
 c13314fbb645aa4f92f37fd9ac9cfe84e1326843 data/minecraft/tags/blocks/needs_iron_tool.json
 05b3887609b88a2de6ba82e8f861ecaa42b7f095 data/minecraft/tags/blocks/needs_stone_tool.json
 9dc87830524c784623c0a17fff0bcc6e77148ba5 data/minecraft/tags/blocks/redstone_ores.json
@@ -340,12 +336,7 @@ e02fa2188e50510102da8ef66dcf1b02645bf29f data/minecraft/tags/items/emerald_ores.
 b86486c22cf64ae01d6944be068ed9c3c3192784 data/minecraft/tags/items/gold_ores.json
 8ec579893e2758ff9a84d61006a2f48d737b3413 data/minecraft/tags/items/iron_ores.json
 99d7b45a51b1db73a0ba56c2b5e420e9b312566b data/minecraft/tags/items/lapis_ores.json
-f6ad20d0c836bcc557382696969121f9719e10cd data/minecraft/tags/items/leaves.json
 9dc87830524c784623c0a17fff0bcc6e77148ba5 data/minecraft/tags/items/redstone_ores.json
-dcab185a1a84ab02681e77ab1dd6977f4d954345 data/random_things/advancements/recipes/misc/crumbly_deepslate.json
-492688017a885e62682807253c6dd7da8065a9c0 data/random_things/advancements/recipes/misc/crumbly_stone.json
-7c5cea343d9243fb8c9391cf264e957e4bf65c63 data/random_things/advancements/recipes/misc/lava_filled_deepslate.json
-47c4b0630ca06013a026688e8f73df548f40a964 data/random_things/advancements/recipes/misc/lava_filled_stone.json
 f2cfced14c7a4cc1e32cd2ef5ae00453dcf85bdf data/random_things/advancements/recipes/misc/philosophers_stone.json
 ce6d856a68dbc394fb3590086e951859c30fb222 data/random_things/loot_tables/blocks/cable.json
 21e35034ba159d57839f66a1951a87e81bbe82c0 data/random_things/loot_tables/blocks/crumbly_deepslate.json
@@ -447,11 +438,5 @@ a6165bc2e89fb0d00777e44f3b891e16471edb48 data/random_things/loot_tables/blocks/m
 9cfeefe4c7e8de22ec50e27575f9694ee14f0bec data/random_things/loot_tables/blocks/mass_ore/minecraft/tuff/minecraft/redstone.json
 12fff59aed0700f5434d3961ced6717fc7dac288 data/random_things/loot_tables/blocks/stripped_dead_ore_log.json
 c85689719737d70091a2250ba773c2969f3c2d7a data/random_things/loot_tables/blocks/stripped_dead_ore_wood.json
-8c487c4f760c8bede192e756620b50e7cfacd66d data/random_things/recipes/crumbly_deepslate.json
-ca1fa5f7dff551864084b9fc0e963386f300cd0d data/random_things/recipes/crumbly_stone.json
-9bf0ac7c1434ad76e5eaed6598ef46c7337ebc23 data/random_things/recipes/lava_filled_deepslate.json
-34e260ef5158a62a947b8557dc847600fa7ec81e data/random_things/recipes/lava_filled_stone.json
+42763c4ad935680e10d4656a4f337a7ff59c17b7 data/random_things/loot_tables/blocks/wooden_barricade.json
 f46304dc8b81ab975ec9c3fc753cb33a2d9904ef data/random_things/recipes/philosophers_stone.json
-aa56b4728f49bed1bc6b067f70bde434881dd5fb data/random_things/tags/blocks/dead_ore_logs.json
-61cfdc0e4c8fff8d7c90c3fdf607911726de642a data/random_things/tags/blocks/lava_filled_stones.json
-aa56b4728f49bed1bc6b067f70bde434881dd5fb data/random_things/tags/items/dead_ore_logs.json

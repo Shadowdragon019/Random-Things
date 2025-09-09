@@ -1,6 +1,7 @@
 package lol.roxxane.random_things.data_gen;
 
 import lol.roxxane.random_things.Rt;
+import lol.roxxane.random_things.blocks.RtBlocks;
 import lol.roxxane.random_things.blocks.mass_ores.MassOre;
 import lol.roxxane.random_things.recipes.EnchantCraftingRecipe;
 import lol.roxxane.random_things.recipes.EnchantTransmutationRecipe;
@@ -8,10 +9,7 @@ import lol.roxxane.random_things.recipes.TransmutationRecipe;
 import lol.roxxane.random_things.tags.RtItemTags;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -29,6 +27,7 @@ import java.util.function.Consumer;
 
 import static java.util.Map.entry;
 import static lol.roxxane.random_things.util.EnchantUtils.get_id;
+import static net.minecraft.advancements.critereon.InventoryChangeTrigger.TriggerInstance.hasItems;
 import static net.minecraft.world.item.enchantment.Enchantments.*;
 
 public class RtRecipeProvider extends RecipeProvider {
@@ -120,6 +119,44 @@ public class RtRecipeProvider extends RecipeProvider {
 				entry.getKey(), 1, ingredients)
 				.save(writer);
 		}
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RtBlocks.CRUMBLY_DEEPSLATE.get(), 4)
+			.pattern("dg")
+			.pattern("gd")
+			.define('d', Items.DEEPSLATE)
+			.define('g', Items.GRAVEL)
+			.group("crumbly_stone")
+			.unlockedBy("has_deepslate", hasItems(Items.DEEPSLATE))
+			.unlockedBy("has_gravel", hasItems(Items.GRAVEL))
+			.save(writer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RtBlocks.CRUMBLY_STONE.get(), 4)
+			.pattern("sg")
+			.pattern("gs")
+			.define('s', Items.STONE)
+			.define('g', Items.GRAVEL)
+			.group("crumbly_stone")
+			.unlockedBy("has_stone", hasItems(Items.STONE))
+			.unlockedBy("has_gravel", hasItems(Items.GRAVEL))
+			.save(writer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RtBlocks.LAVA_FILLED_STONE.get(), 8)
+			.pattern("sss")
+			.pattern("sls")
+			.pattern("sss")
+			.define('s', Items.STONE)
+			.define('l', Items.LAVA_BUCKET)
+			.group("lava_filled_stone")
+			.unlockedBy("has_stone", hasItems(Items.STONE))
+			.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
+			.save(writer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RtBlocks.LAVA_FILLED_DEEPSLATE.get(), 8)
+			.pattern("ddd")
+			.pattern("dld")
+			.pattern("ddd")
+			.define('d', Items.DEEPSLATE)
+			.define('l', Items.LAVA_BUCKET)
+			.group("lava_filled_stone")
+			.unlockedBy("has_deepslate", hasItems(Items.DEEPSLATE))
+			.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
+			.save(writer);
 	}
 	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer,
 		int cook_time)

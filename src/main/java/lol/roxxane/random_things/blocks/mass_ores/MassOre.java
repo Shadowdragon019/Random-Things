@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-import static lol.roxxane.random_things.blocks.RtBlocks.HAS_SILK_TOUCH;
+import static lol.roxxane.random_things.blocks.RtBlockLoot.HAS_SILK_TOUCH;
 
 @SuppressWarnings("unused")
 public class MassOre {

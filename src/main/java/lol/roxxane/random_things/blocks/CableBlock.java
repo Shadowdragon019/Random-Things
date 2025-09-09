@@ -64,10 +64,10 @@ public class CableBlock extends Block implements EntityBlock {
 	public InteractionResult use(BlockState $, Level level, BlockPos pos, Player player,
 		InteractionHand hand, BlockHitResult $1
 	) {
-		BlockUtil.entity(level, pos, CableBlockEntity.class, entity ->
+		BlockUtil.entity(level, pos, CableBlockEntity.class, be ->
 			player.sendSystemMessage(Component.literal(
 				String.format("%s energy: %s", level.isClientSide ? "client" : "server",
-					entity.energy.getEnergyStored()))));
+					be.energy.getEnergyStored()))));
 		return InteractionResult.SUCCESS;
 	}
 }

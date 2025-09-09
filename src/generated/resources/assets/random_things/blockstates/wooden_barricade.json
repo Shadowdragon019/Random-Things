@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "random_things:block/wooden_barricade",
+      "y": 90
+    },
+    "axis=z": {
+      "model": "random_things:block/wooden_barricade"
+    }
+  }
+}

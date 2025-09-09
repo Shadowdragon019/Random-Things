@@ -23,11 +23,11 @@ public class CableBlockEntity extends BlockEntity {
 		super(type, pos, state);
 	}
 	@Override
-	public void load(CompoundTag nbt) {
-		super.load(nbt);
-		var modTag = nbt.getCompound(Rt.ID);
-		if (modTag.contains("energy", CompoundTag.TAG_INT))
-			energy.deserializeNBT(modTag.get("energy"));
+	public void load(CompoundTag tag) {
+		super.load(tag);
+		var mod_tag = tag.getCompound(Rt.ID);
+		if (mod_tag.contains("energy", CompoundTag.TAG_INT))
+			energy.deserializeNBT(mod_tag.get("energy"));
 	}
 	@Override
 	protected void saveAdditional(CompoundTag nbt) {

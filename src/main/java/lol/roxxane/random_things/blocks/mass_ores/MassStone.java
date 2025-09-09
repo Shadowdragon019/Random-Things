@@ -5,7 +5,6 @@ import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import lol.roxxane.random_things.tags.RtBlockTags;
 import lol.roxxane.random_things.util.QuadConsumer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -16,34 +15,36 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import java.util.function.Supplier;
 
 import static lol.roxxane.random_things.Rt.id;
+import static net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE;
+import static net.minecraft.tags.BlockTags.MINEABLE_WITH_SHOVEL;
 
 @SuppressWarnings("SameParameterValue")
 public class MassStone {
 	public static final MassStone[] STONES = new MassStone[]{
 		new MassStone("minecraft:sand", Blocks.SAND,
-			RtBlockTags.SAND_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_SHOVEL),
+			RtBlockTags.SAND_ORE_REPLACEABLES, MINEABLE_WITH_SHOVEL),
 		new MassStone("minecraft:sandstone", Blocks.SANDSTONE,
-			RtBlockTags.SANDSTONE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE)
+			RtBlockTags.SANDSTONE_ORE_REPLACEABLES, MINEABLE_WITH_PICKAXE)
 			.cube_bottom_top(),
 		new MassStone("minecraft:red_sand", Blocks.RED_SAND,
-			RtBlockTags.RED_SAND_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_SHOVEL),
+			RtBlockTags.RED_SAND_ORE_REPLACEABLES, MINEABLE_WITH_SHOVEL),
 		new MassStone("minecraft:red_sandstone", Blocks.RED_SANDSTONE,
-			RtBlockTags.RED_SANDSTONE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE)
+			RtBlockTags.RED_SANDSTONE_ORE_REPLACEABLES, MINEABLE_WITH_PICKAXE)
 			.cube_bottom_top(),
 		new MassStone("minecraft:dirt", Blocks.DIRT,
-			RtBlockTags.DIRT_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_SHOVEL),
+			RtBlockTags.DIRT_ORE_REPLACEABLES, MINEABLE_WITH_SHOVEL),
 		new MassStone("minecraft:gravel", Blocks.GRAVEL,
-			RtBlockTags.GRAVEL_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_SHOVEL),
+			RtBlockTags.GRAVEL_ORE_REPLACEABLES, MINEABLE_WITH_SHOVEL),
 		new MassStone("minecraft:diorite", Blocks.DIORITE,
-			RtBlockTags.DIORITE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE),
+			RtBlockTags.DIORITE_ORE_REPLACEABLES, MINEABLE_WITH_PICKAXE),
 		new MassStone("minecraft:andesite", Blocks.ANDESITE,
-			RtBlockTags.ANDESITE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE),
+			RtBlockTags.ANDESITE_ORE_REPLACEABLES, MINEABLE_WITH_PICKAXE),
 		new MassStone("minecraft:granite", Blocks.GRANITE,
-			RtBlockTags.GRANITE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE),
+			RtBlockTags.GRANITE_ORE_REPLACEABLES, MINEABLE_WITH_PICKAXE),
 		new MassStone("minecraft:tuff", Blocks.TUFF,
-			RtBlockTags.TUFF_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE),
+			RtBlockTags.TUFF_ORE_REPLACEABLES, MINEABLE_WITH_PICKAXE),
 		new MassStone("minecraft:dripstone", Blocks.DRIPSTONE_BLOCK,
-			RtBlockTags.DRIPSTONE_ORE_REPLACEABLES, BlockTags.MINEABLE_WITH_PICKAXE)
+			RtBlockTags.DRIPSTONE_ORE_REPLACEABLES, MINEABLE_WITH_PICKAXE)
 			.stone_model_path("dripstone_block"),
 	};
 

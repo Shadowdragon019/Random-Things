@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-06T04:43:20.349806976	Tags for minecraft:item mod id random_things
+// 1.20.1	2025-09-09T17:28:25.431545611	Tags for minecraft:item mod id random_things
 cda953b36c8b8f3383fea7d1255ab52ebd5a0d73 data/forge/tags/items/timber.json
 f47abd027bd0638a4e65d7de5a8b326b6cc51835 data/forge/tags/items/timber/barked.json
 2c22a0116ea6b8966150dec2bacfe13e6dd673e6 data/forge/tags/items/timber/barked_logs.json
@@ -6,5 +6,7 @@ f47abd027bd0638a4e65d7de5a8b326b6cc51835 data/forge/tags/items/timber/barked.jso
 8a1c0e9b4f654cf5feee4f81416515ed75d4fc24 data/forge/tags/items/timber/stripped.json
 29d7dfaf859755f609b2267b3ab2bf9e02ab0a40 data/forge/tags/items/timber/stripped_logs.json
 dd059bc1fdae313a9e44e479885a43f06b6d7277 data/forge/tags/items/timber/stripped_woods.json
+f6ad20d0c836bcc557382696969121f9719e10cd data/minecraft/tags/items/leaves.json
 59dfeb5e69c61562d86b0c1400734ae761107a29 data/minecraft/tags/items/logs.json
+aa56b4728f49bed1bc6b067f70bde434881dd5fb data/random_things/tags/items/dead_ore_logs.json
 2dd0e793da8b3b0c90c0f9298ee8826a82e3fe8b data/random_things/tags/items/indestructible.json
