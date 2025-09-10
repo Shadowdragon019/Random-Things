@@ -1,9 +1,0 @@
-{
-  "parent": "random_things:block/mass_ore_sandstone",
-  "textures": {
-    "bottom": "minecraft:block/red_sandstone_bottom",
-    "ore": "random_things:block/mass_ore/minecraft/gold",
-    "side": "minecraft:block/red_sandstone",
-    "top": "minecraft:block/red_sandstone_top"
-  }
-}

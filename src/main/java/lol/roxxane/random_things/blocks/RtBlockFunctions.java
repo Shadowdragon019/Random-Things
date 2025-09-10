@@ -1,6 +1,5 @@
 package lol.roxxane.random_things.blocks;
 
-import lol.roxxane.random_things.blocks.mass_ores.StrippableLeavesBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;

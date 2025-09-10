@@ -14,8 +14,6 @@ public class RtModEvents {
 	public static void fill_creative_tabs(BuildCreativeModeTabContentsEvent event) {
 		var tab =  event.getTabKey();
 		if (tab == NATURAL_BLOCKS || tab == SEARCH) {
-			for (var entry : RtBlocks.MASS_ORES)
-				event.accept(entry);
 			event.accept(RtBlocks.CRUMBLY_STONE);
 			event.accept(RtBlocks.CRUMBLY_DEEPSLATE);
 			event.accept(RtBlocks.LAVA_FILLED_STONE);

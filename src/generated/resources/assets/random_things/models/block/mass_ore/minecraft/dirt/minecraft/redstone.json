@@ -1,7 +1,0 @@
-{
-  "parent": "random_things:block/mass_ore",
-  "textures": {
-    "base": "minecraft:block/dirt",
-    "ore": "random_things:block/mass_ore/minecraft/redstone"
-  }
-}

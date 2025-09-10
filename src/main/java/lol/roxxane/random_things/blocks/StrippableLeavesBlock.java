@@ -1,6 +1,5 @@
-package lol.roxxane.random_things.blocks.mass_ores;
+package lol.roxxane.random_things.blocks;
 
-import lol.roxxane.random_things.blocks.RtBlocks;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;

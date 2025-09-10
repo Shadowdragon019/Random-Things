@@ -2,21 +2,21 @@ package lol.roxxane.random_things.data_gen;
 
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.blocks.RtBlocks;
-import lol.roxxane.random_things.blocks.mass_ores.MassOre;
 import lol.roxxane.random_things.recipes.EnchantCraftingRecipe;
 import lol.roxxane.random_things.recipes.EnchantTransmutationRecipe;
 import lol.roxxane.random_things.recipes.TransmutationRecipe;
 import lol.roxxane.random_things.tags.RtItemTags;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
@@ -39,10 +39,6 @@ public class RtRecipeProvider extends RecipeProvider {
 	@Override
 	protected void buildRecipes(@NotNull Consumer<FinishedRecipe> writer) {
 		this.writer = writer;
-		for (var ore : MassOre.ORES) {
-			smelt(ore);
-			blast(ore);
-		}
 		for (var tag : List.of(ItemTags.PLANKS, ItemTags.WOODEN_STAIRS, ItemTags.WOODEN_SLABS, ItemTags.WOODEN_DOORS,
 			ItemTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_BUTTONS, ItemTags.SAPLINGS)
 		)
@@ -157,24 +153,5 @@ public class RtRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_deepslate", hasItems(Items.DEEPSLATE))
 			.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
 			.save(writer);
-	}
-	private void cook(MassOre ore, String type, RecipeSerializer<? extends AbstractCookingRecipe> serializer,
-		int cook_time)
-	{
-		SimpleCookingRecipeBuilder.generic(Ingredient.of(ore.item_ore_tag),
-				RecipeCategory.MISC,
-				ore.processed == null ? ore.material.get() : ore.processed.get(),
-				ore.recipe_xp, cook_time, serializer)
-			.group(ore.cooking_group)
-			.unlockedBy("has_" + ore.id.getNamespace() + "_" + ore.id.getPath() + "_ore",
-				has(ore.material.get()))
-			.save(writer,
-				Rt.id(type + "/mass_ore/" + ore.id.getNamespace() + "_" + ore.id.getPath()));
-	}
-	private void smelt(MassOre ore) {
-		cook(ore, "smelting", RecipeSerializer.SMELTING_RECIPE, 200);
-	}
-	private void blast(MassOre ore) {
-		cook(ore, "blasting", RecipeSerializer.BLASTING_RECIPE, 100);
 	}
 }

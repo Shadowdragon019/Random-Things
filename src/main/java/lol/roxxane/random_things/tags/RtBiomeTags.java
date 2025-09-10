@@ -8,7 +8,6 @@ import net.minecraft.world.level.biome.Biome;
 public class RtBiomeTags {
 	public static final TagKey<Biome> HAS_DUNGEON = tag("has_structure/dungeon");
 	public static final TagKey<Biome> HAS_ORE_TREE = tag("has_structure/ore_tree");
-
 	private static TagKey<Biome> tag(String path) {
 		return TagKey.create(Registries.BIOME, Rt.id(path));
 	}
