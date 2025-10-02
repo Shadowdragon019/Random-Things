@@ -1,4 +1,4 @@
-package lol.roxxane.random_things.data_gen;
+package lol.roxxane.random_things.data;
 
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.blocks.RtBlocks;
@@ -6,6 +6,8 @@ import lol.roxxane.random_things.recipes.EnchantCraftingRecipe;
 import lol.roxxane.random_things.recipes.EnchantTransmutationRecipe;
 import lol.roxxane.random_things.recipes.TransmutationRecipe;
 import lol.roxxane.random_things.tags.RtItemTags;
+import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -18,9 +20,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -28,6 +32,8 @@ import java.util.function.Consumer;
 import static java.util.Map.entry;
 import static lol.roxxane.random_things.util.EnchantUtils.get_id;
 import static net.minecraft.advancements.critereon.InventoryChangeTrigger.TriggerInstance.hasItems;
+import static net.minecraft.data.recipes.RecipeCategory.COMBAT;
+import static net.minecraft.data.recipes.RecipeCategory.MISC;
 import static net.minecraft.world.item.enchantment.Enchantments.*;
 
 public class RtRecipeProvider extends RecipeProvider {
@@ -115,7 +121,7 @@ public class RtRecipeProvider extends RecipeProvider {
 				entry.getKey(), 1, ingredients)
 				.save(writer);
 		}
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RtBlocks.CRUMBLY_DEEPSLATE.get(), 4)
+		ShapedRecipeBuilder.shaped(MISC, RtBlocks.CRUMBLY_DEEPSLATE.get(), 4)
 			.pattern("dg")
 			.pattern("gd")
 			.define('d', Items.DEEPSLATE)
@@ -124,7 +130,7 @@ public class RtRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_deepslate", hasItems(Items.DEEPSLATE))
 			.unlockedBy("has_gravel", hasItems(Items.GRAVEL))
 			.save(writer);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RtBlocks.CRUMBLY_STONE.get(), 4)
+		ShapedRecipeBuilder.shaped(MISC, RtBlocks.CRUMBLY_STONE.get(), 4)
 			.pattern("sg")
 			.pattern("gs")
 			.define('s', Items.STONE)
@@ -133,7 +139,7 @@ public class RtRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_stone", hasItems(Items.STONE))
 			.unlockedBy("has_gravel", hasItems(Items.GRAVEL))
 			.save(writer);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RtBlocks.LAVA_FILLED_STONE.get(), 8)
+		ShapedRecipeBuilder.shaped(MISC, RtBlocks.LAVA_FILLED_STONE.get(), 8)
 			.pattern("sss")
 			.pattern("sls")
 			.pattern("sss")
@@ -143,7 +149,7 @@ public class RtRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_stone", hasItems(Items.STONE))
 			.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
 			.save(writer);
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RtBlocks.LAVA_FILLED_DEEPSLATE.get(), 8)
+		ShapedRecipeBuilder.shaped(MISC, RtBlocks.LAVA_FILLED_DEEPSLATE.get(), 8)
 			.pattern("ddd")
 			.pattern("dld")
 			.pattern("ddd")
@@ -153,5 +159,33 @@ public class RtRecipeProvider extends RecipeProvider {
 			.unlockedBy("has_deepslate", hasItems(Items.DEEPSLATE))
 			.unlockedBy("has_lava", hasItems(Items.LAVA_BUCKET))
 			.save(writer);
+		shaped(COMBAT, RtBlocks.WOODEN_SPIKES.get(), 1,
+			List.of("11", "11"),
+			List.of(ItemTags.LOGS),
+			"wooden_spikes",
+			Map.of("has_logs", hasItems(ItemPredicate.Builder.item().of(ItemTags.LOGS).build()))
+		);
+	}
+	@SuppressWarnings({"unchecked", "SameParameterValue"})
+	protected void shaped(RecipeCategory category, ItemLike output, int count, List<String> patterns,
+	List<Object> defines, @Nullable String group, Map<String, CriterionTriggerInstance> unlocked_by) {
+		var builder = ShapedRecipeBuilder.shaped(category, output, count).group(group);
+		for (var pattern : patterns)
+			builder.pattern(pattern);
+		var i = 1;
+		for (var entry : defines) {
+			var _char = String.valueOf(i).charAt(0);
+			if (entry instanceof Ingredient ingredient)
+				builder.define(_char, ingredient);
+			else if (entry instanceof ItemLike item)
+				builder.define(_char, item);
+			else if (entry instanceof TagKey<?> tag)
+				builder.define(_char, (TagKey<Item>) tag);
+			else throw new IllegalArgumentException(entry.getClass().toString());
+			i++;
+		}
+		for (var entry : unlocked_by.entrySet())
+			builder.unlockedBy(entry.getKey(), entry.getValue());
+		builder.save(writer);
 	}
 }

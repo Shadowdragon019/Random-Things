@@ -75,7 +75,7 @@ public class RtBlocks {
 			.item().model(RtBlockStates::cable_item).build()
 			.register();
 	public static final RegistryEntry<WoodenBarricadeBlock> WOODEN_SPIKES =
-		REGISTRATE.block("wooden_barricade", WoodenBarricadeBlock::new)
+		REGISTRATE.block("wooden_barricade", p -> new WoodenBarricadeBlock(p.noOcclusion()))
 			.blockEntity(WoodenBarricadeBlockEntity::new).build()
 			.blockstate(RtBlockStates::wooden_barricade)
 			.simpleItem()

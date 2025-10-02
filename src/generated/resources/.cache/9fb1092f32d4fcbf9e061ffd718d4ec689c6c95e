@@ -1,4 +1,5 @@
-// 1.20.1	2025-09-10T17:13:30.520238113	Recipes
+// 1.20.1	2025-09-10T19:09:36.363423622	Recipes
+e4c5b6fa2e3b41860c0cea6e7000298ebd8a1554 data/random_things/advancements/recipes/combat/wooden_barricade.json
 dcab185a1a84ab02681e77ab1dd6977f4d954345 data/random_things/advancements/recipes/misc/crumbly_deepslate.json
 492688017a885e62682807253c6dd7da8065a9c0 data/random_things/advancements/recipes/misc/crumbly_stone.json
 7c5cea343d9243fb8c9391cf264e957e4bf65c63 data/random_things/advancements/recipes/misc/lava_filled_deepslate.json
@@ -51,3 +52,4 @@ a73e541e860ee108f57b8ce0f18da5bf54fc7ae8 data/random_things/recipes/transmutatio
 d3c8c83a4b3da322f1036b8d2cb474990bf049b1 data/random_things/recipes/transmutation/wooden_slabs.json
 3f99580c212f468176b84f85442d60fd1a94b064 data/random_things/recipes/transmutation/wooden_stairs.json
 09b0fe3dad5c85dd80254647c96a6c134dd49fc8 data/random_things/recipes/transmutation/wooden_trapdoors.json
+983bd00e3fbf0ec53fffb21e09fd59b21c573d83 data/random_things/recipes/wooden_barricade.json

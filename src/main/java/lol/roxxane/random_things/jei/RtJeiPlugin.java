@@ -1,7 +1,7 @@
 package lol.roxxane.random_things.jei;
 
 import lol.roxxane.random_things.Rt;
-import lol.roxxane.random_things.data_gen.EnchantTransmutationManager;
+import lol.roxxane.random_things.data.EnchantTransmutationManager;
 import lol.roxxane.random_things.recipes.EnchantCraftingRecipe;
 import lol.roxxane.random_things.recipes.IndividualEnchantTransmutationRecipe;
 import lol.roxxane.random_things.recipes.JeiOutputOverride;

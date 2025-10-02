@@ -1,4 +1,4 @@
-package lol.roxxane.random_things.data_gen;
+package lol.roxxane.random_things.data;
 
 import lol.roxxane.random_things.Rt;
 import lol.roxxane.random_things.damage.RtDamageTypes;

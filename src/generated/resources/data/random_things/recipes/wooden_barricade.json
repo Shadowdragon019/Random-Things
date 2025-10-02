@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "wooden_spikes",
+  "key": {
+    "1": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "pattern": [
+    "11",
+    "11"
+  ],
+  "result": {
+    "item": "random_things:wooden_barricade"
+  },
+  "show_notification": true
+}

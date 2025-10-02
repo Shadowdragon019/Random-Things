@@ -1,7 +1,7 @@
 package lol.roxxane.random_things.recipes;
 
 import com.google.gson.JsonObject;
-import lol.roxxane.random_things.data_gen.EnchantTransmutationManager;
+import lol.roxxane.random_things.data.EnchantTransmutationManager;
 import lol.roxxane.random_things.items.RtItems;
 import lol.roxxane.random_things.util.StackUtil;
 import net.minecraft.core.RegistryAccess;

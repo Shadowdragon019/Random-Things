@@ -1,4 +1,4 @@
-package lol.roxxane.random_things.data_gen;
+package lol.roxxane.random_things.data;
 
 import com.google.gson.JsonObject;
 import lol.roxxane.random_things.util.EnchantUtils;

@@ -16,6 +16,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,6 +34,8 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 // Add states!!
 // Repair
 // Magnifying glass
+// Wood variants
+// Waterlog able
 @SuppressWarnings("deprecation")
 public class WoodenBarricadeBlock extends Block implements EntityBlock {
 	public static final VoxelShape COLLISION_EW = Block.box(1, 0, 0, 15, 15, 16);
@@ -46,6 +49,8 @@ public class WoodenBarricadeBlock extends Block implements EntityBlock {
 				be.health--;
 				be.setChanged();
 				entity.sendSystemMessage(Component.literal(String.valueOf(be.health)));
+				if (be.health < 1)
+					level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 			});
 			if (!level.isClientSide)
 				level.sendBlockUpdated(pos, state, state, UPDATE_CLIENTS);

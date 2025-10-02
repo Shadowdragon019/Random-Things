@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 
-package lol.roxxane.random_things.data_gen;
+package lol.roxxane.random_things.data;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 
